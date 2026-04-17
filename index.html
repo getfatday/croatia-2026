@@ -22,6 +22,8 @@
       --plum-light: #EFE5EE;
       --gold: #C99A3F;
       --gold-light: #F8EDD2;
+      --teal: #3F8079;
+      --teal-light: #DBEBE8;
       --cream: #FBF7EE;
       --white: #FFFFFF;
       --night: #1E293B;
@@ -38,39 +40,34 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--adriatic); }
-
     .hero {
-      background: linear-gradient(to bottom, rgba(27,110,140,0.45) 0%, rgba(30,41,59,0.65) 100%),
+      background: linear-gradient(to bottom, rgba(27,110,140,0.4) 0%, rgba(30,41,59,0.65) 100%),
                   url('https://images.unsplash.com/photo-1555990538-17392f5c1c65?w=1800&q=80') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 6rem 2rem 5rem;
+      padding: 5rem 2rem 4rem;
       position: relative;
       overflow: hidden;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
       font-weight: 700;
       margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
     }
 
     .hero .subtitle {
       font-size: 1.15rem;
       font-weight: 300;
-      opacity: 0.92;
-      max-width: 600px;
-      margin: 0 auto;
+      opacity: 0.9;
     }
 
     .hero .dates {
       display: inline-block;
-      margin-top: 1.2rem;
-      padding: 0.45rem 1.3rem;
-      border: 1px solid rgba(255,255,255,0.45);
+      margin-top: 1rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.4);
       border-radius: 2rem;
       font-size: 0.9rem;
       font-weight: 500;
@@ -78,7 +75,7 @@
     }
 
     .container {
-      max-width: 880px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 0 1.5rem 4rem;
     }
@@ -102,7 +99,7 @@
       flex: 1;
       min-width: max-content;
       text-align: center;
-      padding: 0.9rem 1.1rem;
+      padding: 0.9rem 1rem;
       text-decoration: none;
       font-size: 0.78rem;
       font-weight: 600;
@@ -140,17 +137,8 @@
       color: var(--warm-gray);
       font-weight: 600;
     }
-    .info-item .value { font-size: 0.92rem; font-weight: 500; }
+    .info-item .value { font-size: 0.9rem; font-weight: 500; }
     .info-item .detail { font-size: 0.78rem; color: var(--warm-gray); }
-
-    /* Section heading */
-    .section-heading {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      scroll-margin-top: 60px;
-    }
 
     /* Day sections */
     .day-section {
@@ -162,12 +150,12 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .day-badge {
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
@@ -178,21 +166,19 @@
       flex-shrink: 0;
     }
 
-    .day-badge .num { font-size: 1.35rem; line-height: 1; }
-    .day-badge .dow { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.9; margin-top: 2px; }
+    .day-badge .num { font-size: 1.3rem; line-height: 1; }
+    .day-badge .dow { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
 
     .day-header h2 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.55rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      line-height: 1.2;
     }
 
     .day-header .day-subtitle {
       font-size: 0.85rem;
       color: var(--warm-gray);
       font-weight: 400;
-      margin-top: 0.15rem;
     }
 
     /* Color coding per location */
@@ -200,175 +186,636 @@
     .day-split .day-badge { background: var(--adriatic); }
     .day-brac .day-badge { background: var(--pine); }
     .day-korcula .day-badge { background: var(--plum); }
-    .day-mljet .day-badge { background: #3F8079; }
+    .day-mljet .day-badge { background: var(--teal); }
     .day-dubrovnik .day-badge { background: var(--terra); }
     .day-kotor .day-badge { background: var(--gold); }
 
-    /* Day card */
-    .day-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1.4rem 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      border-left: 4px solid var(--warm-gray);
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
     }
 
-    .day-split .day-card { border-left-color: var(--adriatic); }
-    .day-brac .day-card { border-left-color: var(--pine); }
-    .day-korcula .day-card { border-left-color: var(--plum); }
-    .day-mljet .day-card { border-left-color: #3F8079; }
-    .day-dubrovnik .day-card { border-left-color: var(--terra); }
-    .day-kotor .day-card { border-left-color: var(--gold); }
-
-    .day-card p {
-      font-size: 0.92rem;
-      color: #444;
-      margin-bottom: 0.7rem;
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.03));
     }
-    .day-card p:last-child { margin-bottom: 0; }
 
-    .day-card strong { font-weight: 600; color: var(--night); }
+    .event {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
 
-    .day-meta {
-      margin-top: 1rem;
-      padding-top: 0.9rem;
-      border-top: 1px solid #F0F0F0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.4rem;
-      font-size: 0.82rem;
+    .event::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--warm-gray);
+      background: var(--cream);
+    }
+
+    .event.confirmed::before {
+      background: var(--adriatic);
+      border-color: var(--adriatic);
+    }
+
+    .event-time {
+      font-size: 0.78rem;
+      font-weight: 600;
       color: var(--warm-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
     }
 
-    .day-meta .meta-item { display: flex; align-items: center; gap: 0.4rem; }
-    .day-meta .meta-item strong { color: var(--night); font-weight: 600; }
+    .event-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-body {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    .event-body p { margin-bottom: 0.5rem; }
+    .event-body p:last-child { margin-bottom: 0; }
 
     /* Tags */
     .tag {
       display: inline-block;
       font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 0.22rem 0.6rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       margin-right: 0.3rem;
-      vertical-align: middle;
+      margin-bottom: 0.3rem;
     }
 
     .tag-confirmed { background: var(--adriatic-light); color: var(--adriatic); }
-    .tag-hike-mod { background: var(--pine-light); color: var(--pine); }
+    .tag-hike { background: var(--pine-light); color: var(--pine); }
     .tag-hike-hard { background: var(--terra-light); color: var(--terra); }
-    .tag-optional { background: var(--gold-light); color: #8B6914; }
-    .tag-travel { background: #ECEEF2; color: var(--warm-gray); }
+    .tag-activity { background: var(--teal-light); color: var(--teal); }
+    .tag-ferry { background: var(--adriatic-light); color: var(--adriatic); }
+    .tag-option { background: var(--plum-light); color: var(--plum); }
+    .tag-meal { background: var(--gold-light); color: #8B6914; }
     .tag-unesco { background: var(--plum-light); color: var(--plum); }
+
+    /* Recommendation / activity card */
+    .rec-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0;
+      border-left: 3px solid var(--adriatic);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .rec-card.alt {
+      border-left-color: var(--warm-gray);
+      opacity: 0.9;
+    }
+
+    .rec-card .rec-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .rec-card a { color: var(--adriatic); text-decoration: none; font-weight: inherit; }
+    .rec-card a:hover { text-decoration: underline; }
+
+    .rec-card .rec-address {
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+    }
+
+    .rec-card .rec-detail {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.4rem;
+    }
+
+    /* Confirmation pill */
+    .conf {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      background: var(--adriatic-light);
+      color: var(--adriatic);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
 
     /* Tip callout */
     .tip {
       background: #FFF8E1;
       border-radius: 8px;
-      padding: 0.85rem 1rem;
-      font-size: 0.86rem;
-      margin: 0.9rem 0 0.2rem;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      margin: 0.8rem 0;
       display: flex;
       gap: 0.5rem;
-      line-height: 1.55;
     }
 
     .tip::before { content: '💡'; flex-shrink: 0; }
 
-    /* Tables */
-    .data-table {
+    /* Options grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.8rem;
+      margin: 0.8rem 0;
+    }
+
+    .option-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      border-top: 3px solid var(--warm-gray);
+    }
+
+    .option-card h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .option-card p {
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    /* Confirmation + reference tables */
+    .conf-section {
+      margin-top: 3rem;
+      scroll-margin-top: 60px;
+    }
+
+    .conf-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .conf-table, .rest-table {
       width: 100%;
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       border-collapse: collapse;
-      font-size: 0.85rem;
-      margin: 1rem 0;
     }
 
-    .data-table th {
+    .conf-table th, .rest-table th {
       text-align: left;
       padding: 0.7rem 1rem;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--warm-gray);
       background: #FAFAFA;
       border-bottom: 1px solid #EEE;
-      white-space: nowrap;
     }
 
-    .data-table td {
-      padding: 0.65rem 1rem;
+    .conf-table td, .rest-table td {
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
       border-bottom: 1px solid #F0F0F0;
       vertical-align: top;
     }
 
-    .data-table tr:last-child td { border-bottom: none; }
+    .conf-table tr:last-child td, .rest-table tr:last-child td { border-bottom: none; }
 
-    .data-table .mono {
+    .conf-table .mono, .rest-table .mono {
       font-family: 'SF Mono', 'Fira Code', monospace;
       font-size: 0.8rem;
       color: var(--adriatic);
       font-weight: 500;
     }
 
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 1rem -0.5rem;
-      padding: 0 0.5rem;
+    .rest-table { font-size: 0.82rem; margin: 1rem 0; }
+    .rest-table th { padding: 0.6rem 0.8rem; font-size: 0.7rem; }
+    .rest-table td { padding: 0.55rem 0.8rem; }
+
+    /* Packing */
+    .packing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.8rem;
     }
 
-    /* Confirm pill */
-    .conf {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.78rem;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      background: var(--adriatic-light);
-      color: var(--adriatic);
-      padding: 0.18rem 0.55rem;
-      border-radius: 4px;
-      font-weight: 500;
+    .pack-item {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
 
-    /* Hotel callout */
-    .hotel-line {
+    .pack-item .pack-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    /* Decisions / Poll */
+    .decisions-section {
+      margin-top: 2rem;
+      scroll-margin-top: 60px;
+    }
+
+    .decisions-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .decisions-subtitle {
       font-size: 0.85rem;
       color: var(--warm-gray);
-      margin-top: 0.4rem;
-    }
-    .hotel-line strong { color: var(--night); font-weight: 600; }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      font-size: 0.82rem;
-      color: var(--warm-gray);
-    }
-
-    .footer a { color: var(--adriatic); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-
-    /* Section intro */
-    .section-intro {
-      font-size: 0.92rem;
-      color: #555;
       margin-bottom: 1.2rem;
     }
 
+    .voter-picker {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .voter-picker-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 0.3rem;
+    }
+
+    .voter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 2rem;
+      border: 2px solid #E0E0E0;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--night);
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .voter-btn:hover { border-color: var(--adriatic); }
+
+    .voter-btn.active {
+      border-color: var(--adriatic);
+      background: var(--adriatic);
+      color: white;
+    }
+
+    .voter-btn .voter-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .voter-btn.active .voter-avatar { background: rgba(255,255,255,0.3); }
+
+    .avatar-ian { background: var(--adriatic); }
+    .avatar-owen { background: var(--pine); }
+    .avatar-kyle { background: var(--terra); }
+    .avatar-gene { background: var(--plum); }
+    .avatar-jenny { background: var(--gold); }
+
+    .decisions-progress {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: #E8E8E8;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--adriatic);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--warm-gray);
+      white-space: nowrap;
+    }
+
+    .decision-group {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .decision-group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.2rem;
+      background: #FAFAFA;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .decision-day-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .decision-group-header h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--night);
+    }
+
+    .decision-group-header .decided-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--adriatic);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .decision-group.all-decided .decided-badge { opacity: 1; }
+
+    .decision-item {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid #F5F5F5;
+    }
+
+    .decision-item:last-child { border-bottom: none; }
+
+    .decision-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--night);
+      margin-bottom: 0.5rem;
+    }
+
+    .decision-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .decision-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      cursor: pointer;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      border: 1.5px solid #E8E8E8;
+      transition: all 0.2s;
+    }
+
+    .decision-option:hover {
+      border-color: var(--adriatic-light);
+      background: var(--adriatic-light);
+    }
+
+    .decision-option.selected {
+      border-color: var(--adriatic);
+      background: var(--adriatic-light);
+    }
+
+    .decision-option input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #CCC;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .decision-option input[type="radio"]:checked {
+      border-color: var(--adriatic);
+      background: var(--adriatic);
+    }
+
+    .decision-option input[type="radio"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .decision-option-content { flex: 1; }
+
+    .decision-option-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .decision-option-desc {
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+      line-height: 1.5;
+      margin-top: 0.15rem;
+    }
+
+    .vote-avatars {
+      display: inline-flex;
+      gap: 0.25rem;
+      margin-left: 0.2rem;
+      vertical-align: middle;
+    }
+
+    .vote-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: white;
+      animation: voteIn 0.3s ease;
+    }
+
+    @keyframes voteIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .vote-count-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+    }
+
+    .vote-bar-track {
+      flex: 1;
+      height: 4px;
+      background: #EEEEEE;
+      border-radius: 2px;
+      overflow: hidden;
+      max-width: 80px;
+    }
+
+    .vote-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--adriatic);
+      transition: width 0.4s ease;
+    }
+
+    .vote-count-label {
+      font-size: 0.7rem;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+
+    .no-voter-msg {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--warm-gray);
+      font-size: 0.9rem;
+    }
+
+    .poll-body { display: none; }
+    .poll-body.visible { display: block; }
+
+    .share-bar { margin-top: 1.5rem; text-align: center; }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2rem;
+      border: none;
+      background: var(--adriatic);
+      color: white;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(27,110,140,0.3);
+    }
+
+    .share-btn:hover {
+      background: #14597A;
+      box-shadow: 0 4px 12px rgba(27,110,140,0.4);
+      transform: translateY(-1px);
+    }
+
+    .share-hint {
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+      margin-top: 0.6rem;
+    }
+
+    .share-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--night);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .share-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--warm-gray);
+      font-size: 0.8rem;
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
-      .hero { padding: 4rem 1.25rem 3rem; }
+      .hero { padding: 3rem 1.5rem 2rem; }
+      .info-banner { grid-template-columns: 1fr; }
       .container { padding: 0 1rem 3rem; }
-      .day-nav { margin: 0 -1rem; }
-      .info-banner { padding: 1.2rem; }
-      .day-card { padding: 1.1rem 1.2rem; }
+      .day-nav a { padding: 0.8rem 0.8rem; font-size: 0.72rem; }
+      .options-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .day-nav { position: static; }
+      .hero { background: var(--adriatic) !important; -webkit-print-color-adjust: exact; }
     }
   </style>
 </head>
@@ -376,14 +823,17 @@
 
 <header class="hero">
   <h1>Croatia 2026</h1>
-  <p class="subtitle">Ten days walking the Dalmatian coast — Split, Brač, Korčula, Mljet, Dubrovnik (and a side trip to Kotor)</p>
-  <div class="dates">May 29 — June 7, 2026</div>
+  <p class="subtitle">Ian, Owen, Kyle, Gene &amp; Jenny</p>
+  <span class="dates">May 29 &ndash; June 7, 2026</span>
 </header>
 
 <div class="container">
 
-  <nav class="day-nav">
+  <nav class="day-nav" id="nav">
+    <a href="#decisions">Decisions</a>
     <a href="#travel">Travel</a>
+    <a href="#map">Map</a>
+    <a href="#may29">Fri 29</a>
     <a href="#may30">Sat 30</a>
     <a href="#may31">Sun 31</a>
     <a href="#jun1">Mon 1</a>
@@ -394,265 +844,577 @@
     <a href="#jun6">Sat 6</a>
     <a href="#jun7">Sun 7</a>
     <a href="#hotels">Hotels</a>
-    <a href="#confirm">Confirm #s</a>
+    <a href="#confirmations">Confirm #s</a>
   </nav>
 
-  <div class="info-banner">
+  <!-- ===== DECISIONS ===== -->
+  <section class="decisions-section" id="decisions">
+    <h2>Vote on Open Decisions</h2>
+    <p class="decisions-subtitle">Pick who you are, then vote on each open question. Everyone's votes show up in real time on this device.</p>
+
+    <div class="voter-picker">
+      <span class="voter-picker-label">I'm:</span>
+      <button class="voter-btn" data-voter="ian" onclick="setVoter('ian')"><span class="voter-avatar avatar-ian">I</span> Ian</button>
+      <button class="voter-btn" data-voter="owen" onclick="setVoter('owen')"><span class="voter-avatar avatar-owen">O</span> Owen</button>
+      <button class="voter-btn" data-voter="kyle" onclick="setVoter('kyle')"><span class="voter-avatar avatar-kyle">K</span> Kyle</button>
+      <button class="voter-btn" data-voter="gene" onclick="setVoter('gene')"><span class="voter-avatar avatar-gene">G</span> Gene</button>
+      <button class="voter-btn" data-voter="jenny" onclick="setVoter('jenny')"><span class="voter-avatar avatar-jenny">J</span> Jenny</button>
+    </div>
+
+    <div class="decisions-progress">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+      <span class="progress-text" id="progressText">0 / 15 votes in</span>
+    </div>
+
+    <div class="no-voter-msg" id="noVoterMsg">👆 Pick your name above to start voting</div>
+
+    <div class="poll-body" id="pollBody">
+
+      <div class="decision-group" data-group="split-sun">
+        <div class="decision-group-header">
+          <span class="decision-day-dot" style="background: var(--adriatic);"></span>
+          <h3>Sunday, May 31 — Split afternoon</h3>
+          <span class="decided-badge">All voted ✓</span>
+        </div>
+        <div class="decision-item" data-decision="split-afternoon">
+          <div class="decision-label">After the morning walking tour, how do we spend the free afternoon?</div>
+          <div class="decision-options">
+            <label class="decision-option" data-value="marjan">
+              <input type="radio" name="split-afternoon" value="marjan">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🥾 Marjan Hill hike</span> <span class="vote-avatars" data-slot="split-afternoon:marjan"></span></div>
+                <div class="decision-option-desc">Pine-forested hill west of Old Town. Views over the city, the harbor, and the islands. 1–2 hours round trip, mostly stairs.</div>
+                <div class="vote-count-bar" data-bar="split-afternoon:marjan"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="market">
+              <input type="radio" name="split-afternoon" value="market">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🧺 Green Market + Riva stroll</span> <span class="vote-avatars" data-slot="split-afternoon:market"></span></div>
+                <div class="decision-option-desc">Open-air market at the east wall of Diocletian's Palace, then an easy wander along the Riva waterfront promenade with a coffee.</div>
+                <div class="vote-count-bar" data-bar="split-afternoon:market"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="bacvice">
+              <input type="radio" name="split-afternoon" value="bacvice">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🌊 Bačvice Beach</span> <span class="vote-avatars" data-slot="split-afternoon:bacvice"></span></div>
+                <div class="decision-option-desc">Sandy beach 10 min east of Old Town. Home of picigin (Split's traditional shallow-water ball game). Good for a rest day.</div>
+                <div class="vote-count-bar" data-bar="split-afternoon:bacvice"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="decision-group" data-group="dubrovnik-fri">
+        <div class="decision-group-header">
+          <span class="decision-day-dot" style="background: var(--terra);"></span>
+          <h3>Friday, June 5 — Dubrovnik free afternoon</h3>
+          <span class="decided-badge">All voted ✓</span>
+        </div>
+        <div class="decision-item" data-decision="dubrovnik-afternoon">
+          <div class="decision-label">After the morning walking tour, what's the afternoon?</div>
+          <div class="decision-options">
+            <label class="decision-option" data-value="walls">
+              <input type="radio" name="dubrovnik-afternoon" value="walls">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🏰 Walk the City Walls</span> <span class="vote-avatars" data-slot="dubrovnik-afternoon:walls"></span></div>
+                <div class="decision-option-desc">~2 miles around the old town at 80 ft elevation. The iconic terracotta-roof view. Allow ~2 hours. Go late afternoon for light + fewer cruise crowds.</div>
+                <div class="vote-count-bar" data-bar="dubrovnik-afternoon:walls"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="srd">
+              <input type="radio" name="dubrovnik-afternoon" value="srd">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🚡 Cable car up Mt. Srđ</span> <span class="vote-avatars" data-slot="dubrovnik-afternoon:srd"></span></div>
+                <div class="decision-option-desc">4 min cable car to 1,350 ft above the old town. Panoramic views, small Homeland War museum, Panorama restaurant. Return by cable car or walk down.</div>
+                <div class="vote-count-bar" data-bar="dubrovnik-afternoon:srd"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="lokrum">
+              <input type="radio" name="dubrovnik-afternoon" value="lokrum">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🚤 Ferry to Lokrum Island</span> <span class="vote-avatars" data-slot="dubrovnik-afternoon:lokrum"></span></div>
+                <div class="decision-option-desc">15 min ferry from the Old Port. Botanical garden, Benedictine monastery ruins, rocky swimming spots, peacocks roaming free.</div>
+                <div class="vote-count-bar" data-bar="dubrovnik-afternoon:lokrum"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="decision-group" data-group="kotor-sat">
+        <div class="decision-group-header">
+          <span class="decision-day-dot" style="background: var(--gold);"></span>
+          <h3>Saturday, June 6 — Kotor transport</h3>
+          <span class="decided-badge">All voted ✓</span>
+        </div>
+        <div class="decision-item" data-decision="kotor-mode">
+          <div class="decision-label">How do we get to Kotor and back?</div>
+          <div class="decision-options">
+            <label class="decision-option" data-value="tour">
+              <input type="radio" name="kotor-mode" value="tour">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🚐 Organized day tour</span> <span class="vote-avatars" data-slot="kotor-mode:tour"></span></div>
+                <div class="decision-option-desc">Easier: driver handles the border, parking, and timing. Usually picks up from the hotel around 7:30 am and includes a Perast / Bay of Kotor stop.</div>
+                <div class="vote-count-bar" data-bar="kotor-mode:tour"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="car">
+              <input type="radio" name="kotor-mode" value="car">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🚗 Rental car</span> <span class="vote-avatars" data-slot="kotor-mode:car"></span></div>
+                <div class="decision-option-desc">More flexible pacing and stops. But: border crossing paperwork, parking in Kotor fills up fast, and early-June lines can still add 30–60 min each way.</div>
+                <div class="vote-count-bar" data-bar="kotor-mode:car"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+            <label class="decision-option" data-value="skip">
+              <input type="radio" name="kotor-mode" value="skip">
+              <div class="decision-option-content">
+                <div class="decision-option-name"><span>🏖️ Skip Kotor — stay in Dubrovnik</span> <span class="vote-avatars" data-slot="kotor-mode:skip"></span></div>
+                <div class="decision-option-desc">Use the leisure day for more Dubrovnik, the islands, or pure rest after six hiking days.</div>
+                <div class="vote-count-bar" data-bar="kotor-mode:skip"><div class="vote-bar-track"><div class="vote-bar-fill" style="width:0%"></div></div><span class="vote-count-label">0 votes</span></div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="share-bar">
+        <button class="share-btn" onclick="shareResults()"><span>📋</span> Share My Votes</button>
+        <p class="share-hint">Copies your votes to clipboard — paste into the group chat.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="share-toast" id="shareToast">Copied to clipboard! Paste it in the group chat 💬</div>
+
+  <!-- ===== TRAVEL & LODGING ===== -->
+  <div class="info-banner" id="travel">
     <div class="info-item">
-      <span class="icon">📅</span>
+      <span class="icon">✈️</span>
       <div>
-        <div class="label">Dates</div>
-        <div class="value">May 29 – Jun 7</div>
-        <div class="detail">10 days, 9 nights</div>
+        <div class="label">Arrive</div>
+        <div class="value">Sat May 30 · 2:10pm</div>
+        <div class="detail">UA 972 / SN 3353 → Split</div>
       </div>
     </div>
     <div class="info-item">
-      <span class="icon">👥</span>
+      <span class="icon">✈️</span>
       <div>
-        <div class="label">Travelers</div>
-        <div class="value">Ian, Owen, Kyle</div>
-        <div class="detail">+ Gene & Jenny on Gate 1 air</div>
+        <div class="label">Depart</div>
+        <div class="value">Sun Jun 7 · 12:15pm</div>
+        <div class="detail">UA 386 → Chicago via Newark</div>
       </div>
     </div>
     <div class="info-item">
       <span class="icon">🥾</span>
       <div>
         <div class="label">Tour</div>
-        <div class="value">Gate 1 Croatian Islands Walking Tour</div>
-        <div class="detail">10 days, max 20 travelers</div>
+        <div class="value">Gate 1 Croatian Islands</div>
+        <div class="detail">10 day walking tour, challenging</div>
       </div>
     </div>
     <div class="info-item">
-      <span class="icon">⛰️</span>
+      <span class="icon">🏨</span>
       <div>
-        <div class="label">Activity Level</div>
-        <div class="value">Challenging</div>
-        <div class="detail">Up to 5 hrs walking/hiking per touring day</div>
+        <div class="label">Base hotels</div>
+        <div class="value">Split · Brač · Korčula · Dubrovnik</div>
+        <div class="detail">All arranged by Gate 1</div>
       </div>
     </div>
   </div>
 
-  <!-- TRAVEL -->
-  <h2 id="travel" class="section-heading">✈️ Flights</h2>
-  <p class="section-intro">United, confirmation <span class="conf">MSSQC7</span>. Total $6,440.19 ($2,146.73/person), booked Mar 8, 2026.</p>
-
-  <h3 style="font-size:1rem;font-weight:600;margin:1.4rem 0 0.5rem;">Outbound — Chicago to Split</h3>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Leg</th><th>Route</th><th>Date</th><th>Depart</th><th>Arrive</th><th>Duration</th><th>Flight</th><th>Aircraft</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>ORD → BRU</td><td>Fri May 29</td><td>6:00 PM</td><td>9:00 AM +1</td><td>8h</td><td class="mono">UA 972</td><td>787-10 Dreamliner</td></tr>
-        <tr><td>2</td><td>BRU → SPU</td><td>Sat May 30</td><td>12:10 PM</td><td>2:10 PM</td><td>2h</td><td class="mono">SN 3353</td><td>A320neo</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:0.85rem;color:var(--warm-gray);margin-top:0.4rem;">Total 13h 10m, 1 stop (3h 10m layover in Brussels). Leg 2 operated by Brussels Airlines.</p>
-
-  <h3 style="font-size:1rem;font-weight:600;margin:1.6rem 0 0.5rem;">Return — Dubrovnik to Chicago</h3>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Leg</th><th>Route</th><th>Date</th><th>Depart</th><th>Arrive</th><th>Duration</th><th>Flight</th><th>Aircraft</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>DBV → EWR</td><td>Sun Jun 7</td><td>12:15 PM</td><td>4:35 PM</td><td>10h 20m</td><td class="mono">UA 386</td><td>767-400ER</td></tr>
-        <tr><td>2</td><td>EWR → ORD</td><td>Sun Jun 7</td><td>7:12 PM</td><td>9:00 PM</td><td>2h 48m</td><td class="mono">UA 1610</td><td>A321neo</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:600;margin:1.6rem 0 0.5rem;">Seat Assignments</h3>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Passenger</th><th>eTicket</th><th>ORD→BRU</th><th>BRU→SPU</th><th>DBV→EWR</th><th>EWR→ORD</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Ian Anderson</td><td class="mono">0162382331146</td><td>32A</td><td>—</td><td>34A</td><td>09A</td></tr>
-        <tr><td>Kyle Anderson</td><td class="mono">0162382331148</td><td>32B</td><td>—</td><td>34B</td><td>09B</td></tr>
-        <tr><td>Owen Anderson</td><td class="mono">0162382331150</td><td>32C</td><td>—</td><td>34D</td><td>09C</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:0.82rem;color:var(--warm-gray);margin-top:0.5rem;">Ian: UA Premier Gold. Kyle: UA Member.</p>
-
-  <h2 class="section-heading">🗓️ Day by Day</h2>
-  <p class="section-intro">Gate 1's 10-day walking tour with one self-organized day to Kotor. Hiking distances and meals included reflect Gate 1's published itinerary.</p>
-
-  <!-- DAY 1: May 29 -->
-  <section id="may29" class="day-section day-travel">
-    <div class="day-header">
-      <div class="day-badge"><span class="num">29</span><span class="dow">Fri</span></div>
-      <div>
-        <h2>Depart Chicago</h2>
-        <div class="day-subtitle">Gate 1 Day 1 · Travel day</div>
-      </div>
+  <!-- ===== MAP ===== -->
+  <section class="conf-section" id="map" style="margin-top: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+      <h2>Trip Map</h2>
+      <a href="https://www.google.com/maps/dir/Split,+Croatia/Bra%C4%8D/Kor%C4%8Dula/Mljet/Dubrovnik,+Croatia/Kotor,+Montenegro" target="_blank" rel="noopener" style="font-size: 0.82rem; font-weight: 600; color: var(--adriatic); text-decoration: none;">Open in Google Maps ↗</a>
     </div>
-    <div class="day-card">
-      <p><span class="tag tag-travel">Travel</span> 6:00 PM flight ORD → BRU on UA 972. Overnight on plane.</p>
+    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+      <iframe src="https://www.google.com/maps?q=Split+Croatia+to+Dubrovnik&output=embed&z=7" width="100%" height="420" style="border:0; display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
 
-  <!-- DAY 2: May 30 Split -->
-  <section id="may30" class="day-section day-split">
+  <!-- ===== FRI MAY 29 ===== -->
+  <section class="day-section day-travel" id="may29">
+    <div class="day-header">
+      <div class="day-badge"><span class="num">29</span><span class="dow">Fri</span></div>
+      <div>
+        <h2>Chicago → Brussels</h2>
+        <div class="day-subtitle">Gate 1 Day 1 · Overnight flight</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="event confirmed">
+        <div class="event-time">6:00pm</div>
+        <div class="event-title">Depart ORD</div>
+        <div class="event-body">
+          <p><span class="tag tag-confirmed">Confirmed</span> UA 972 to Brussels. 8-hour flight, overnight.</p>
+          <p>Gene &amp; Jenny are on Gate 1 air and fly separately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SAT MAY 30 — SPLIT ===== -->
+  <section class="day-section day-split" id="may30">
     <div class="day-header">
       <div class="day-badge"><span class="num">30</span><span class="dow">Sat</span></div>
       <div>
         <h2>Arrive Split</h2>
-        <div class="day-subtitle">Gate 1 Day 2 · Hotel Cvita</div>
+        <div class="day-subtitle">Gate 1 Day 2 · UNESCO harbor town</div>
       </div>
     </div>
-    <div class="day-card">
-      <p><span class="tag tag-confirmed">Confirmed</span> Land Brussels 9:00 AM, on to Split arriving 2:10 PM. Gate 1 transfer to <strong>Hotel Cvita</strong>. Leisure afternoon to wander the UNESCO-protected seaside town.</p>
-      <div class="day-meta">
-        <span class="meta-item">🍽️ <strong>Dinner included</strong></span>
-        <span class="meta-item">🏨 <strong>Hotel Cvita</strong>, Split</span>
+    <div class="timeline">
+      <div class="event confirmed">
+        <div class="event-time">9:00am</div>
+        <div class="event-title">Land in Brussels (layover)</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Short 3-hour layover before the hop to Split.</p></div>
+      </div>
+      <div class="event confirmed">
+        <div class="event-time">12:10pm</div>
+        <div class="event-title">BRU → SPU on SN 3353</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Brussels Airlines (operated by Brussels Airlines). ~2 hour flight.</p></div>
+      </div>
+      <div class="event confirmed">
+        <div class="event-time">2:10pm</div>
+        <div class="event-title">Land in Split</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Gate 1 transfer from SPU airport to Hotel Cvita in the old town.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Settle in &amp; wander Split</div>
+        <div class="event-body">
+          <p><span class="tag tag-activity">Free time</span></p>
+          <p>Drop bags, then walk into Diocletian's Palace — it's the city center, not a ruin. Narrow alleys, cafes inside 4th-century stone walls, the Peristyle courtyard. Easy first pass to orient yourselves before the walking tour tomorrow.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Group dinner</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 welcome dinner at Hotel Cvita.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 3: May 31 Split -->
-  <section id="may31" class="day-section day-split">
+  <!-- ===== SUN MAY 31 — SPLIT ===== -->
+  <section class="day-section day-split" id="may31">
     <div class="day-header">
       <div class="day-badge"><span class="num">31</span><span class="dow">Sun</span></div>
       <div>
         <h2>Explore Split</h2>
-        <div class="day-subtitle">Gate 1 Day 3 · Walking tour + free time</div>
+        <div class="day-subtitle">Walking tour · Free afternoon · Tour orientation</div>
       </div>
     </div>
-    <div class="day-card">
-      <p><span class="tag tag-unesco">UNESCO</span> Walking tour of Split Old Town — <strong>Diocletian's Palace</strong> (4th century AD), Cathedral of St. Domnius, Temple of Jupiter. Independent exploration in the afternoon.</p>
-      <p>Group orientation meeting at <strong>6 PM</strong>.</p>
-      <div class="day-meta">
-        <span class="meta-item">🍽️ <strong>Breakfast, Dinner</strong></span>
-        <span class="meta-item">🏨 <strong>Hotel Cvita</strong>, Split</span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Walking tour of Split Old Town</div>
+        <div class="event-body">
+          <p><span class="tag tag-unesco">UNESCO</span></p>
+          <p><strong>Diocletian's Palace</strong> (late 3rd / early 4th century AD) — retirement palace of the emperor, now the living core of the city. See the Cathedral of St. Domnius (originally Diocletian's mausoleum), the Temple of Jupiter, and the vaulted cellar halls.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">~1:00pm</div>
+        <div class="event-title">Free afternoon</div>
+        <div class="event-body">
+          <p><span class="tag tag-option">Choose</span></p>
+          <p>See the <a href="#decisions" style="color: var(--adriatic);">Decisions</a> section to vote. Three solid options:</p>
+          <div class="options-grid">
+            <div class="option-card" style="border-top-color: var(--pine);">
+              <h4>🥾 Marjan Hill</h4>
+              <p>Pine-forested hill west of Old Town. Climb the stairs for the classic view over Split and the islands. 1–2 hrs round trip.</p>
+            </div>
+            <div class="option-card" style="border-top-color: var(--gold);">
+              <h4>🧺 Green Market + Riva</h4>
+              <p>Open-air market at the east wall of the palace, then coffee along the waterfront promenade. Low-key.</p>
+            </div>
+            <div class="option-card" style="border-top-color: var(--adriatic);">
+              <h4>🌊 Bačvice Beach</h4>
+              <p>Sandy beach 10 min east of Old Town. Home of <em>picigin</em> — Split's shallow-water ball game.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="event confirmed">
+        <div class="event-time">6:00pm</div>
+        <div class="event-title">Gate 1 group orientation</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Tour leader meets the group at the hotel. Meet the other travelers (max 20 in the group).</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Group dinner</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Dinner with the tour.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 4: Jun 1 Brac -->
-  <section id="jun1" class="day-section day-brac">
+  <!-- ===== MON JUN 1 — BRAC ===== -->
+  <section class="day-section day-brac" id="jun1">
     <div class="day-header">
       <div class="day-badge"><span class="num">01</span><span class="dow">Mon</span></div>
       <div>
-        <h2>Brač Island — Skrip & Postira</h2>
-        <div class="day-subtitle">Gate 1 Day 4 · Ferry from Split</div>
+        <h2>Brač Island — Skrip &amp; Postira</h2>
+        <div class="day-subtitle">Gate 1 Day 4 · Ferry + first hike</div>
       </div>
     </div>
-    <div class="day-card">
-      <p>Ferry to <strong>Brač Island</strong>. Visit historic <strong>Skrip</strong> — the oldest village on the island — and tour the Olive Oil Museum. Lunch at a local restaurant, then hike to <strong>Postira</strong> on the north coast.</p>
-      <div class="day-meta">
-        <span class="meta-item">🥾 <span class="tag tag-hike-mod">Moderate</span> 3.7 mi · 3 hrs · ±1,650 ft</span>
-        <span class="meta-item">🍽️ <strong>Breakfast, Lunch</strong></span>
-        <span class="meta-item">🏨 <strong>Aminess Vival Velaris</strong>, Supetar</span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Ferry Split → Supetar</div>
+        <div class="event-body"><p><span class="tag tag-ferry">Ferry</span> ~1 hour across to Brač, the third-largest Adriatic island.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Midday</div>
+        <div class="event-title">Skrip &amp; the Olive Oil Museum</div>
+        <div class="event-body">
+          <p><span class="tag tag-activity">Village visit</span></p>
+          <p><strong>Skrip</strong> is the oldest village on Brač — Illyrian, Roman, then Venetian layers stacked on top of each other. Small Olive Oil Museum walks through how the island's stone-walled groves have worked for centuries.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">~1:00pm</div>
+        <div class="event-title">Lunch at a local restaurant</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Konoba-style meal with the group.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Hike to Postira</div>
+        <div class="event-body">
+          <p><span class="tag tag-hike">Moderate hike</span></p>
+          <p><strong>3.7 mi · 3 hrs · ±1,650 ft</strong> down toward the north coast. Postira is a fishing village with a small harbor.</p>
+          <div class="tip">Walking poles are recommended for the tour as a whole. Rocky paths, lots of limestone.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Supetar — Aminess Vival Velaris</div>
+        <div class="event-body"><p>Check into the seaside hotel in Supetar for two nights.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 5: Jun 2 Vidova Gora -->
-  <section id="jun2" class="day-section day-brac">
+  <!-- ===== TUE JUN 2 — VIDOVA GORA ===== -->
+  <section class="day-section day-brac" id="jun2">
     <div class="day-header">
       <div class="day-badge"><span class="num">02</span><span class="dow">Tue</span></div>
       <div>
-        <h2>Vidova Gora & Zlatni Rat</h2>
-        <div class="day-subtitle">Gate 1 Day 5 · Highest peak in the Adriatic islands</div>
+        <h2>Vidova Gora &amp; Zlatni Rat</h2>
+        <div class="day-subtitle">Highest peak in the Adriatic islands</div>
       </div>
     </div>
-    <div class="day-card">
-      <p>Hike from <strong>Podgazul Village</strong> up to <strong>Vidova Gora</strong> (778 m / 2,552 ft) — the highest mountain on any Adriatic island. Panoramic views, picnic lunch at the top.</p>
-      <p>Descend to explore <strong>Zlatni Rat (Golden Horn) Beach</strong>, the famous shape-shifting pebble spit. Wine tasting at a local household to close the day.</p>
-      <div class="day-meta">
-        <span class="meta-item">🥾 <span class="tag tag-hike-mod">Moderate</span> 4.3 mi · 3 hrs · ±755 ft</span>
-        <span class="meta-item">🍽️ <strong>Breakfast, Lunch</strong></span>
-        <span class="meta-item">🏨 <strong>Aminess Vival Velaris</strong>, Supetar</span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Hike up Vidova Gora</div>
+        <div class="event-body">
+          <p><span class="tag tag-hike">Moderate hike</span></p>
+          <p><strong>4.3 mi · 3 hrs · ±755 ft</strong> from Podgazul Village up to <strong>Vidova Gora</strong> — 778 m (2,552 ft), the highest point on any Adriatic island. The final ridge looks straight down onto Zlatni Rat and across to Hvar.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Midday</div>
+        <div class="event-title">Picnic at the summit</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Packed lunch with the view.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Descend to Zlatni Rat Beach</div>
+        <div class="event-body">
+          <p><span class="tag tag-activity">Beach</span></p>
+          <p><strong>Zlatni Rat</strong> — "Golden Horn" — is the famous pebble spit that shifts shape with the wind and current. Water is clear turquoise. Bring swim shoes; it's smooth stones, not sand.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Late afternoon</div>
+        <div class="event-title">Wine tasting at a local household</div>
+        <div class="event-body"><p><span class="tag tag-activity">Family-hosted</span> Gate 1 arranges a visit to a Brač household — local wines, stories, snacks.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 6: Jun 3 Korcula -->
-  <section id="jun3" class="day-section day-korcula">
+  <!-- ===== WED JUN 3 — KORCULA ===== -->
+  <section class="day-section day-korcula" id="jun3">
     <div class="day-header">
       <div class="day-badge"><span class="num">03</span><span class="dow">Wed</span></div>
       <div>
         <h2>Korčula — Marco Polo's island</h2>
-        <div class="day-subtitle">Gate 1 Day 6 · Catamaran from Brač</div>
+        <div class="day-subtitle">Catamaran + vineyard hike</div>
       </div>
     </div>
-    <div class="day-card">
-      <p>Catamaran from Brač to <strong>Korčula</strong>. Hike from <strong>Pupnat</strong> through vineyards with archipelago views. Taste local products in <strong>Žrnovo Village</strong>.</p>
-      <p>Descend into <strong>Korčula Old Town</strong> — birthplace of Marco Polo. The walled town sits on a peninsula with views back to the Pelješac mainland.</p>
-      <div class="day-meta">
-        <span class="meta-item">🥾 <span class="tag tag-hike-hard">Challenging</span> 6.9 mi · 4 hrs · ±1,260 ft</span>
-        <span class="meta-item">🍽️ <strong>Breakfast, Lunch</strong></span>
-        <span class="meta-item">🏨 <strong>Aminess Korčula Heritage Hotel</strong></span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Catamaran Brač → Korčula</div>
+        <div class="event-body"><p><span class="tag tag-ferry">Catamaran</span> Fast boat down the Dalmatian coast.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Midday</div>
+        <div class="event-title">Hike from Pupnat through the vineyards</div>
+        <div class="event-body">
+          <p><span class="tag tag-hike-hard">Challenging hike</span></p>
+          <p><strong>6.9 mi · 4 hrs · ±1,260 ft</strong>. The path climbs out of Pupnat through dry-stone vineyards and drops down toward Žrnovo with archipelago views the whole way.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Taste local products in Žrnovo</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Žrnovo is the village above Korčula town. Olive oil, cheese, local wines.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Late afternoon</div>
+        <div class="event-title">Descend into Korčula Old Town</div>
+        <div class="event-body">
+          <p><span class="tag tag-unesco">Historic</span></p>
+          <p>The walled old town sits on a small peninsula — a fishbone street grid designed to catch the breeze and block the wind. Local tradition says Marco Polo was born here in 1254.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Aminess Korčula Heritage Hotel</div>
+        <div class="event-body"><p>Two nights on Korčula.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 7: Jun 4 Mljet -->
-  <section id="jun4" class="day-section day-mljet">
+  <!-- ===== THU JUN 4 — MLJET ===== -->
+  <section class="day-section day-mljet" id="jun4">
     <div class="day-header">
       <div class="day-badge"><span class="num">04</span><span class="dow">Thu</span></div>
       <div>
         <h2>Mljet National Park</h2>
-        <div class="day-subtitle">Gate 1 Day 7 · Day trip by catamaran</div>
+        <div class="day-subtitle">Two saltwater lakes &amp; a 12th-century monastery</div>
       </div>
     </div>
-    <div class="day-card">
-      <p>Catamaran to <strong>Mljet Island</strong>. Full-day exploration of the national park — hike through pine forests to discover two saltwater lakes (<em>Veliko</em> and <em>Malo Jezero</em>).</p>
-      <p>View <strong>Sveta Marija</strong> island with its 12th-century Benedictine monastery rising out of the lake. Dinner at a traditional restaurant.</p>
-      <div class="day-meta">
-        <span class="meta-item">🥾 <span class="tag tag-hike-hard">Challenging</span> 5.6 mi · 4 hrs</span>
-        <span class="meta-item">🍽️ <strong>Breakfast, Lunch, Dinner</strong></span>
-        <span class="meta-item">🏨 <strong>Aminess Korčula Heritage Hotel</strong></span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Catamaran to Mljet</div>
+        <div class="event-body"><p><span class="tag tag-ferry">Catamaran</span> Day trip from Korčula.</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">All day</div>
+        <div class="event-title">Hike the national park</div>
+        <div class="event-body">
+          <p><span class="tag tag-hike-hard">Challenging hike</span></p>
+          <p><strong>5.6 mi · 4 hrs</strong> through pine forest to the two saltwater lakes — <em>Veliko Jezero</em> and <em>Malo Jezero</em>. In the middle of Veliko, <strong>Sveta Marija</strong> (St. Mary's Island) holds a 12th-century Benedictine monastery.</p>
+          <div class="tip">Swim break in the lakes if the group has time — the water is warmer than the open sea.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Dinner at a traditional restaurant</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner, then catamaran back to Korčula for the night.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 8: Jun 5 Dubrovnik -->
-  <section id="jun5" class="day-section day-dubrovnik">
+  <!-- ===== FRI JUN 5 — DUBROVNIK ===== -->
+  <section class="day-section day-dubrovnik" id="jun5">
     <div class="day-header">
       <div class="day-badge"><span class="num">05</span><span class="dow">Fri</span></div>
       <div>
         <h2>Dubrovnik Old Town</h2>
-        <div class="day-subtitle">Gate 1 Day 8 · Walking tour + free afternoon</div>
+        <div class="day-subtitle">Walking tour + free afternoon</div>
       </div>
     </div>
-    <div class="day-card">
-      <p><span class="tag tag-unesco">UNESCO</span> Walking tour of Dubrovnik Old Town — <strong>Rector's Palace</strong>, <strong>Sponza Palace</strong>, Orlando Tower, Dominican Monastery, and the <strong>Franciscan Monastery</strong> with its 14th-century pharmacy (one of the oldest still in operation).</p>
-      <p>Free afternoon — option to walk the <strong>city walls</strong> independently for the iconic terracotta-roof view.</p>
-      <div class="tip">Walking the walls takes ~2 hours. Go in the late afternoon to avoid both the cruise crowds and the midday heat. Bring water.</div>
-      <div class="day-meta">
-        <span class="meta-item">🍽️ <strong>Breakfast, Dinner</strong></span>
-        <span class="meta-item">🏨 <strong>Hotel Kompas</strong> / Valamar Lacroma / Hotel Lapad</span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Transfer to Dubrovnik</div>
+        <div class="event-body"><p><span class="tag tag-ferry">Transfer</span> From Korčula down to Dubrovnik. Check into Hotel Kompas / Valamar Lacroma / Hotel Lapad (Gate 1 assignment).</p></div>
+      </div>
+      <div class="event">
+        <div class="event-time">Midday</div>
+        <div class="event-title">Walking tour of the Old Town</div>
+        <div class="event-body">
+          <p><span class="tag tag-unesco">UNESCO</span></p>
+          <p><strong>Rector's Palace</strong>, <strong>Sponza Palace</strong>, Orlando Tower on the Stradun, Dominican Monastery, and the <strong>Franciscan Monastery</strong> with its 14th-century pharmacy — one of the oldest still operating in the world.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Free afternoon</div>
+        <div class="event-body">
+          <p><span class="tag tag-option">Choose</span></p>
+          <p>Vote in <a href="#decisions" style="color: var(--adriatic);">Decisions</a>. Three options:</p>
+          <div class="options-grid">
+            <div class="option-card" style="border-top-color: var(--terra);">
+              <h4>🏰 City Walls</h4>
+              <p>~2 mi walk around the top of the old town at 80 ft elevation. Iconic terracotta-roof view. Go late afternoon for light + fewer cruise crowds.</p>
+            </div>
+            <div class="option-card" style="border-top-color: var(--pine);">
+              <h4>🚡 Mt. Srđ cable car</h4>
+              <p>4 min up to 1,350 ft. Panoramic view down onto the old town, small Homeland War museum, Panorama restaurant.</p>
+            </div>
+            <div class="option-card" style="border-top-color: var(--adriatic);">
+              <h4>🚤 Lokrum Island</h4>
+              <p>15 min ferry from the Old Port. Botanical garden, monastery ruins, rocky swimming, peacocks wandering the paths.</p>
+            </div>
+          </div>
+          <div class="tip">The walls take ~2 hours and there's no shade. Bring water.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Evening</div>
+        <div class="event-title">Group dinner</div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner in Dubrovnik.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 9: Jun 6 Kotor -->
-  <section id="jun6" class="day-section day-kotor">
+  <!-- ===== SAT JUN 6 — KOTOR ===== -->
+  <section class="day-section day-kotor" id="jun6">
     <div class="day-header">
       <div class="day-badge"><span class="num">06</span><span class="dow">Sat</span></div>
       <div>
-        <h2>Kotor day trip <span style="font-size:0.7em;color:var(--warm-gray);">(self-organized)</span></h2>
-        <div class="day-subtitle">Gate 1 Day 9 is a leisure day</div>
+        <h2>Kotor day trip</h2>
+        <div class="day-subtitle">Self-organized · Gate 1 Day 9 is a leisure day</div>
       </div>
     </div>
-    <div class="day-card">
-      <p><span class="tag tag-optional">Optional</span> Leave early (before 8 AM) for <strong>Kotor, Montenegro</strong> — about 2 to 2.5 hours by car or organized tour from Dubrovnik.</p>
-      <p>Walk the UNESCO old town and climb the <strong>fortress walls</strong> (San Giovanni / St. John's Fortress) for views over the <strong>Bay of Kotor</strong>. The full climb is 1,350 steps — go as far as you like. Lunch by the water, then return to Dubrovnik by evening.</p>
-      <div class="tip"><strong>Border note:</strong> Bring passports. US citizens don't need a visa. Border crossing can add 30–60 min each way — early June should be lighter than peak summer. Open question: car rental vs. organized day tour. Tour is easier (no parking, no border paperwork).</div>
-      <div class="day-meta">
-        <span class="meta-item">🍽️ <strong>Breakfast (Gate 1 included)</strong> · lunch & dinner on your own</span>
-        <span class="meta-item">🏨 Dubrovnik (Gate 1)</span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Before 8:00am</div>
+        <div class="event-title">Leave Dubrovnik for Montenegro</div>
+        <div class="event-body">
+          <p><span class="tag tag-activity">Border crossing</span></p>
+          <p><strong>~2 to 2.5 hours</strong> each way — by rental car or organized tour. See the <a href="#decisions" style="color: var(--adriatic);">Decisions</a> section to vote on the mode.</p>
+          <div class="tip"><strong>Passports.</strong> US citizens don't need a visa. Border wait can add 30–60 min each way — early June should be lighter than peak summer, but don't count on zero.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Midday</div>
+        <div class="event-title">Walk Kotor Old Town</div>
+        <div class="event-body">
+          <p><span class="tag tag-unesco">UNESCO</span></p>
+          <p>Tight medieval stone alleys tucked against the mountainside. Several small churches and the Maritime Museum if you're into it.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Afternoon</div>
+        <div class="event-title">Climb the fortress walls</div>
+        <div class="event-body">
+          <p><span class="tag tag-hike-hard">Steep climb</span></p>
+          <p><strong>San Giovanni (St. John's) Fortress</strong> — the zigzag walls up the mountain. Full climb is <strong>1,350 steps</strong> with views over the Bay of Kotor. Go as far as you like and turn back.</p>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-time">Late afternoon</div>
+        <div class="event-title">Lunch by the water &amp; return</div>
+        <div class="event-body">
+          <p><span class="tag tag-meal">On your own</span></p>
+          <p>Back to Dubrovnik by evening. Gate 1 breakfast is included, but lunch and dinner are on your own today.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- DAY 10: Jun 7 Depart -->
-  <section id="jun7" class="day-section day-travel">
+  <!-- ===== SUN JUN 7 — DEPART ===== -->
+  <section class="day-section day-travel" id="jun7">
     <div class="day-header">
       <div class="day-badge"><span class="num">07</span><span class="dow">Sun</span></div>
       <div>
@@ -660,78 +1422,262 @@
         <div class="day-subtitle">Gate 1 Day 10 · Home</div>
       </div>
     </div>
-    <div class="day-card">
-      <p>Morning to pack. Gate 1 provides airport transfer.</p>
-      <p><span class="tag tag-travel">Travel</span> <span class="mono" style="font-family:'SF Mono',monospace;color:var(--adriatic);">UA 386</span> departs DBV 12:15 PM → EWR 4:35 PM. Connect to <span class="mono" style="font-family:'SF Mono',monospace;color:var(--adriatic);">UA 1610</span> EWR 7:12 PM → ORD 9:00 PM.</p>
-      <div class="day-meta">
-        <span class="meta-item">🍽️ <strong>Breakfast (Gate 1 included)</strong></span>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">Morning</div>
+        <div class="event-title">Pack &amp; airport transfer</div>
+        <div class="event-body"><p><span class="tag tag-meal">Breakfast included</span> Gate 1 provides the transfer to DBV.</p></div>
+      </div>
+      <div class="event confirmed">
+        <div class="event-time">12:15pm</div>
+        <div class="event-title">Depart DBV</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> UA 386 → Newark (EWR). ~10h 20m.</p></div>
+      </div>
+      <div class="event confirmed">
+        <div class="event-time">7:12pm</div>
+        <div class="event-title">Connect EWR → ORD</div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> UA 1610. Home in Chicago by 9:00pm.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- HOTELS -->
-  <h2 id="hotels" class="section-heading">🏨 Accommodations</h2>
-  <p class="section-intro">All included in the Gate 1 land-only package.</p>
-  <div class="table-wrap">
-    <table class="data-table">
+  <!-- ===== HOTELS REFERENCE ===== -->
+  <section class="conf-section" id="hotels">
+    <h2>Hotels Quick Reference</h2>
+    <div style="overflow-x: auto;">
+      <table class="rest-table">
+        <thead>
+          <tr><th>Location</th><th>Nights</th><th>Dates</th><th>Hotel</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Split</strong></td><td>2</td><td>May 30 – 31</td><td>Hotel Cvita</td></tr>
+          <tr><td><strong>Supetar (Brač)</strong></td><td>2</td><td>Jun 1 – 2</td><td>Aminess Vival Velaris</td></tr>
+          <tr><td><strong>Korčula</strong></td><td>2</td><td>Jun 3 – 4</td><td>Aminess Korčula Heritage Hotel</td></tr>
+          <tr><td><strong>Dubrovnik</strong></td><td>2</td><td>Jun 5 – 6</td><td>Hotel Kompas / Valamar Lacroma / Hotel Lapad</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== PACKING ===== -->
+  <section class="conf-section">
+    <h2>Packing Tips</h2>
+    <div class="packing-grid">
+      <div class="pack-item"><span class="pack-icon">🥾</span><div><strong>Hiking shoes</strong><br>Up to 5 hrs walking per day. Ankle support for the Vidova Gora and Pupnat hikes.</div></div>
+      <div class="pack-item"><span class="pack-icon">🦯</span><div><strong>Walking poles</strong><br>Recommended by Gate 1. Limestone paths are slippery on the way down.</div></div>
+      <div class="pack-item"><span class="pack-icon">☀️</span><div><strong>Sun protection</strong><br>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></div>
+      <div class="pack-item"><span class="pack-icon">🧥</span><div><strong>Layers</strong><br>Warm days (70s °F), cooler mornings on the water. Light rain shell.</div></div>
+      <div class="pack-item"><span class="pack-icon">👙</span><div><strong>Swimsuit</strong><br>Zlatni Rat, Mljet lakes, maybe Lokrum or Bačvice.</div></div>
+      <div class="pack-item"><span class="pack-icon">🩴</span><div><strong>Water shoes</strong><br>Zlatni Rat is pebbles, not sand. Helpful on rocky swim entries elsewhere.</div></div>
+      <div class="pack-item"><span class="pack-icon">💧</span><div><strong>Water bottle</strong><br>Refill at hotels. Croatian tap water is safe.</div></div>
+      <div class="pack-item"><span class="pack-icon">🛂</span><div><strong>Passport</strong><br>Required for the Kotor border crossing on Jun 6.</div></div>
+      <div class="pack-item"><span class="pack-icon">🔌</span><div><strong>EU plug adapter</strong><br>Type F (Schuko). Croatia runs 230V/50Hz.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== CONFIRMATIONS ===== -->
+  <section class="conf-section" id="confirmations">
+    <h2>Confirmation Numbers</h2>
+    <table class="conf-table">
       <thead>
-        <tr><th>Location</th><th>Nights</th><th>Dates</th><th>Hotel</th></tr>
+        <tr><th>What</th><th>Confirmation #</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>Split</strong></td><td>2</td><td>May 30 – 31</td><td>Hotel Cvita</td></tr>
-        <tr><td><strong>Supetar (Brač)</strong></td><td>2</td><td>Jun 1 – 2</td><td>Aminess Vival Velaris</td></tr>
-        <tr><td><strong>Korčula</strong></td><td>2</td><td>Jun 3 – 4</td><td>Aminess Korčula Heritage Hotel</td></tr>
-        <tr><td><strong>Dubrovnik</strong></td><td>2</td><td>Jun 5 – 6</td><td>Hotel Kompas / Valamar Lacroma / Hotel Lapad</td></tr>
+        <tr><td>United flights — Ian, Owen, Kyle</td><td class="mono">MSSQC7</td></tr>
+        <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Booked by Gene</td></tr>
+        <tr><td>Hotel Cvita (Split)</td><td>Via Gate 1</td></tr>
+        <tr><td>Aminess Vival Velaris (Supetar)</td><td>Via Gate 1</td></tr>
+        <tr><td>Aminess Korčula Heritage Hotel</td><td>Via Gate 1</td></tr>
+        <tr><td>Dubrovnik hotel</td><td>Via Gate 1</td></tr>
+        <tr><td>Kotor day trip</td><td class="mono">TBD</td></tr>
       </tbody>
     </table>
-  </div>
-
-  <!-- CONFIRMATION NUMBERS -->
-  <h2 id="confirm" class="section-heading">🔢 Confirmation Numbers</h2>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Item</th><th>Reference</th><th>Notes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>United flights</td><td class="mono">MSSQC7</td><td>ORD↔SPU/DBV, booked Mar 8, 2026</td></tr>
-        <tr><td>Gate 1 tour</td><td>10 Day Croatian Islands Walking Tour</td><td>Booked by Gene · land-only for Ian/Owen/Kyle</td></tr>
-        <tr><td>Payment</td><td>Visa ending <span class="mono">4465</span></td><td>$6,440.19 total · $2,146.73/person flights</td></tr>
-        <tr><td>Ian eTicket</td><td class="mono">0162382331146</td><td>UA Premier Gold</td></tr>
-        <tr><td>Kyle eTicket</td><td class="mono">0162382331148</td><td>UA Member</td></tr>
-        <tr><td>Owen eTicket</td><td class="mono">0162382331150</td><td></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- TOUR LINK -->
-  <h2 class="section-heading">🔗 Reference</h2>
-  <p style="font-size:0.92rem;">Gate 1 itinerary: <a href="https://www.gate1travel.com/tour/walking-croatia-tours-10dhriwt26.aspx">10 Day Croatian Islands Walking Tour</a></p>
-
-  <div class="footer">
-    Anderson family trip · May–June 2026 · <a href="https://github.com/getfatday/croatia-2026">source</a>
-  </div>
+  </section>
 
 </div>
 
-<script>
-  // Highlight active nav link based on scroll position
-  const sections = document.querySelectorAll('.day-section, [id="travel"], [id="hotels"], [id="confirm"]');
-  const navLinks = document.querySelectorAll('.day-nav a');
+<footer>
+  Anderson family · Dalmatian coast · May–June 2026 ⛵
+</footer>
 
-  function setActive() {
+<script>
+  // Nav highlighting
+  const nav = document.getElementById('nav');
+  const links = nav.querySelectorAll('a');
+  const sections = document.querySelectorAll('.day-section, .conf-section, .info-banner, .decisions-section');
+
+  function updateActiveNav() {
     let current = '';
-    sections.forEach(s => {
-      const top = s.getBoundingClientRect().top;
-      if (top < 120) current = s.id;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top <= 80) current = section.id;
     });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    links.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
   }
 
-  window.addEventListener('scroll', setActive, { passive: true });
-  setActive();
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  // Poll logic (localStorage — per-device, not synced across users)
+  const STORAGE_KEY = 'croatia-trip-poll';
+  const VOTER_KEY = 'croatia-trip-voter';
+  const VOTERS = ['ian', 'owen', 'kyle', 'gene', 'jenny'];
+  const QUESTIONS = ['split-afternoon', 'dubrovnik-afternoon', 'kotor-mode'];
+  const TOTAL_VOTES = VOTERS.length * QUESTIONS.length;
+
+  const avatarConfig = {
+    ian:   { initial: 'I', cls: 'avatar-ian' },
+    owen:  { initial: 'O', cls: 'avatar-owen' },
+    kyle:  { initial: 'K', cls: 'avatar-kyle' },
+    gene:  { initial: 'G', cls: 'avatar-gene' },
+    jenny: { initial: 'J', cls: 'avatar-jenny' }
+  };
+
+  let currentVoter = localStorage.getItem(VOTER_KEY) || null;
+
+  function loadPoll() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+  }
+  function savePoll(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+  function setVoter(name) {
+    currentVoter = name;
+    localStorage.setItem(VOTER_KEY, name);
+    document.querySelectorAll('.voter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.voter === name);
+    });
+    document.getElementById('noVoterMsg').style.display = 'none';
+    document.getElementById('pollBody').classList.add('visible');
+    loadVoterSelections();
+    renderAllVotes();
+  }
+
+  function loadVoterSelections() {
+    const poll = loadPoll();
+    const voterData = poll[currentVoter] || {};
+    document.querySelectorAll('input[type="radio"]').forEach(r => {
+      r.checked = false;
+      r.closest('.decision-option').classList.remove('selected');
+    });
+    Object.entries(voterData).forEach(([question, value]) => {
+      const radio = document.querySelector(`input[name="${question}"][value="${value}"]`);
+      if (radio) {
+        radio.checked = true;
+        radio.closest('.decision-option').classList.add('selected');
+      }
+    });
+  }
+
+  function renderAllVotes() {
+    const poll = loadPoll();
+    document.querySelectorAll('.vote-avatars').forEach(slot => slot.innerHTML = '');
+    document.querySelectorAll('.vote-count-bar').forEach(bar => {
+      bar.querySelector('.vote-bar-fill').style.width = '0%';
+      bar.querySelector('.vote-count-label').textContent = '0 votes';
+    });
+
+    const voteCounts = {};
+    VOTERS.forEach(voter => {
+      const voterData = poll[voter] || {};
+      Object.entries(voterData).forEach(([question, value]) => {
+        const key = question + ':' + value;
+        if (!voteCounts[key]) voteCounts[key] = [];
+        voteCounts[key].push(voter);
+        const slot = document.querySelector(`[data-slot="${key}"]`);
+        if (slot) {
+          const dot = document.createElement('span');
+          dot.className = 'vote-dot ' + avatarConfig[voter].cls;
+          dot.textContent = avatarConfig[voter].initial;
+          slot.appendChild(dot);
+        }
+      });
+    });
+
+    Object.entries(voteCounts).forEach(([key, voters]) => {
+      const bar = document.querySelector(`[data-bar="${key}"]`);
+      if (bar) {
+        const pct = Math.round((voters.length / VOTERS.length) * 100);
+        bar.querySelector('.vote-bar-fill').style.width = pct + '%';
+        bar.querySelector('.vote-count-label').textContent = voters.length + (voters.length === 1 ? ' vote' : ' votes');
+      }
+    });
+
+    let totalVoted = 0;
+    VOTERS.forEach(v => { totalVoted += Object.keys(poll[v] || {}).length; });
+    const pct = Math.round((totalVoted / TOTAL_VOTES) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = totalVoted + ' / ' + TOTAL_VOTES + ' votes in';
+
+    document.querySelectorAll('.decision-group').forEach(group => {
+      const items = group.querySelectorAll('.decision-item');
+      let allVoted = true;
+      items.forEach(item => {
+        const qName = item.querySelector('input[type="radio"]').name;
+        let allAll = true;
+        VOTERS.forEach(v => { if (!(poll[v] || {})[qName]) allAll = false; });
+        if (!allAll) allVoted = false;
+      });
+      group.classList.toggle('all-decided', allVoted);
+    });
+  }
+
+  function initPoll() {
+    if (currentVoter) setVoter(currentVoter);
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (!currentVoter) return;
+        const poll = loadPoll();
+        if (!poll[currentVoter]) poll[currentVoter] = {};
+        poll[currentVoter][this.name] = this.value;
+        savePoll(poll);
+        this.closest('.decision-options').querySelectorAll('.decision-option').forEach(opt => opt.classList.remove('selected'));
+        this.closest('.decision-option').classList.add('selected');
+        renderAllVotes();
+      });
+    });
+    renderAllVotes();
+  }
+  initPoll();
+
+  const optionLabels = {
+    'split-afternoon':    { question: 'Split Sun afternoon',  marjan: 'Marjan Hill hike',  market: 'Green Market + Riva', bacvice: 'Bačvice Beach' },
+    'dubrovnik-afternoon':{ question: 'Dubrovnik Fri afternoon', walls: 'City Walls', srd: 'Mt. Srđ cable car', lokrum: 'Lokrum Island' },
+    'kotor-mode':         { question: 'Kotor Sat transport',  tour: 'Organized tour', car: 'Rental car', skip: 'Skip Kotor' }
+  };
+
+  function shareResults() {
+    if (!currentVoter) return;
+    const poll = loadPoll();
+    const myVotes = poll[currentVoter] || {};
+    const name = currentVoter.charAt(0).toUpperCase() + currentVoter.slice(1);
+    let lines = [`⛵ ${name}'s Croatia votes ⛵`, ''];
+    QUESTIONS.forEach(q => {
+      const info = optionLabels[q];
+      const pick = myVotes[q];
+      lines.push(`${info.question}: ${pick ? info[pick] : '(not voted yet)'}`);
+    });
+    lines.push('', 'Vote here 👉 https://getfatday.github.io/croatia-2026/');
+    const text = lines.join('\n');
+    if (navigator.share) navigator.share({ text }).catch(() => copyFallback(text));
+    else copyFallback(text);
+  }
+
+  function copyFallback(text) {
+    navigator.clipboard.writeText(text).then(showToast).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      showToast();
+    });
+  }
+
+  function showToast() {
+    const toast = document.getElementById('shareToast');
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 3000);
+  }
 </script>
 
 </body>
