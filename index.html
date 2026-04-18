@@ -394,6 +394,125 @@
     .event-body strong { font-weight: 700; color: var(--ink); }
     .event-body a { color: var(--rouge); }
 
+    /* ===== PLACE LINKS + POPOVER ===== */
+    a.place {
+      color: var(--rouge);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--rouge);
+      cursor: pointer;
+      font-weight: inherit;
+      white-space: nowrap;
+    }
+    a.place:hover { background: var(--rouge-soft); }
+
+    .pp-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,20,26,0.4);
+      z-index: 200;
+      opacity: 0;
+      animation: ppFade 0.15s ease forwards;
+    }
+    @keyframes ppFade { to { opacity: 1; } }
+
+    .pp-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 12px));
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      width: min(92vw, 400px);
+      max-height: 80vh;
+      overflow: auto;
+      z-index: 201;
+      padding: 1.4rem 1.5rem 1.3rem;
+      opacity: 0;
+      animation: ppIn 0.2s cubic-bezier(.2,.8,.2,1) forwards;
+      box-shadow: 6px 6px 0 var(--rouge);
+    }
+    @keyframes ppIn { to { opacity: 1; transform: translate(-50%, -50%); } }
+
+    .pp-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.9rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--ink-mute);
+      padding: 0.2rem 0.4rem;
+      line-height: 1;
+    }
+    .pp-close:hover { color: var(--rouge); }
+
+    .pp-kind {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 0.3rem;
+    }
+
+    .pp-name {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.005em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      padding-right: 1.5rem;
+    }
+
+    .pp-desc {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .pp-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pp-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pp-actions a {
+      display: inline-block;
+      padding: 0.5rem 0.85rem;
+      background: var(--ink);
+      color: var(--bone);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.15s;
+    }
+    .pp-actions a:hover { background: var(--rouge); }
+    .pp-actions a.alt {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule-strong);
+    }
+    .pp-actions a.alt:hover { background: var(--paper-soft); border-color: var(--rouge); color: var(--rouge); }
+
     /* ===== ACTION LINKS ===== */
     a.go { color: var(--rouge); text-decoration: none; }
     a.go::after {
@@ -1328,7 +1447,7 @@
       <div class="event confirmed">
         <div class="event-time">9:00am</div>
         <div class="event-title">Land in Brussels (layover)</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Short 3-hour layover before the hop to Split.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Short 3-hour layover before the hop to <a class="place" data-place="split" href="#">Split</a>.</p></div>
       </div>
       <div class="event confirmed">
         <div class="event-time">12:10pm</div>
@@ -1338,20 +1457,20 @@
       <div class="event confirmed">
         <div class="event-time">2:10pm</div>
         <div class="event-title">Land in Split</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Gate 1 transfer from SPU airport to Hotel Cvita in the old town.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Gate 1 transfer from SPU airport to <a class="place" data-place="hotel-cvita" href="#">Hotel Cvita</a> in the old town.</p></div>
       </div>
       <div class="event">
         <div class="event-time">Afternoon</div>
         <div class="event-title">Settle in &amp; wander Split</div>
         <div class="event-body">
           <p><span class="tag tag-activity">Free time</span></p>
-          <p>Drop bags, then walk into Diocletian's Palace — it's the city center, not a ruin. Narrow alleys, cafes inside 4th-century stone walls, the Peristyle courtyard. Easy first pass to orient yourselves before the walking tour tomorrow.</p>
+          <p>Drop bags, then walk into <a class="place" data-place="diocletians-palace" href="#">Diocletian's Palace</a> — it's the city center, not a ruin. Narrow alleys, cafes inside 4th-century stone walls, the Peristyle courtyard. Easy first pass to orient yourselves before the walking tour tomorrow.</p>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Evening</div>
         <div class="event-title">Group dinner</div>
-        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 welcome dinner at Hotel Cvita.</p></div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 welcome dinner at <a class="place" data-place="hotel-cvita" href="#">Hotel Cvita</a>.</p></div>
       </div>
     </div>
   </section>
@@ -1374,14 +1493,14 @@
         <div class="event-title">Walking tour of Split Old Town</div>
         <div class="event-body">
           <p><span class="tag tag-unesco">UNESCO</span></p>
-          <p><strong>Diocletian's Palace</strong> (late 3rd / early 4th century AD) — retirement palace of the emperor, now the living core of the city. See the Cathedral of St. Domnius (originally Diocletian's mausoleum), the Temple of Jupiter, and the vaulted cellar halls.</p>
+          <p><strong><a class="place" data-place="diocletians-palace" href="#">Diocletian's Palace</a></strong> (late 3rd / early 4th century AD) — retirement palace of the emperor, now the living core of the city. See the Cathedral of St. Domnius (originally Diocletian's mausoleum), the Temple of Jupiter, and the vaulted cellar halls.</p>
         </div>
       </div>
       <div class="event">
         <div class="event-time">~1:00pm</div>
         <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p>Marjan Hill, Green Market and Riva, or Bačvice Beach. <a href="#decisions">Cast your vote ↑</a></p>
+          <p><a class="place" data-place="marjan-hill" href="#">Marjan Hill</a>, Green Market and Riva, or <a class="place" data-place="bacvice" href="#">Bačvice</a> Beach. <a href="#decisions">Cast your vote ↑</a></p>
         </div>
       </div>
       <div class="event confirmed">
@@ -1414,14 +1533,14 @@
       <div class="event">
         <div class="event-time">Morning</div>
         <div class="event-title">Ferry Split → Supetar</div>
-        <div class="event-body"><p><span class="tag tag-ferry">Ferry</span> ~1 hour across to Brač, the third-largest Adriatic island.</p></div>
+        <div class="event-body"><p><span class="tag tag-ferry">Ferry</span> ~1 hour across to <a class="place" data-place="brac" href="#">Brač</a>, the third-largest Adriatic island.</p></div>
       </div>
       <div class="event">
         <div class="event-time">Midday</div>
         <div class="event-title">Skrip &amp; the Olive Oil Museum</div>
         <div class="event-body">
           <p><span class="tag tag-activity">Village visit</span></p>
-          <p><strong>Skrip</strong> is the oldest village on Brač — Illyrian, Roman, then Venetian layers stacked on top of each other. Small Olive Oil Museum walks through how the island's stone-walled groves have worked for centuries.</p>
+          <p><strong><a class="place" data-place="skrip" href="#">Skrip</a></strong> is the oldest village on <a class="place" data-place="brac" href="#">Brač</a> — Illyrian, Roman, then Venetian layers stacked on top of each other. Small Olive Oil Museum walks through how the island's stone-walled groves have worked for centuries.</p>
         </div>
       </div>
       <div class="event">
@@ -1434,14 +1553,14 @@
         <div class="event-title">Hike to Postira</div>
         <div class="event-body">
           <p><span class="tag tag-hike">Moderate hike</span></p>
-          <p><strong>3.7 mi · 3 hrs · ±1,650 ft</strong> down toward the north coast. Postira is a fishing village with a small harbor.</p>
+          <p><strong>3.7 mi · 3 hrs · ±1,650 ft</strong> down toward the north coast. <a class="place" data-place="postira" href="#">Postira</a> is a fishing village with a small harbor.</p>
           <div class="tip">Walking poles are recommended for the tour as a whole. Rocky paths, lots of limestone.</div>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Evening</div>
         <div class="event-title">Supetar — Aminess Vival Velaris</div>
-        <div class="event-body"><p>Check into the seaside hotel in Supetar for two nights.</p></div>
+        <div class="event-body"><p>Check into the seaside hotel in <a class="place" data-place="supetar" href="#">Supetar</a> for two nights.</p></div>
       </div>
     </div>
   </section>
@@ -1465,7 +1584,7 @@
         <div class="event-title">Hike up Vidova Gora</div>
         <div class="event-body">
           <p><span class="tag tag-hike">Moderate hike</span></p>
-          <p><strong>4.3 mi · 3 hrs · ±755 ft</strong> from Podgazul Village up to <strong>Vidova Gora</strong> — 778 m (2,552 ft), the highest point on any Adriatic island. The final ridge looks straight down onto Zlatni Rat and across to Hvar.</p>
+          <p><strong>4.3 mi · 3 hrs · ±755 ft</strong> from Podgazul Village up to <strong><a class="place" data-place="vidova-gora" href="#">Vidova Gora</a></strong> — 778 m (2,552 ft), the highest point on any Adriatic island. The final ridge looks straight down onto <a class="place" data-place="zlatni-rat" href="#">Zlatni Rat</a> and across to Hvar.</p>
         </div>
       </div>
       <div class="event">
@@ -1478,13 +1597,13 @@
         <div class="event-title">Descend to Zlatni Rat Beach</div>
         <div class="event-body">
           <p><span class="tag tag-activity">Beach</span></p>
-          <p><strong>Zlatni Rat</strong> — "Golden Horn" — is the famous pebble spit that shifts shape with the wind and current. Water is clear turquoise. Bring swim shoes; it's smooth stones, not sand.</p>
+          <p><strong><a class="place" data-place="zlatni-rat" href="#">Zlatni Rat</a></strong> — "Golden Horn" — is the famous pebble spit that shifts shape with the wind and current. Water is clear turquoise. Bring swim shoes; it's smooth stones, not sand.</p>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Late afternoon</div>
         <div class="event-title">Wine tasting at a local household</div>
-        <div class="event-body"><p><span class="tag tag-activity">Family-hosted</span> Gate 1 arranges a visit to a Brač household — local wines, stories, snacks.</p></div>
+        <div class="event-body"><p><span class="tag tag-activity">Family-hosted</span> Gate 1 arranges a visit to a <a class="place" data-place="brac" href="#">Brač</a> household — local wines, stories, snacks.</p></div>
       </div>
     </div>
   </section>
@@ -1513,13 +1632,13 @@
         <div class="event-title">Hike from Pupnat through the vineyards</div>
         <div class="event-body">
           <p><span class="tag tag-hike-hard">Challenging hike</span></p>
-          <p><strong>6.9 mi · 4 hrs · ±1,260 ft</strong>. The path climbs out of Pupnat through dry-stone vineyards and drops down toward Žrnovo with archipelago views the whole way.</p>
+          <p><strong>6.9 mi · 4 hrs · ±1,260 ft</strong>. The path climbs out of <a class="place" data-place="pupnat" href="#">Pupnat</a> through dry-stone vineyards and drops down toward <a class="place" data-place="zrnovo" href="#">Žrnovo</a> with archipelago views the whole way.</p>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Afternoon</div>
         <div class="event-title">Taste local products in Žrnovo</div>
-        <div class="event-body"><p><span class="tag tag-meal">Included</span> Žrnovo is the village above Korčula town. Olive oil, cheese, local wines.</p></div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> <a class="place" data-place="zrnovo" href="#">Žrnovo</a> is the village above <a class="place" data-place="korcula" href="#">Korčula</a> town. Olive oil, cheese, local wines.</p></div>
       </div>
       <div class="event">
         <div class="event-time">Late afternoon</div>
@@ -1532,7 +1651,7 @@
       <div class="event">
         <div class="event-time">Evening</div>
         <div class="event-title">Aminess Korčula Heritage Hotel</div>
-        <div class="event-body"><p>Two nights on Korčula.</p></div>
+        <div class="event-body"><p>Two nights on <a class="place" data-place="korcula" href="#">Korčula</a>.</p></div>
       </div>
     </div>
   </section>
@@ -1553,21 +1672,21 @@
       <div class="event">
         <div class="event-time">Morning</div>
         <div class="event-title">Catamaran to Mljet</div>
-        <div class="event-body"><p><span class="tag tag-ferry">Catamaran</span> Day trip from Korčula.</p></div>
+        <div class="event-body"><p><span class="tag tag-ferry">Catamaran</span> Day trip from <a class="place" data-place="korcula" href="#">Korčula</a>.</p></div>
       </div>
       <div class="event">
         <div class="event-time">All day</div>
         <div class="event-title">Hike the national park</div>
         <div class="event-body">
           <p><span class="tag tag-hike-hard">Challenging hike</span></p>
-          <p><strong>5.6 mi · 4 hrs</strong> through pine forest to the two saltwater lakes — <em>Veliko Jezero</em> and <em>Malo Jezero</em>. In the middle of Veliko, <strong>Sveta Marija</strong> (St. Mary's Island) holds a 12th-century Benedictine monastery.</p>
+          <p><strong>5.6 mi · 4 hrs</strong> through pine forest to the two saltwater lakes — <em>Veliko Jezero</em> and <em>Malo Jezero</em>. In the middle of Veliko, <strong><a class="place" data-place="sveta-marija" href="#">Sveta Marija</a></strong> (St. Mary's Island) holds a 12th-century Benedictine monastery.</p>
           <div class="tip">Swim break in the lakes if the group has time — the water is warmer than the open sea.</div>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Evening</div>
         <div class="event-title">Dinner at a traditional restaurant</div>
-        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner, then catamaran back to Korčula for the night.</p></div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner, then catamaran back to <a class="place" data-place="korcula" href="#">Korčula</a> for the night.</p></div>
       </div>
     </div>
   </section>
@@ -1589,28 +1708,28 @@
       <div class="event">
         <div class="event-time">Morning</div>
         <div class="event-title">Transfer to Dubrovnik</div>
-        <div class="event-body"><p><span class="tag tag-ferry">Transfer</span> From Korčula down to Dubrovnik. Check into Hotel Kompas / Valamar Lacroma / Hotel Lapad (Gate 1 assignment).</p></div>
+        <div class="event-body"><p><span class="tag tag-ferry">Transfer</span> From <a class="place" data-place="korcula" href="#">Korčula</a> down to <a class="place" data-place="dubrovnik" href="#">Dubrovnik</a>. Check into <a class="place" data-place="hotel-kompas" href="#">Hotel Kompas</a> / Valamar Lacroma / Hotel Lapad (Gate 1 assignment).</p></div>
       </div>
       <div class="event">
         <div class="event-time">Midday</div>
         <div class="event-title">Walking tour of the Old Town</div>
         <div class="event-body">
           <p><span class="tag tag-unesco">UNESCO</span></p>
-          <p><strong>Rector's Palace</strong>, <strong>Sponza Palace</strong>, Orlando Tower on the Stradun, Dominican Monastery, and the <strong>Franciscan Monastery</strong> with its 14th-century pharmacy — one of the oldest still operating in the world.</p>
+          <p><strong><a class="place" data-place="rectors-palace" href="#">Rector's Palace</a></strong>, <strong><a class="place" data-place="sponza-palace" href="#">Sponza Palace</a></strong>, Orlando Tower on the Stradun, Dominican Monastery, and the <strong><a class="place" data-place="franciscan" href="#">Franciscan Monastery</a></strong> with its 14th-century pharmacy — one of the oldest still operating in the world.</p>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Afternoon</div>
         <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p>City Walls, Mt. Srđ cable car, or Lokrum Island. <a href="#decisions">Cast your vote ↑</a></p>
+          <p><a class="place" data-place="city-walls" href="#">City Walls</a>, <a class="place" data-place="mt-srd" href="#">Mt. Srđ</a> cable car, or <a class="place" data-place="lokrum" href="#">Lokrum Island</a>. <a href="#decisions">Cast your vote ↑</a></p>
           <div class="tip">If the walls win — they take ~2 hours and there's no shade. Bring water.</div>
         </div>
       </div>
       <div class="event">
         <div class="event-time">Evening</div>
         <div class="event-title">Group dinner</div>
-        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner in Dubrovnik.</p></div>
+        <div class="event-body"><p><span class="tag tag-meal">Included</span> Gate 1 dinner in <a class="place" data-place="dubrovnik" href="#">Dubrovnik</a>.</p></div>
       </div>
     </div>
   </section>
@@ -1651,7 +1770,7 @@
         <div class="event-title">Climb the fortress walls</div>
         <div class="event-body">
           <p><span class="tag tag-hike-hard">Steep climb</span></p>
-          <p><strong>San Giovanni (St. John's) Fortress</strong> — the zigzag walls up the mountain. Full climb is <strong>1,350 steps</strong> with views over the Bay of Kotor. Go as far as you like and turn back.</p>
+          <p><strong><a class="place" data-place="san-giovanni" href="#">San Giovanni</a> (St. John's) Fortress</strong> — the zigzag walls up the mountain. Full climb is <strong>1,350 steps</strong> with views over the <a class="place" data-place="bay-of-kotor" href="#">Bay of Kotor</a>. Go as far as you like and turn back.</p>
         </div>
       </div>
       <div class="event">
@@ -1659,7 +1778,7 @@
         <div class="event-title">Lunch by the water &amp; return</div>
         <div class="event-body">
           <p><span class="tag tag-meal">On your own</span></p>
-          <p>Back to Dubrovnik by evening. Gate 1 breakfast is included, but lunch and dinner are on your own today.</p>
+          <p>Back to <a class="place" data-place="dubrovnik" href="#">Dubrovnik</a> by evening. Gate 1 breakfast is included, but lunch and dinner are on your own today.</p>
         </div>
       </div>
     </div>
@@ -1757,6 +1876,87 @@
 </footer>
 
 <script>
+  // ===== PLACE REGISTRY =====
+  const PLACES = {
+    'split': { name: 'Split', kind: 'City · Croatia', desc: 'UNESCO-protected harbor city built around the 4th-century Roman palace of Diocletian. Our entry point to Dalmatia.', maps: 'https://www.google.com/maps/search/?api=1&query=Split+Croatia' },
+    'hotel-cvita': { name: 'Hotel Cvita', kind: 'Hotel · Split', desc: 'Our Split base for two nights. Inside the old town, walking distance to Diocletian\'s Palace and the Riva waterfront.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia' },
+    'diocletians-palace': { name: "Diocletian's Palace", kind: 'UNESCO · 4th c. AD', desc: 'Roman emperor Diocletian\'s retirement palace, now the living core of Split. Cathedral of St. Domnius (originally his mausoleum), Temple of Jupiter, vaulted cellar halls.', maps: 'https://www.google.com/maps/search/?api=1&query=Diocletian\'s+Palace+Split' },
+    'marjan-hill': { name: 'Marjan Hill', kind: 'Park · Split', desc: 'Pine-forested hill west of Old Town. Stairs to the top, panoramic views over Split, the harbor, and the islands. 1–2 hrs round trip.', maps: 'https://www.google.com/maps/search/?api=1&query=Marjan+Hill+Split' },
+    'bacvice': { name: 'Bačvice Beach', kind: 'Beach · Split', desc: 'Sandy beach 10 min east of Split Old Town. Home of picigin — Split\'s shallow-water ball game.', maps: 'https://www.google.com/maps/search/?api=1&query=Bacvice+Beach+Split' },
+
+    'brac': { name: 'Brač Island', kind: 'Island · Croatia', desc: 'Third-largest Adriatic island. Limestone, olive groves, dry-stone walls, the famous Zlatni Rat beach, and Vidova Gora — the highest peak in the Adriatic islands.', maps: 'https://www.google.com/maps/search/?api=1&query=Brac+Island+Croatia' },
+    'aminess-velaris': { name: 'Aminess Vival Velaris', kind: 'Hotel · Supetar', desc: 'Our Brač base for two nights. On the seafront in Supetar, the main town on the north side of the island.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Vival+Velaris+Supetar' },
+    'supetar': { name: 'Supetar', kind: 'Town · Brač', desc: 'Brač\'s main port and town, on the north coast facing Split. Ferry hub.', maps: 'https://www.google.com/maps/search/?api=1&query=Supetar+Brac' },
+    'skrip': { name: 'Skrip', kind: 'Village · Brač', desc: 'The oldest village on Brač — Illyrian, Roman, then Venetian layers stacked on each other. Small Olive Oil Museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Skrip+Brac+Croatia' },
+    'postira': { name: 'Postira', kind: 'Fishing village · Brač', desc: 'Quiet fishing village on the north coast of Brač. End of the Mon Jun 1 hike (3.7 mi · 3 hrs · ±1,650 ft).', maps: 'https://www.google.com/maps/search/?api=1&query=Postira+Brac' },
+    'vidova-gora': { name: 'Vidova Gora', kind: 'Peak · 778 m / 2,552 ft', desc: 'Highest mountain on any Adriatic island. The summit ridge looks straight down onto Zlatni Rat and across to Hvar.', maps: 'https://www.google.com/maps/search/?api=1&query=Vidova+Gora+Brac' },
+    'zlatni-rat': { name: 'Zlatni Rat', kind: 'Beach · Bol, Brač', desc: 'The "Golden Horn" — a famous shape-shifting pebble spit that moves with the wind and current. Clear turquoise water. Pebbles, not sand — bring water shoes.', maps: 'https://www.google.com/maps/search/?api=1&query=Zlatni+Rat+Bol+Brac' },
+
+    'korcula': { name: 'Korčula', kind: 'Island · Croatia', desc: 'Walled medieval town on a peninsula, traditionally said to be Marco Polo\'s birthplace. Fishbone street grid designed to catch the breeze.', maps: 'https://www.google.com/maps/search/?api=1&query=Korcula+Old+Town' },
+    'aminess-korcula': { name: 'Aminess Korčula Heritage Hotel', kind: 'Hotel · Korčula', desc: 'Our Korčula base for two nights. On the waterfront just outside the old town walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Korcula+Heritage+Hotel' },
+    'pupnat': { name: 'Pupnat', kind: 'Village · Korčula', desc: 'Hill village in the interior of Korčula. Start of the Wed Jun 3 hike (6.9 mi · 4 hrs · ±1,260 ft) through dry-stone vineyards.', maps: 'https://www.google.com/maps/search/?api=1&query=Pupnat+Korcula' },
+    'zrnovo': { name: 'Žrnovo', kind: 'Village · Korčula', desc: 'Vineyard village above Korčula town. Stop on the Jun 3 hike for tasting local olive oil, cheese, and wine.', maps: 'https://www.google.com/maps/search/?api=1&query=Zrnovo+Korcula' },
+
+    'mljet': { name: 'Mljet National Park', kind: 'National park · Croatia', desc: 'Pine-forested island with two saltwater lakes (Veliko and Malo Jezero). Catamaran day trip from Korčula.', maps: 'https://www.google.com/maps/search/?api=1&query=Mljet+National+Park' },
+    'sveta-marija': { name: 'Sveta Marija', kind: 'Island monastery · Mljet', desc: 'Tiny island in the middle of Veliko Jezero, Mljet\'s big saltwater lake. Holds a 12th-century Benedictine monastery.', maps: 'https://www.google.com/maps/search/?api=1&query=Sveta+Marija+Mljet' },
+
+    'dubrovnik': { name: 'Dubrovnik Old Town', kind: 'UNESCO · Croatia', desc: 'Walled medieval city on the southern Dalmatian coast. Marble streets, terracotta roofs, the famous city walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+Old+Town+Pile+Gate' },
+    'hotel-kompas': { name: 'Hotel Kompas', kind: 'Hotel · Dubrovnik', desc: 'Possible Gate 1 hotel for Dubrovnik. On Lapad Bay, a beach neighborhood ~10 min by bus from the Old Town.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik' },
+    'rectors-palace': { name: "Rector's Palace", kind: 'UNESCO · Dubrovnik', desc: 'Gothic-Renaissance palace that housed the elected Rector of the Republic of Ragusa. Now a cultural-history museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Rector\'s+Palace+Dubrovnik' },
+    'sponza-palace': { name: 'Sponza Palace', kind: 'UNESCO · Dubrovnik', desc: '16th-century Renaissance palace at the end of the Stradun. Once the customs house and mint; now state archives.', maps: 'https://www.google.com/maps/search/?api=1&query=Sponza+Palace+Dubrovnik' },
+    'franciscan': { name: 'Franciscan Monastery', kind: 'UNESCO · Dubrovnik', desc: '14th-century pharmacy still in operation — one of the oldest in the world. Cloister, museum, and the working pharmacy.', maps: 'https://www.google.com/maps/search/?api=1&query=Franciscan+Monastery+Dubrovnik' },
+    'city-walls': { name: 'Dubrovnik City Walls', kind: 'UNESCO · Dubrovnik', desc: '~2 mi loop around the top of the old town at 80 ft elevation. The iconic terracotta-roof view. ~2 hrs to walk. Late afternoon avoids cruise crowds and midday heat.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+City+Walls' },
+    'mt-srd': { name: 'Mt. Srđ', kind: 'Mountain · Dubrovnik', desc: '1,350 ft peak above the old town. 4 min cable car up. Panoramic view, small Homeland War museum, Panorama restaurant.', maps: 'https://www.google.com/maps/search/?api=1&query=Mt+Srdj+Cable+Car+Dubrovnik' },
+    'lokrum': { name: 'Lokrum Island', kind: 'Island · Dubrovnik', desc: '15 min ferry from the Old Port. Botanical garden, Benedictine monastery ruins, rocky swimming spots, peacocks roaming free.', maps: 'https://www.google.com/maps/search/?api=1&query=Lokrum+Island+Dubrovnik' },
+
+    'kotor': { name: 'Kotor', kind: 'UNESCO · Montenegro', desc: 'Walled medieval town tucked under the mountainside on the Bay of Kotor. ~2–2.5 hrs from Dubrovnik. Border crossing required.', maps: 'https://www.google.com/maps/search/?api=1&query=Kotor+Old+Town+Montenegro' },
+    'san-giovanni': { name: 'San Giovanni Fortress', kind: 'Fortress · Kotor', desc: 'St. John\'s Fortress — zigzag walls climbing the mountain above Kotor. 1,350 steps to the top with views over the Bay. Go as far as you like.', maps: 'https://www.google.com/maps/search/?api=1&query=San+Giovanni+Fortress+Kotor' },
+    'perast': { name: 'Perast', kind: 'Town · Bay of Kotor', desc: 'Small baroque town in the Bay of Kotor with two famous island churches. Common stop on Kotor day tours.', maps: 'https://www.google.com/maps/search/?api=1&query=Perast+Montenegro' },
+    'bay-of-kotor': { name: 'Bay of Kotor', kind: 'Fjord · Montenegro', desc: 'Deep, winding Adriatic bay framed by limestone mountains. Often called Europe\'s southernmost fjord (technically a ria).', maps: 'https://www.google.com/maps/search/?api=1&query=Bay+of+Kotor+Montenegro' },
+  };
+
+  // ===== POPOVER =====
+  function showPlace(linkEl) {
+    closePlace();
+    const key = linkEl.dataset.place;
+    const p = PLACES[key];
+    if (!p) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'pp-backdrop';
+    backdrop.onclick = closePlace;
+
+    const card = document.createElement('div');
+    card.className = 'pp-card';
+    card.innerHTML = `
+      <button class="pp-close" aria-label="Close">×</button>
+      <div class="pp-kind">${p.kind}</div>
+      <div class="pp-name">${p.name}</div>
+      <p class="pp-desc">${p.desc}</p>
+      <div class="pp-actions">
+        <a href="${p.maps}" target="_blank" rel="noopener">Open in Maps</a>
+        <a class="alt" href="#map" onclick="closePlace()">Trip map ↑</a>
+      </div>
+    `;
+    card.querySelector('.pp-close').onclick = closePlace;
+
+    document.body.appendChild(backdrop);
+    document.body.appendChild(card);
+    document.addEventListener('keydown', escClose);
+  }
+
+  function closePlace() {
+    document.querySelectorAll('.pp-card, .pp-backdrop').forEach(n => n.remove());
+    document.removeEventListener('keydown', escClose);
+  }
+
+  function escClose(e) { if (e.key === 'Escape') closePlace(); }
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a.place');
+    if (link) { e.preventDefault(); showPlace(link); }
+  });
+
   // Nav highlighting
   const nav = document.getElementById('nav');
   const links = nav.querySelectorAll('a');
