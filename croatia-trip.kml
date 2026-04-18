@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>Croatia 2026 — Anderson Trip</name>
+  <description>10-day Dalmatian coast walking tour, May 29 – June 7, 2026.</description>
+
+  <Style id="split-style">
+    <IconStyle><color>ff8c6e1b</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/blu-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="brac-style">
+    <IconStyle><color>ff4e7a5c</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="korcula-style">
+    <IconStyle><color>ff77557a</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/purple-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="mljet-style">
+    <IconStyle><color>ff79803f</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/ltblu-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="dubrovnik-style">
+    <IconStyle><color>ff4f6ec2</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="kotor-style">
+    <IconStyle><color>ff3f9ac9</color><scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/ylw-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="ferry-line">
+    <LineStyle><color>ff8c6e1b</color><width>3</width></LineStyle>
+  </Style>
+  <Style id="hike-line">
+    <LineStyle><color>ff4e7a5c</color><width>3</width></LineStyle>
+  </Style>
+
+  <Folder>
+    <name>Split — May 30–31</name>
+    <Placemark>
+      <name>Hotel Cvita</name>
+      <description>Two nights in Split. Walking distance to Diocletian's Palace.</description>
+      <styleUrl>#split-style</styleUrl>
+      <Point><coordinates>16.4351,43.5102,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Diocletian's Palace</name>
+      <description>4th-century AD UNESCO core of Split. Walking tour Sun May 31.</description>
+      <styleUrl>#split-style</styleUrl>
+      <Point><coordinates>16.4402,43.5081,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Marjan Hill</name>
+      <description>Optional free-afternoon hike. Pine-forested hill with views.</description>
+      <styleUrl>#split-style</styleUrl>
+      <Point><coordinates>16.4205,43.5117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Bačvice Beach</name>
+      <description>Sandy beach east of Old Town. Home of picigin.</description>
+      <styleUrl>#split-style</styleUrl>
+      <Point><coordinates>16.4519,43.5052,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Brač — Jun 1–2</name>
+    <Placemark>
+      <name>Aminess Vival Velaris (Supetar)</name>
+      <description>Two nights on Brač.</description>
+      <styleUrl>#brac-style</styleUrl>
+      <Point><coordinates>16.5544,43.3856,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Skrip — oldest village on Brač</name>
+      <description>Mon Jun 1. Olive Oil Museum, Illyrian/Roman/Venetian layers.</description>
+      <styleUrl>#brac-style</styleUrl>
+      <Point><coordinates>16.6333,43.3589,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Postira</name>
+      <description>End of the Mon Jun 1 hike (3.7 mi, 3 hrs, ±1,650 ft).</description>
+      <styleUrl>#brac-style</styleUrl>
+      <Point><coordinates>16.6361,43.3678,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Vidova Gora summit (778 m)</name>
+      <description>Highest peak in the Adriatic islands. Tue Jun 2 hike (4.3 mi, 3 hrs, ±755 ft).</description>
+      <styleUrl>#brac-style</styleUrl>
+      <Point><coordinates>16.6294,43.3232,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Zlatni Rat ("Golden Horn") Beach</name>
+      <description>Famous shape-shifting pebble spit. Tue Jun 2 afternoon.</description>
+      <styleUrl>#brac-style</styleUrl>
+      <Point><coordinates>16.6424,43.2581,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Korčula — Jun 3–4</name>
+    <Placemark>
+      <name>Aminess Korčula Heritage Hotel</name>
+      <description>Two nights on Korčula.</description>
+      <styleUrl>#korcula-style</styleUrl>
+      <Point><coordinates>17.1366,42.9614,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Korčula Old Town — Marco Polo's birthplace</name>
+      <description>Walled fishbone-grid town on a peninsula.</description>
+      <styleUrl>#korcula-style</styleUrl>
+      <Point><coordinates>17.1349,42.9601,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Pupnat</name>
+      <description>Wed Jun 3 hike start — 6.9 mi, 4 hrs, ±1,260 ft through vineyards.</description>
+      <styleUrl>#korcula-style</styleUrl>
+      <Point><coordinates>17.0644,42.9489,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Žrnovo</name>
+      <description>Vineyard village above Korčula. Local product tasting.</description>
+      <styleUrl>#korcula-style</styleUrl>
+      <Point><coordinates>17.1233,42.9444,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Mljet — Jun 4 day trip</name>
+    <Placemark>
+      <name>Mljet National Park (Pomena)</name>
+      <description>Catamaran day trip. 5.6 mi, 4 hrs through pine forest to two saltwater lakes.</description>
+      <styleUrl>#mljet-style</styleUrl>
+      <Point><coordinates>17.3414,42.7831,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Sveta Marija — 12th-c. Benedictine monastery</name>
+      <description>Island in the middle of Veliko Jezero (the bigger saltwater lake).</description>
+      <styleUrl>#mljet-style</styleUrl>
+      <Point><coordinates>17.3633,42.7861,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Dubrovnik — Jun 5–6</name>
+    <Placemark>
+      <name>Dubrovnik Hotel (Kompas / Lacroma / Lapad)</name>
+      <description>Two nights. Final hotel on the tour.</description>
+      <styleUrl>#dubrovnik-style</styleUrl>
+      <Point><coordinates>18.0928,42.6614,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Dubrovnik Old Town (Pile Gate)</name>
+      <description>UNESCO walled city. Walking tour Fri Jun 5 — Rector's Palace, Sponza, Franciscan Monastery.</description>
+      <styleUrl>#dubrovnik-style</styleUrl>
+      <Point><coordinates>18.1075,42.6411,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>City Walls</name>
+      <description>~2 mi loop at 80 ft elevation. Iconic terracotta-roof view.</description>
+      <styleUrl>#dubrovnik-style</styleUrl>
+      <Point><coordinates>18.1071,42.6418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Mt. Srđ cable car upper station</name>
+      <description>4 min up to 1,350 ft. Panoramic view, Homeland War museum, Panorama restaurant.</description>
+      <styleUrl>#dubrovnik-style</styleUrl>
+      <Point><coordinates>18.1108,42.6486,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lokrum Island ferry dock</name>
+      <description>15 min ferry from Old Port. Botanical garden, monastery ruins, peacocks.</description>
+      <styleUrl>#dubrovnik-style</styleUrl>
+      <Point><coordinates>18.1217,42.6275,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Kotor — Jun 6 day trip</name>
+    <Placemark>
+      <name>Kotor Old Town</name>
+      <description>UNESCO walled town tucked under the mountain. ~2–2.5 hrs from Dubrovnik.</description>
+      <styleUrl>#kotor-style</styleUrl>
+      <Point><coordinates>18.7712,42.4247,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>San Giovanni Fortress</name>
+      <description>1,350 steps up the mountain. Views over the Bay of Kotor.</description>
+      <styleUrl>#kotor-style</styleUrl>
+      <Point><coordinates>18.7747,42.4264,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Perast — possible tour stop</name>
+      <description>Small baroque town in the Bay of Kotor with two island churches.</description>
+      <styleUrl>#kotor-style</styleUrl>
+      <Point><coordinates>18.6989,42.4847,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <Folder>
+    <name>Routes</name>
+    <Placemark>
+      <name>Split → Supetar (ferry, Jun 1)</name>
+      <styleUrl>#ferry-line</styleUrl>
+      <LineString><coordinates>16.4402,43.5081,0 16.5544,43.3856,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>Brač → Korčula (catamaran, Jun 3)</name>
+      <styleUrl>#ferry-line</styleUrl>
+      <LineString><coordinates>16.5544,43.3856,0 17.1366,42.9614,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>Korčula ↔ Mljet (catamaran day trip, Jun 4)</name>
+      <styleUrl>#ferry-line</styleUrl>
+      <LineString><coordinates>17.1366,42.9614,0 17.3414,42.7831,0 17.1366,42.9614,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>Korčula → Dubrovnik (transfer, Jun 5)</name>
+      <styleUrl>#ferry-line</styleUrl>
+      <LineString><coordinates>17.1366,42.9614,0 18.0928,42.6614,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>Dubrovnik ↔ Kotor (day trip, Jun 6)</name>
+      <styleUrl>#ferry-line</styleUrl>
+      <LineString><coordinates>18.0928,42.6614,0 18.7712,42.4247,0 18.0928,42.6614,0</coordinates></LineString>
+    </Placemark>
+  </Folder>
+
+</Document>
+</kml>
