@@ -394,6 +394,52 @@
     .event-body strong { font-weight: 700; color: var(--ink); }
     .event-body a { color: var(--rouge); }
 
+    /* ===== ACTION LINKS ===== */
+    a.go { color: var(--rouge); text-decoration: none; }
+    a.go::after {
+      content: ' ↗';
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em;
+      opacity: 0.6;
+      margin-left: 0.05em;
+    }
+    a.go:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a.go:hover::after { opacity: 1; }
+
+    a.flight {
+      font-family: 'DM Mono', monospace;
+      color: var(--rouge);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px dotted var(--rouge);
+    }
+    a.flight:hover { background: var(--rouge); color: var(--bone); border-bottom-color: var(--rouge); }
+    a.flight::after {
+      content: ' ✈';
+      font-size: 0.85em;
+      opacity: 0.6;
+      margin-left: 0.1em;
+    }
+
+    .day-actions {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 0.55rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .day-actions a {
+      color: var(--ink-mute);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--rule-strong);
+      padding-bottom: 1px;
+    }
+    .day-actions a:hover { color: var(--rouge); border-bottom-color: var(--rouge); }
+    .day-actions a::after { content: ' ↗'; opacity: 0.6; margin-left: 0.05em; }
+
     /* ===== TAGS ===== */
     .tag {
       display: inline-block;
@@ -1186,7 +1232,7 @@
       <div>
         <div class="label">Arrive</div>
         <div class="value">Sat May 30 · 2:10pm</div>
-        <div class="detail">UA 972 / SN 3353 → Split</div>
+        <div class="detail"><a class="flight" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> / <a class="flight" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a> → Split</div>
       </div>
     </div>
     <div class="info-item">
@@ -1194,7 +1240,7 @@
       <div>
         <div class="label">Depart</div>
         <div class="value">Sun Jun 7 · 12:15pm</div>
-        <div class="detail">UA 386 → Chicago via Newark</div>
+        <div class="detail"><a class="flight" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Chicago via Newark</div>
       </div>
     </div>
     <div class="info-item">
@@ -1248,6 +1294,9 @@
       <div>
         <h2>Chicago → Brussels</h2>
         <div class="day-subtitle">Gate 1 Day 1 · Overnight flight</div>
+        <div class="day-actions">
+          <a href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">Track UA 972</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1255,7 +1304,7 @@
         <div class="event-time">6:00pm</div>
         <div class="event-title">Depart ORD</div>
         <div class="event-body">
-          <p><span class="tag tag-confirmed">Confirmed</span> UA 972 to Brussels. 8-hour flight, overnight.</p>
+          <p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> to Brussels. 8-hour flight, overnight.</p>
           <p>Gene &amp; Jenny are on Gate 1 air and fly separately.</p>
         </div>
       </div>
@@ -1269,6 +1318,10 @@
       <div>
         <h2>Arrive Split</h2>
         <div class="day-subtitle">Gate 1 Day 2 · UNESCO harbor town</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia" target="_blank" rel="noopener">Map: Hotel Cvita</a>
+          <a href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">Track SN 3353</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1279,7 +1332,7 @@
       </div>
       <div class="event confirmed">
         <div class="event-time">12:10pm</div>
-        <div class="event-title">BRU → SPU on SN 3353</div>
+        <div class="event-title">BRU → SPU on <a class="flight" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a></div>
         <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Brussels Airlines. ~2 hour flight.</p></div>
       </div>
       <div class="event confirmed">
@@ -1310,6 +1363,9 @@
       <div>
         <h2>Explore Split</h2>
         <div class="day-subtitle">Walking tour · Free afternoon · Tour orientation</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Diocletian's+Palace+Split" target="_blank" rel="noopener">Map: Diocletian's Palace</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1348,6 +1404,10 @@
       <div>
         <h2>Brač Island — Skrip &amp; Postira</h2>
         <div class="day-subtitle">Gate 1 Day 4 · Ferry + first hike</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Skrip+Brac+Croatia" target="_blank" rel="noopener">Map: Skrip</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Aminess+Vival+Velaris+Supetar" target="_blank" rel="noopener">Hotel</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1393,6 +1453,10 @@
       <div>
         <h2>Vidova Gora &amp; Zlatni Rat</h2>
         <div class="day-subtitle">Highest peak in the Adriatic islands</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Vidova+Gora+Brac" target="_blank" rel="noopener">Map: Vidova Gora</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Zlatni+Rat+Bol+Brac" target="_blank" rel="noopener">Zlatni Rat</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1432,6 +1496,10 @@
       <div>
         <h2>Korčula — Marco Polo's island</h2>
         <div class="day-subtitle">Catamaran + vineyard hike</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Korcula+Old+Town" target="_blank" rel="noopener">Map: Korčula Old Town</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Pupnat+Korcula" target="_blank" rel="noopener">Pupnat</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1476,6 +1544,9 @@
       <div>
         <h2>Mljet National Park</h2>
         <div class="day-subtitle">Two saltwater lakes &amp; a 12th-century monastery</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Mljet+National+Park" target="_blank" rel="noopener">Map: Mljet NP</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1508,6 +1579,10 @@
       <div>
         <h2>Dubrovnik Old Town</h2>
         <div class="day-subtitle">Walking tour + free afternoon</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Dubrovnik+Old+Town+Pile+Gate" target="_blank" rel="noopener">Map: Dubrovnik Old Town</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik" target="_blank" rel="noopener">Hotel</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1547,6 +1622,10 @@
       <div>
         <h2>Kotor day trip</h2>
         <div class="day-subtitle">Self-organized · Gate 1 Day 9 is a leisure day</div>
+        <div class="day-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Kotor+Old+Town+Montenegro" target="_blank" rel="noopener">Map: Kotor</a>
+          <a href="https://www.google.com/maps/dir/Dubrovnik+Croatia/Kotor+Montenegro" target="_blank" rel="noopener">Directions</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1593,6 +1672,10 @@
       <div>
         <h2>Depart Dubrovnik</h2>
         <div class="day-subtitle">Gate 1 Day 10 · Home</div>
+        <div class="day-actions">
+          <a href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">Track UA 386</a>
+          <a href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">Track UA 1610</a>
+        </div>
       </div>
     </div>
     <div class="timeline">
@@ -1604,12 +1687,12 @@
       <div class="event confirmed">
         <div class="event-time">12:15pm</div>
         <div class="event-title">Depart DBV</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> UA 386 → Newark (EWR). ~10h 20m.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Newark (EWR). ~10h 20m.</p></div>
       </div>
       <div class="event confirmed">
         <div class="event-time">7:12pm</div>
         <div class="event-title">Connect EWR → ORD</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> UA 1610. Home in Chicago by 9:00pm.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">UA 1610</a>. Home in Chicago by 9:00pm.</p></div>
       </div>
     </div>
   </section>
@@ -1623,10 +1706,10 @@
           <tr><th>Location</th><th>Nights</th><th>Dates</th><th>Hotel</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Split</strong></td><td>2</td><td>May 30 – 31</td><td>Hotel Cvita</td></tr>
-          <tr><td><strong>Supetar (Brač)</strong></td><td>2</td><td>Jun 1 – 2</td><td>Aminess Vival Velaris</td></tr>
-          <tr><td><strong>Korčula</strong></td><td>2</td><td>Jun 3 – 4</td><td>Aminess Korčula Heritage Hotel</td></tr>
-          <tr><td><strong>Dubrovnik</strong></td><td>2</td><td>Jun 5 – 6</td><td>Hotel Kompas / Valamar Lacroma / Hotel Lapad</td></tr>
+          <tr><td><strong>Split</strong></td><td>2</td><td>May 30 – 31</td><td><a class="go" href="https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia" target="_blank" rel="noopener">Hotel Cvita</a></td></tr>
+          <tr><td><strong>Supetar (Brač)</strong></td><td>2</td><td>Jun 1 – 2</td><td><a class="go" href="https://www.google.com/maps/search/?api=1&query=Aminess+Vival+Velaris+Supetar" target="_blank" rel="noopener">Aminess Vival Velaris</a></td></tr>
+          <tr><td><strong>Korčula</strong></td><td>2</td><td>Jun 3 – 4</td><td><a class="go" href="https://www.google.com/maps/search/?api=1&query=Aminess+Korcula+Heritage+Hotel" target="_blank" rel="noopener">Aminess Korčula Heritage Hotel</a></td></tr>
+          <tr><td><strong>Dubrovnik</strong></td><td>2</td><td>Jun 5 – 6</td><td><a class="go" href="https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik" target="_blank" rel="noopener">Hotel Kompas</a> / <a class="go" href="https://www.google.com/maps/search/?api=1&query=Valamar+Lacroma+Dubrovnik" target="_blank" rel="noopener">Valamar Lacroma</a> / <a class="go" href="https://www.google.com/maps/search/?api=1&query=Hotel+Lapad+Dubrovnik" target="_blank" rel="noopener">Hotel Lapad</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -1656,7 +1739,7 @@
         <tr><th>What</th><th>Booked via</th><th>Reference</th></tr>
       </thead>
       <tbody>
-        <tr><td>United flights — Ian, Owen, Kyle</td><td>United (Ian)</td><td class="mono">MSSQC7</td></tr>
+        <tr><td>United flights — Ian, Owen, Kyle</td><td><a class="go" href="https://www.united.com/en/us/manageres/mytrips/details?confirmationNumber=MSSQC7" target="_blank" rel="noopener">United (Ian)</a></td><td class="mono">MSSQC7</td></tr>
         <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Gate 1 (Gene)</td><td>—</td></tr>
         <tr><td>Hotel Cvita (Split)</td><td>Gate 1</td><td>—</td></tr>
         <tr><td>Aminess Vival Velaris (Supetar)</td><td>Gate 1</td><td>—</td></tr>
