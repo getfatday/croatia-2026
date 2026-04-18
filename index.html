@@ -422,31 +422,66 @@
       transform: translate(-50%, calc(-50% + 12px));
       background: var(--paper);
       border: 2px solid var(--ink);
-      width: min(92vw, 400px);
-      max-height: 80vh;
+      width: min(92vw, 440px);
+      max-height: 88vh;
       overflow: auto;
       z-index: 201;
-      padding: 1.4rem 1.5rem 1.3rem;
+      padding: 0;
       opacity: 0;
       animation: ppIn 0.2s cubic-bezier(.2,.8,.2,1) forwards;
       box-shadow: 6px 6px 0 var(--rouge);
     }
+
+    .pp-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: var(--paper-soft);
+      border-bottom: 2px solid var(--ink);
+      overflow: hidden;
+      position: relative;
+    }
+    .pp-img-wrap.placeholder { display: none; }
+    .pp-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--steel-pale) 25%, transparent 25%, transparent 50%, var(--steel-pale) 50%, var(--steel-pale) 75%, transparent 75%);
+      background-size: 14px 14px;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+    .pp-img-wrap.has-img::before { opacity: 0; }
+    .pp-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      position: relative;
+    }
+    .pp-img-wrap.has-img .pp-img { opacity: 1; }
+
+    .pp-body { padding: 1.3rem 1.5rem 1.3rem; }
     @keyframes ppIn { to { opacity: 1; transform: translate(-50%, -50%); } }
 
     .pp-close {
       position: absolute;
-      top: 0.8rem;
-      right: 0.9rem;
-      background: transparent;
+      top: 0.6rem;
+      right: 0.7rem;
+      background: var(--ink);
+      color: var(--bone);
       border: none;
       cursor: pointer;
       font-family: 'DM Mono', monospace;
-      font-size: 1rem;
-      color: var(--ink-mute);
-      padding: 0.2rem 0.4rem;
+      font-size: 1.1rem;
+      width: 28px;
+      height: 28px;
+      padding: 0;
       line-height: 1;
+      z-index: 2;
     }
-    .pp-close:hover { color: var(--rouge); }
+    .pp-close:hover { background: var(--rouge); }
 
     .pp-kind {
       font-family: 'DM Mono', monospace;
@@ -512,6 +547,81 @@
       border: 1px solid var(--rule-strong);
     }
     .pp-actions a.alt:hover { background: var(--paper-soft); border-color: var(--rouge); color: var(--rouge); }
+
+    /* ===== FLIGHT CARD ===== */
+    .flight-card .pp-name { font-family: 'DM Mono', monospace; font-size: 1.4rem; letter-spacing: 0.04em; text-transform: none; font-weight: 500; color: var(--rouge); margin-bottom: 1.2rem; }
+
+    .fl-route {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .fl-airport { text-align: center; }
+    .fl-airport:first-child { text-align: left; }
+    .fl-airport:last-child { text-align: right; }
+    .fl-code {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .fl-city {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.85rem;
+      color: var(--ink);
+      margin-top: 0.2rem;
+    }
+    .fl-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.06em;
+      margin-top: 0.35rem;
+    }
+    .fl-arc {
+      position: relative;
+      min-width: 60px;
+      text-align: center;
+    }
+    .fl-arc::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--rule-strong);
+      margin: 0.6rem 0 0.4rem;
+    }
+    .fl-arc::after {
+      content: '✈';
+      position: absolute;
+      top: 0.05rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--paper);
+      padding: 0 0.3rem;
+      font-size: 0.95rem;
+      color: var(--rouge);
+    }
+    .fl-arc span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .fl-meta {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+    }
 
     /* ===== ACTION LINKS ===== */
     a.go { color: var(--rouge); text-decoration: none; }
@@ -1351,7 +1461,7 @@
       <div>
         <div class="label">Arrive</div>
         <div class="value">Sat May 30 · 2:10pm</div>
-        <div class="detail"><a class="flight" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> / <a class="flight" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a> → Split</div>
+        <div class="detail"><a class="flight" data-flight="UAL972" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> / <a class="flight" data-flight="BEL3353" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a> → Split</div>
       </div>
     </div>
     <div class="info-item">
@@ -1359,7 +1469,7 @@
       <div>
         <div class="label">Depart</div>
         <div class="value">Sun Jun 7 · 12:15pm</div>
-        <div class="detail"><a class="flight" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Chicago via Newark</div>
+        <div class="detail"><a class="flight" data-flight="UAL386" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Chicago via Newark</div>
       </div>
     </div>
     <div class="info-item">
@@ -1414,7 +1524,7 @@
         <h2>Chicago → Brussels</h2>
         <div class="day-subtitle">Gate 1 Day 1 · Overnight flight</div>
         <div class="day-actions">
-          <a href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">Track UA 972</a>
+          <a data-flight="UAL972" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">Track UA 972</a>
         </div>
       </div>
     </div>
@@ -1423,7 +1533,7 @@
         <div class="event-time">6:00pm</div>
         <div class="event-title">Depart ORD</div>
         <div class="event-body">
-          <p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> to Brussels. 8-hour flight, overnight.</p>
+          <p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" data-flight="UAL972" href="https://flightaware.com/live/flight/UAL972" target="_blank" rel="noopener">UA 972</a> to Brussels. 8-hour flight, overnight.</p>
           <p>Gene &amp; Jenny are on Gate 1 air and fly separately.</p>
         </div>
       </div>
@@ -1439,7 +1549,7 @@
         <div class="day-subtitle">Gate 1 Day 2 · UNESCO harbor town</div>
         <div class="day-actions">
           <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia" target="_blank" rel="noopener">Map: Hotel Cvita</a>
-          <a href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">Track SN 3353</a>
+          <a data-flight="BEL3353" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">Track SN 3353</a>
         </div>
       </div>
     </div>
@@ -1451,7 +1561,7 @@
       </div>
       <div class="event confirmed">
         <div class="event-time">12:10pm</div>
-        <div class="event-title">BRU → SPU on <a class="flight" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a></div>
+        <div class="event-title">BRU → SPU on <a class="flight" data-flight="BEL3353" href="https://flightaware.com/live/flight/BEL3353" target="_blank" rel="noopener">SN 3353</a></div>
         <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Brussels Airlines. ~2 hour flight.</p></div>
       </div>
       <div class="event confirmed">
@@ -1792,8 +1902,8 @@
         <h2>Depart Dubrovnik</h2>
         <div class="day-subtitle">Gate 1 Day 10 · Home</div>
         <div class="day-actions">
-          <a href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">Track UA 386</a>
-          <a href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">Track UA 1610</a>
+          <a data-flight="UAL386" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">Track UA 386</a>
+          <a data-flight="UAL1610" href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">Track UA 1610</a>
         </div>
       </div>
     </div>
@@ -1806,12 +1916,12 @@
       <div class="event confirmed">
         <div class="event-time">12:15pm</div>
         <div class="event-title">Depart DBV</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Newark (EWR). ~10h 20m.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" data-flight="UAL386" href="https://flightaware.com/live/flight/UAL386" target="_blank" rel="noopener">UA 386</a> → Newark (EWR). ~10h 20m.</p></div>
       </div>
       <div class="event confirmed">
         <div class="event-time">7:12pm</div>
         <div class="event-title">Connect EWR → ORD</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">UA 1610</a>. Home in Chicago by 9:00pm.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> <a class="flight" data-flight="UAL1610" href="https://flightaware.com/live/flight/UAL1610" target="_blank" rel="noopener">UA 1610</a>. Home in Chicago by 9:00pm.</p></div>
       </div>
     </div>
   </section>
@@ -1878,42 +1988,72 @@
 <script>
   // ===== PLACE REGISTRY =====
   const PLACES = {
-    'split': { name: 'Split', kind: 'City · Croatia', desc: 'UNESCO-protected harbor city built around the 4th-century Roman palace of Diocletian. Our entry point to Dalmatia.', maps: 'https://www.google.com/maps/search/?api=1&query=Split+Croatia' },
-    'hotel-cvita': { name: 'Hotel Cvita', kind: 'Hotel · Split', desc: 'Our Split base for two nights. Inside the old town, walking distance to Diocletian\'s Palace and the Riva waterfront.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia' },
-    'diocletians-palace': { name: "Diocletian's Palace", kind: 'UNESCO · 4th c. AD', desc: 'Roman emperor Diocletian\'s retirement palace, now the living core of Split. Cathedral of St. Domnius (originally his mausoleum), Temple of Jupiter, vaulted cellar halls.', maps: 'https://www.google.com/maps/search/?api=1&query=Diocletian\'s+Palace+Split' },
-    'marjan-hill': { name: 'Marjan Hill', kind: 'Park · Split', desc: 'Pine-forested hill west of Old Town. Stairs to the top, panoramic views over Split, the harbor, and the islands. 1–2 hrs round trip.', maps: 'https://www.google.com/maps/search/?api=1&query=Marjan+Hill+Split' },
-    'bacvice': { name: 'Bačvice Beach', kind: 'Beach · Split', desc: 'Sandy beach 10 min east of Split Old Town. Home of picigin — Split\'s shallow-water ball game.', maps: 'https://www.google.com/maps/search/?api=1&query=Bacvice+Beach+Split' },
+    'split':              { name: 'Split', kind: 'City · Croatia', wiki: 'Split,_Croatia', desc: 'UNESCO-protected harbor city built around the 4th-century Roman palace of Diocletian. Our entry point to Dalmatia.', maps: 'https://www.google.com/maps/search/?api=1&query=Split+Croatia' },
+    'hotel-cvita':        { name: 'Hotel Cvita', kind: 'Hotel · Split', desc: 'Our Split base for two nights. Inside the old town, walking distance to Diocletian\'s Palace and the Riva waterfront.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Cvita+Split+Croatia' },
+    'diocletians-palace': { name: "Diocletian's Palace", kind: 'UNESCO · 4th c. AD', wiki: "Diocletian's_Palace", desc: 'Roman emperor Diocletian\'s retirement palace, now the living core of Split. Cathedral of St. Domnius (originally his mausoleum), Temple of Jupiter, vaulted cellar halls.', maps: 'https://www.google.com/maps/search/?api=1&query=Diocletian\'s+Palace+Split' },
+    'marjan-hill':        { name: 'Marjan Hill', kind: 'Park · Split', wiki: 'Marjan,_Split', desc: 'Pine-forested hill west of Old Town. Stairs to the top, panoramic views over Split, the harbor, and the islands. 1–2 hrs round trip.', maps: 'https://www.google.com/maps/search/?api=1&query=Marjan+Hill+Split' },
+    'bacvice':            { name: 'Bačvice Beach', kind: 'Beach · Split', wiki: 'Bačvice', desc: 'Sandy beach 10 min east of Split Old Town. Home of picigin — Split\'s shallow-water ball game.', maps: 'https://www.google.com/maps/search/?api=1&query=Bacvice+Beach+Split' },
 
-    'brac': { name: 'Brač Island', kind: 'Island · Croatia', desc: 'Third-largest Adriatic island. Limestone, olive groves, dry-stone walls, the famous Zlatni Rat beach, and Vidova Gora — the highest peak in the Adriatic islands.', maps: 'https://www.google.com/maps/search/?api=1&query=Brac+Island+Croatia' },
-    'aminess-velaris': { name: 'Aminess Vival Velaris', kind: 'Hotel · Supetar', desc: 'Our Brač base for two nights. On the seafront in Supetar, the main town on the north side of the island.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Vival+Velaris+Supetar' },
-    'supetar': { name: 'Supetar', kind: 'Town · Brač', desc: 'Brač\'s main port and town, on the north coast facing Split. Ferry hub.', maps: 'https://www.google.com/maps/search/?api=1&query=Supetar+Brac' },
-    'skrip': { name: 'Skrip', kind: 'Village · Brač', desc: 'The oldest village on Brač — Illyrian, Roman, then Venetian layers stacked on each other. Small Olive Oil Museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Skrip+Brac+Croatia' },
-    'postira': { name: 'Postira', kind: 'Fishing village · Brač', desc: 'Quiet fishing village on the north coast of Brač. End of the Mon Jun 1 hike (3.7 mi · 3 hrs · ±1,650 ft).', maps: 'https://www.google.com/maps/search/?api=1&query=Postira+Brac' },
-    'vidova-gora': { name: 'Vidova Gora', kind: 'Peak · 778 m / 2,552 ft', desc: 'Highest mountain on any Adriatic island. The summit ridge looks straight down onto Zlatni Rat and across to Hvar.', maps: 'https://www.google.com/maps/search/?api=1&query=Vidova+Gora+Brac' },
-    'zlatni-rat': { name: 'Zlatni Rat', kind: 'Beach · Bol, Brač', desc: 'The "Golden Horn" — a famous shape-shifting pebble spit that moves with the wind and current. Clear turquoise water. Pebbles, not sand — bring water shoes.', maps: 'https://www.google.com/maps/search/?api=1&query=Zlatni+Rat+Bol+Brac' },
+    'brac':               { name: 'Brač', kind: 'Island · Croatia', wiki: 'Brač', desc: 'Third-largest Adriatic island. Limestone, olive groves, dry-stone walls, the famous Zlatni Rat beach, and Vidova Gora — the highest peak in the Adriatic islands.', maps: 'https://www.google.com/maps/search/?api=1&query=Brac+Island+Croatia' },
+    'aminess-velaris':    { name: 'Aminess Vival Velaris', kind: 'Hotel · Supetar', desc: 'Our Brač base for two nights. On the seafront in Supetar, the main town on the north side of the island.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Vival+Velaris+Supetar' },
+    'supetar':            { name: 'Supetar', kind: 'Town · Brač', wiki: 'Supetar', desc: 'Brač\'s main port and town, on the north coast facing Split. Ferry hub.', maps: 'https://www.google.com/maps/search/?api=1&query=Supetar+Brac' },
+    'skrip':              { name: 'Škrip', kind: 'Village · Brač', wiki: 'Škrip', desc: 'The oldest village on Brač — Illyrian, Roman, then Venetian layers stacked on each other. Small Olive Oil Museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Skrip+Brac+Croatia' },
+    'postira':            { name: 'Postira', kind: 'Fishing village · Brač', wiki: 'Postira', desc: 'Quiet fishing village on the north coast of Brač. End of the Mon Jun 1 hike (3.7 mi · 3 hrs · ±1,650 ft).', maps: 'https://www.google.com/maps/search/?api=1&query=Postira+Brac' },
+    'vidova-gora':        { name: 'Vidova Gora', kind: 'Peak · 778 m / 2,552 ft', wiki: 'Vidova_Gora', desc: 'Highest mountain on any Adriatic island. The summit ridge looks straight down onto Zlatni Rat and across to Hvar.', maps: 'https://www.google.com/maps/search/?api=1&query=Vidova+Gora+Brac' },
+    'zlatni-rat':         { name: 'Zlatni Rat', kind: 'Beach · Bol, Brač', wiki: 'Zlatni_Rat', desc: 'The "Golden Horn" — a famous shape-shifting pebble spit that moves with the wind and current. Clear turquoise water. Pebbles, not sand — bring water shoes.', maps: 'https://www.google.com/maps/search/?api=1&query=Zlatni+Rat+Bol+Brac' },
 
-    'korcula': { name: 'Korčula', kind: 'Island · Croatia', desc: 'Walled medieval town on a peninsula, traditionally said to be Marco Polo\'s birthplace. Fishbone street grid designed to catch the breeze.', maps: 'https://www.google.com/maps/search/?api=1&query=Korcula+Old+Town' },
-    'aminess-korcula': { name: 'Aminess Korčula Heritage Hotel', kind: 'Hotel · Korčula', desc: 'Our Korčula base for two nights. On the waterfront just outside the old town walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Korcula+Heritage+Hotel' },
-    'pupnat': { name: 'Pupnat', kind: 'Village · Korčula', desc: 'Hill village in the interior of Korčula. Start of the Wed Jun 3 hike (6.9 mi · 4 hrs · ±1,260 ft) through dry-stone vineyards.', maps: 'https://www.google.com/maps/search/?api=1&query=Pupnat+Korcula' },
-    'zrnovo': { name: 'Žrnovo', kind: 'Village · Korčula', desc: 'Vineyard village above Korčula town. Stop on the Jun 3 hike for tasting local olive oil, cheese, and wine.', maps: 'https://www.google.com/maps/search/?api=1&query=Zrnovo+Korcula' },
+    'korcula':            { name: 'Korčula', kind: 'Island · Croatia', wiki: 'Korčula', desc: 'Walled medieval town on a peninsula, traditionally said to be Marco Polo\'s birthplace. Fishbone street grid designed to catch the breeze.', maps: 'https://www.google.com/maps/search/?api=1&query=Korcula+Old+Town' },
+    'aminess-korcula':    { name: 'Aminess Korčula Heritage Hotel', kind: 'Hotel · Korčula', desc: 'Our Korčula base for two nights. On the waterfront just outside the old town walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Aminess+Korcula+Heritage+Hotel' },
+    'pupnat':             { name: 'Pupnat', kind: 'Village · Korčula', wiki: 'Pupnat', desc: 'Hill village in the interior of Korčula. Start of the Wed Jun 3 hike (6.9 mi · 4 hrs · ±1,260 ft) through dry-stone vineyards.', maps: 'https://www.google.com/maps/search/?api=1&query=Pupnat+Korcula' },
+    'zrnovo':             { name: 'Žrnovo', kind: 'Village · Korčula', wiki: 'Žrnovo', desc: 'Vineyard village above Korčula town. Stop on the Jun 3 hike for tasting local olive oil, cheese, and wine.', maps: 'https://www.google.com/maps/search/?api=1&query=Zrnovo+Korcula' },
 
-    'mljet': { name: 'Mljet National Park', kind: 'National park · Croatia', desc: 'Pine-forested island with two saltwater lakes (Veliko and Malo Jezero). Catamaran day trip from Korčula.', maps: 'https://www.google.com/maps/search/?api=1&query=Mljet+National+Park' },
-    'sveta-marija': { name: 'Sveta Marija', kind: 'Island monastery · Mljet', desc: 'Tiny island in the middle of Veliko Jezero, Mljet\'s big saltwater lake. Holds a 12th-century Benedictine monastery.', maps: 'https://www.google.com/maps/search/?api=1&query=Sveta+Marija+Mljet' },
+    'mljet':              { name: 'Mljet National Park', kind: 'National park · Croatia', wiki: 'Mljet_National_Park', desc: 'Pine-forested island with two saltwater lakes (Veliko and Malo Jezero). Catamaran day trip from Korčula.', maps: 'https://www.google.com/maps/search/?api=1&query=Mljet+National+Park' },
+    'sveta-marija':       { name: 'Sveta Marija', kind: 'Island monastery · Mljet', wiki: 'Mljet', desc: 'Tiny island in the middle of Veliko Jezero, Mljet\'s big saltwater lake. Holds a 12th-century Benedictine monastery.', maps: 'https://www.google.com/maps/search/?api=1&query=Sveta+Marija+Mljet' },
 
-    'dubrovnik': { name: 'Dubrovnik Old Town', kind: 'UNESCO · Croatia', desc: 'Walled medieval city on the southern Dalmatian coast. Marble streets, terracotta roofs, the famous city walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+Old+Town+Pile+Gate' },
-    'hotel-kompas': { name: 'Hotel Kompas', kind: 'Hotel · Dubrovnik', desc: 'Possible Gate 1 hotel for Dubrovnik. On Lapad Bay, a beach neighborhood ~10 min by bus from the Old Town.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik' },
-    'rectors-palace': { name: "Rector's Palace", kind: 'UNESCO · Dubrovnik', desc: 'Gothic-Renaissance palace that housed the elected Rector of the Republic of Ragusa. Now a cultural-history museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Rector\'s+Palace+Dubrovnik' },
-    'sponza-palace': { name: 'Sponza Palace', kind: 'UNESCO · Dubrovnik', desc: '16th-century Renaissance palace at the end of the Stradun. Once the customs house and mint; now state archives.', maps: 'https://www.google.com/maps/search/?api=1&query=Sponza+Palace+Dubrovnik' },
-    'franciscan': { name: 'Franciscan Monastery', kind: 'UNESCO · Dubrovnik', desc: '14th-century pharmacy still in operation — one of the oldest in the world. Cloister, museum, and the working pharmacy.', maps: 'https://www.google.com/maps/search/?api=1&query=Franciscan+Monastery+Dubrovnik' },
-    'city-walls': { name: 'Dubrovnik City Walls', kind: 'UNESCO · Dubrovnik', desc: '~2 mi loop around the top of the old town at 80 ft elevation. The iconic terracotta-roof view. ~2 hrs to walk. Late afternoon avoids cruise crowds and midday heat.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+City+Walls' },
-    'mt-srd': { name: 'Mt. Srđ', kind: 'Mountain · Dubrovnik', desc: '1,350 ft peak above the old town. 4 min cable car up. Panoramic view, small Homeland War museum, Panorama restaurant.', maps: 'https://www.google.com/maps/search/?api=1&query=Mt+Srdj+Cable+Car+Dubrovnik' },
-    'lokrum': { name: 'Lokrum Island', kind: 'Island · Dubrovnik', desc: '15 min ferry from the Old Port. Botanical garden, Benedictine monastery ruins, rocky swimming spots, peacocks roaming free.', maps: 'https://www.google.com/maps/search/?api=1&query=Lokrum+Island+Dubrovnik' },
+    'dubrovnik':          { name: 'Dubrovnik Old Town', kind: 'UNESCO · Croatia', wiki: 'Dubrovnik', desc: 'Walled medieval city on the southern Dalmatian coast. Marble streets, terracotta roofs, the famous city walls.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+Old+Town+Pile+Gate' },
+    'hotel-kompas':       { name: 'Hotel Kompas', kind: 'Hotel · Dubrovnik', desc: 'Possible Gate 1 hotel for Dubrovnik. On Lapad Bay, a beach neighborhood ~10 min by bus from the Old Town.', maps: 'https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik' },
+    'rectors-palace':     { name: "Rector's Palace", kind: 'UNESCO · Dubrovnik', wiki: "Rector's_Palace,_Dubrovnik", desc: 'Gothic-Renaissance palace that housed the elected Rector of the Republic of Ragusa. Now a cultural-history museum.', maps: 'https://www.google.com/maps/search/?api=1&query=Rector\'s+Palace+Dubrovnik' },
+    'sponza-palace':      { name: 'Sponza Palace', kind: 'UNESCO · Dubrovnik', wiki: 'Sponza_Palace', desc: '16th-century Renaissance palace at the end of the Stradun. Once the customs house and mint; now state archives.', maps: 'https://www.google.com/maps/search/?api=1&query=Sponza+Palace+Dubrovnik' },
+    'franciscan':         { name: 'Franciscan Monastery', kind: 'UNESCO · Dubrovnik', wiki: 'Franciscan_Church_and_Monastery,_Dubrovnik', desc: '14th-century pharmacy still in operation — one of the oldest in the world. Cloister, museum, and the working pharmacy.', maps: 'https://www.google.com/maps/search/?api=1&query=Franciscan+Monastery+Dubrovnik' },
+    'city-walls':         { name: 'Dubrovnik City Walls', kind: 'UNESCO · Dubrovnik', wiki: 'Walls_of_Dubrovnik', desc: '~2 mi loop around the top of the old town at 80 ft elevation. The iconic terracotta-roof view. ~2 hrs to walk. Late afternoon avoids cruise crowds and midday heat.', maps: 'https://www.google.com/maps/search/?api=1&query=Dubrovnik+City+Walls' },
+    'mt-srd':             { name: 'Mt. Srđ', kind: 'Mountain · Dubrovnik', wiki: 'Srđ', desc: '1,350 ft peak above the old town. 4 min cable car up. Panoramic view, small Homeland War museum, Panorama restaurant.', maps: 'https://www.google.com/maps/search/?api=1&query=Mt+Srdj+Cable+Car+Dubrovnik' },
+    'lokrum':             { name: 'Lokrum Island', kind: 'Island · Dubrovnik', wiki: 'Lokrum', desc: '15 min ferry from the Old Port. Botanical garden, Benedictine monastery ruins, rocky swimming spots, peacocks roaming free.', maps: 'https://www.google.com/maps/search/?api=1&query=Lokrum+Island+Dubrovnik' },
 
-    'kotor': { name: 'Kotor', kind: 'UNESCO · Montenegro', desc: 'Walled medieval town tucked under the mountainside on the Bay of Kotor. ~2–2.5 hrs from Dubrovnik. Border crossing required.', maps: 'https://www.google.com/maps/search/?api=1&query=Kotor+Old+Town+Montenegro' },
-    'san-giovanni': { name: 'San Giovanni Fortress', kind: 'Fortress · Kotor', desc: 'St. John\'s Fortress — zigzag walls climbing the mountain above Kotor. 1,350 steps to the top with views over the Bay. Go as far as you like.', maps: 'https://www.google.com/maps/search/?api=1&query=San+Giovanni+Fortress+Kotor' },
-    'perast': { name: 'Perast', kind: 'Town · Bay of Kotor', desc: 'Small baroque town in the Bay of Kotor with two famous island churches. Common stop on Kotor day tours.', maps: 'https://www.google.com/maps/search/?api=1&query=Perast+Montenegro' },
-    'bay-of-kotor': { name: 'Bay of Kotor', kind: 'Fjord · Montenegro', desc: 'Deep, winding Adriatic bay framed by limestone mountains. Often called Europe\'s southernmost fjord (technically a ria).', maps: 'https://www.google.com/maps/search/?api=1&query=Bay+of+Kotor+Montenegro' },
+    'kotor':              { name: 'Kotor', kind: 'UNESCO · Montenegro', wiki: 'Kotor', desc: 'Walled medieval town tucked under the mountainside on the Bay of Kotor. ~2–2.5 hrs from Dubrovnik. Border crossing required.', maps: 'https://www.google.com/maps/search/?api=1&query=Kotor+Old+Town+Montenegro' },
+    'san-giovanni':       { name: 'San Giovanni Fortress', kind: 'Fortress · Kotor', wiki: 'Fortifications_of_Kotor', desc: 'St. John\'s Fortress — zigzag walls climbing the mountain above Kotor. 1,350 steps to the top with views over the Bay. Go as far as you like.', maps: 'https://www.google.com/maps/search/?api=1&query=San+Giovanni+Fortress+Kotor' },
+    'perast':             { name: 'Perast', kind: 'Town · Bay of Kotor', wiki: 'Perast', desc: 'Small baroque town in the Bay of Kotor with two famous island churches. Common stop on Kotor day tours.', maps: 'https://www.google.com/maps/search/?api=1&query=Perast+Montenegro' },
+    'bay-of-kotor':       { name: 'Bay of Kotor', kind: 'Fjord · Montenegro', wiki: 'Bay_of_Kotor', desc: 'Deep, winding Adriatic bay framed by limestone mountains. Often called Europe\'s southernmost fjord (technically a ria).', maps: 'https://www.google.com/maps/search/?api=1&query=Bay+of+Kotor+Montenegro' },
   };
+
+  // ===== FLIGHT REGISTRY =====
+  const FLIGHTS = {
+    'UAL972':  { no: 'UA 972',  airline: 'United', from: { code: 'ORD', city: "Chicago O'Hare" },     to: { code: 'BRU', city: 'Brussels' },         date: 'Fri May 29',     dep: '6:00pm CDT', arr: '9:00am CEST +1', duration: '8h 0m',   aircraft: 'Boeing 787-10 Dreamliner', track: 'https://flightaware.com/live/flight/UAL972',  fr24: 'https://www.flightradar24.com/data/flights/ua972' },
+    'BEL3353': { no: 'SN 3353', airline: 'Brussels Airlines', from: { code: 'BRU', city: 'Brussels' }, to: { code: 'SPU', city: 'Split' },             date: 'Sat May 30',     dep: '12:10pm CEST', arr: '2:10pm CEST', duration: '2h 0m',   aircraft: 'Airbus A320', track: 'https://flightaware.com/live/flight/BEL3353', fr24: 'https://www.flightradar24.com/data/flights/sn3353' },
+    'UAL386':  { no: 'UA 386',  airline: 'United', from: { code: 'DBV', city: 'Dubrovnik' },           to: { code: 'EWR', city: 'Newark' },           date: 'Sun Jun 7',      dep: '12:15pm CEST', arr: '4:35pm EDT',  duration: '10h 20m', aircraft: 'Boeing 767-400ER', track: 'https://flightaware.com/live/flight/UAL386',  fr24: 'https://www.flightradar24.com/data/flights/ua386' },
+    'UAL1610': { no: 'UA 1610', airline: 'United', from: { code: 'EWR', city: 'Newark' },             to: { code: 'ORD', city: "Chicago O'Hare" },   date: 'Sun Jun 7',      dep: '7:12pm EDT',   arr: '9:00pm CDT',  duration: '2h 48m',  aircraft: 'Boeing 737-800', track: 'https://flightaware.com/live/flight/UAL1610', fr24: 'https://www.flightradar24.com/data/flights/ua1610' },
+  };
+
+  // Wikipedia image cache
+  const wikiCache = {};
+  function loadWikiImage(slug, imgEl) {
+    if (!slug || !imgEl) return;
+    if (wikiCache[slug] === false) return;
+    if (wikiCache[slug]) { applyImg(imgEl, wikiCache[slug]); return; }
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(slug)}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data) { wikiCache[slug] = false; return; }
+        const url = data.originalimage?.source || data.thumbnail?.source;
+        if (url) { wikiCache[slug] = url; applyImg(imgEl, url); }
+        else wikiCache[slug] = false;
+      })
+      .catch(() => { wikiCache[slug] = false; });
+  }
+  function applyImg(imgEl, url) {
+    if (!imgEl.isConnected) return;
+    imgEl.src = url;
+    imgEl.parentElement.classList.add('has-img');
+  }
 
   // ===== POPOVER =====
   function showPlace(linkEl) {
@@ -1930,16 +2070,69 @@
     card.className = 'pp-card';
     card.innerHTML = `
       <button class="pp-close" aria-label="Close">×</button>
-      <div class="pp-kind">${p.kind}</div>
-      <div class="pp-name">${p.name}</div>
-      <p class="pp-desc">${p.desc}</p>
-      <div class="pp-actions">
-        <a href="${p.maps}" target="_blank" rel="noopener">Open in Maps</a>
-        <a class="alt" href="#map" onclick="closePlace()">Trip map ↑</a>
+      <div class="pp-img-wrap">
+        <img class="pp-img" alt="" loading="lazy">
+      </div>
+      <div class="pp-body">
+        <div class="pp-kind">${p.kind}</div>
+        <div class="pp-name">${p.name}</div>
+        <p class="pp-desc">${p.desc}</p>
+        <div class="pp-actions">
+          <a href="${p.maps}" target="_blank" rel="noopener">Open in Maps</a>
+          ${p.wiki ? `<a class="alt" href="https://en.wikipedia.org/wiki/${encodeURIComponent(p.wiki)}" target="_blank" rel="noopener">Wikipedia ↗</a>` : ''}
+          <a class="alt" href="#map" onclick="closePlace()">Trip map ↑</a>
+        </div>
       </div>
     `;
     card.querySelector('.pp-close').onclick = closePlace;
 
+    document.body.appendChild(backdrop);
+    document.body.appendChild(card);
+    document.addEventListener('keydown', escClose);
+
+    if (p.wiki) loadWikiImage(p.wiki, card.querySelector('.pp-img'));
+    else card.querySelector('.pp-img-wrap').classList.add('placeholder');
+  }
+
+  // ===== FLIGHT POPOVER =====
+  function showFlight(linkEl) {
+    closePlace();
+    const key = linkEl.dataset.flight;
+    const f = FLIGHTS[key];
+    if (!f) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'pp-backdrop';
+    backdrop.onclick = closePlace;
+
+    const card = document.createElement('div');
+    card.className = 'pp-card flight-card';
+    card.innerHTML = `
+      <button class="pp-close" aria-label="Close">×</button>
+      <div class="pp-body">
+        <div class="pp-kind">${f.airline} · ${f.date}</div>
+        <div class="pp-name">${f.no}</div>
+        <div class="fl-route">
+          <div class="fl-airport">
+            <div class="fl-code">${f.from.code}</div>
+            <div class="fl-city">${f.from.city}</div>
+            <div class="fl-time">${f.dep}</div>
+          </div>
+          <div class="fl-arc"><span>${f.duration}</span></div>
+          <div class="fl-airport">
+            <div class="fl-code">${f.to.code}</div>
+            <div class="fl-city">${f.to.city}</div>
+            <div class="fl-time">${f.arr}</div>
+          </div>
+        </div>
+        <div class="fl-meta">${f.aircraft}</div>
+        <div class="pp-actions">
+          <a href="${f.track}" target="_blank" rel="noopener">FlightAware</a>
+          <a class="alt" href="${f.fr24}" target="_blank" rel="noopener">FlightRadar24 ↗</a>
+        </div>
+      </div>
+    `;
+    card.querySelector('.pp-close').onclick = closePlace;
     document.body.appendChild(backdrop);
     document.body.appendChild(card);
     document.addEventListener('keydown', escClose);
@@ -1953,8 +2146,10 @@
   function escClose(e) { if (e.key === 'Escape') closePlace(); }
 
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('a.place');
-    if (link) { e.preventDefault(); showPlace(link); }
+    const place = e.target.closest('a.place');
+    if (place) { e.preventDefault(); showPlace(place); return; }
+    const flight = e.target.closest('a.flight, a[data-flight]');
+    if (flight && flight.dataset.flight) { e.preventDefault(); showFlight(flight); return; }
   });
 
   // Nav highlighting
