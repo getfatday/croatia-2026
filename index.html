@@ -741,6 +741,19 @@
       margin-bottom: 0.6rem;
       letter-spacing: -0.005em;
     }
+    .decision-label .clear-vote {
+      float: right;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      text-decoration: none;
+      margin-left: 0.5rem;
+      margin-top: 0.4rem;
+    }
+    .decision-label .clear-vote:hover { color: var(--rouge); text-decoration: underline; }
 
     .decision-options {
       display: flex;
@@ -870,18 +883,20 @@
     }
 
     .no-voter-msg {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      color: var(--ink-mute);
+      padding: 0.6rem 0;
+      color: var(--rouge);
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-style: italic;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.5rem;
     }
+    .no-voter-msg.hidden { display: none; }
 
-    .poll-body { display: none; }
-    .poll-body.visible { display: block; }
+    .poll-body { opacity: 1; }
+    .poll-body.locked .decision-option { cursor: default; opacity: 0.85; }
+    .poll-body.locked .decision-option:hover { background: transparent; }
+    .poll-body.locked .share-btn { opacity: 0.4; pointer-events: none; }
 
     .share-bar { margin-top: 1.5rem; text-align: center; }
 
@@ -1012,7 +1027,7 @@
   <!-- ===== DECISIONS ===== -->
   <section class="decisions-section" id="decisions">
     <h2 class="section-heading"><span class="num">01</span>Open Votes</h2>
-    <p class="decisions-subtitle">Pick who you are, then vote on each open question. Everyone's votes show up in real time on this device.</p>
+    <p class="decisions-subtitle">My picks. This is a private ballot on this device — vote, then tap <strong>Share</strong> to drop your picks into the group chat.</p>
 
     <div class="voter-picker">
       <span class="voter-picker-label">I'm:</span>
@@ -1034,12 +1049,12 @@
 
       <div class="decision-group" data-group="split-sun">
         <div class="decision-group-header">
-          <span class="decision-day-dot" style="background: var(--adriatic);"></span>
+          <span class="decision-day-dot" style="background: var(--rouge);"></span>
           <h3>Sunday, May 31 — Split afternoon</h3>
           <span class="decided-badge">All voted ✓</span>
         </div>
         <div class="decision-item" data-decision="split-afternoon">
-          <div class="decision-label">After the morning walking tour, how do we spend the free afternoon?</div>
+          <div class="decision-label">After the morning walking tour, how do we spend the free afternoon? <a href="#" class="clear-vote" data-question="split-afternoon">clear</a></div>
           <div class="decision-options">
             <label class="decision-option" data-value="marjan">
               <input type="radio" name="split-afternoon" value="marjan">
@@ -1071,12 +1086,12 @@
 
       <div class="decision-group" data-group="dubrovnik-fri">
         <div class="decision-group-header">
-          <span class="decision-day-dot" style="background: var(--terra);"></span>
+          <span class="decision-day-dot" style="background: var(--ink);"></span>
           <h3>Friday, June 5 — Dubrovnik free afternoon</h3>
           <span class="decided-badge">All voted ✓</span>
         </div>
         <div class="decision-item" data-decision="dubrovnik-afternoon">
-          <div class="decision-label">After the morning walking tour, what's the afternoon?</div>
+          <div class="decision-label">After the morning walking tour, what's the afternoon? <a href="#" class="clear-vote" data-question="dubrovnik-afternoon">clear</a></div>
           <div class="decision-options">
             <label class="decision-option" data-value="walls">
               <input type="radio" name="dubrovnik-afternoon" value="walls">
@@ -1108,12 +1123,12 @@
 
       <div class="decision-group" data-group="kotor-sat">
         <div class="decision-group-header">
-          <span class="decision-day-dot" style="background: var(--gold);"></span>
+          <span class="decision-day-dot" style="background: var(--steel);"></span>
           <h3>Saturday, June 6 — Kotor transport</h3>
           <span class="decided-badge">All voted ✓</span>
         </div>
         <div class="decision-item" data-decision="kotor-mode">
-          <div class="decision-label">How do we get to Kotor and back?</div>
+          <div class="decision-label">How do we get to Kotor and back? <a href="#" class="clear-vote" data-question="kotor-mode">clear</a></div>
           <div class="decision-options">
             <label class="decision-option" data-value="tour">
               <input type="radio" name="kotor-mode" value="tour">
@@ -1194,7 +1209,7 @@
   <section class="conf-section" id="map" style="margin-top: 2rem;">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
       <h2><span class="num">03</span>Map</h2>
-      <a href="https://www.google.com/maps/d/edit?mid=1nEA9cSd2pFW0QC1BJBL_zdZahhXflnE" target="_blank" rel="noopener" style="font-size: 0.82rem; font-weight: 600; color: var(--adriatic); text-decoration: none;">Open full map ↗</a>
+      <a href="https://www.google.com/maps/d/edit?mid=1nEA9cSd2pFW0QC1BJBL_zdZahhXflnE" target="_blank" rel="noopener" style="font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rouge); text-decoration: none;">Open full map ↗</a>
     </div>
     <div>
       <iframe src="https://www.google.com/maps/d/embed?mid=1nEA9cSd2pFW0QC1BJBL_zdZahhXflnE&ehbc=C8312B" width="100%" height="480" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1255,7 +1270,7 @@
       <div class="event confirmed">
         <div class="event-time">12:10pm</div>
         <div class="event-title">BRU → SPU on SN 3353</div>
-        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Brussels Airlines (operated by Brussels Airlines). ~2 hour flight.</p></div>
+        <div class="event-body"><p><span class="tag tag-confirmed">Confirmed</span> Brussels Airlines. ~2 hour flight.</p></div>
       </div>
       <div class="event confirmed">
         <div class="event-time">2:10pm</div>
@@ -1298,24 +1313,9 @@
       </div>
       <div class="event">
         <div class="event-time">~1:00pm</div>
-        <div class="event-title">Free afternoon</div>
+        <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p><span class="tag tag-option">Choose</span></p>
-          <p>See the <a href="#decisions" style="color: var(--adriatic);">Decisions</a> section to vote. Three solid options:</p>
-          <div class="options-grid">
-            <div class="option-card" style="border-top-color: var(--pine);">
-              <h4>🥾 Marjan Hill</h4>
-              <p>Pine-forested hill west of Old Town. Climb the stairs for the classic view over Split and the islands. 1–2 hrs round trip.</p>
-            </div>
-            <div class="option-card" style="border-top-color: var(--gold);">
-              <h4>🧺 Green Market + Riva</h4>
-              <p>Open-air market at the east wall of the palace, then coffee along the waterfront promenade. Low-key.</p>
-            </div>
-            <div class="option-card" style="border-top-color: var(--adriatic);">
-              <h4>🌊 Bačvice Beach</h4>
-              <p>Sandy beach 10 min east of Old Town. Home of <em>picigin</em> — Split's shallow-water ball game.</p>
-            </div>
-          </div>
+          <p>Marjan Hill, Green Market and Riva, or Bačvice Beach. <a href="#decisions">Cast your vote ↑</a></p>
         </div>
       </div>
       <div class="event confirmed">
@@ -1516,25 +1516,10 @@
       </div>
       <div class="event">
         <div class="event-time">Afternoon</div>
-        <div class="event-title">Free afternoon</div>
+        <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p><span class="tag tag-option">Choose</span></p>
-          <p>Vote in <a href="#decisions" style="color: var(--adriatic);">Decisions</a>. Three options:</p>
-          <div class="options-grid">
-            <div class="option-card" style="border-top-color: var(--terra);">
-              <h4>🏰 City Walls</h4>
-              <p>~2 mi walk around the top of the old town at 80 ft elevation. Iconic terracotta-roof view. Go late afternoon for light + fewer cruise crowds.</p>
-            </div>
-            <div class="option-card" style="border-top-color: var(--pine);">
-              <h4>🚡 Mt. Srđ cable car</h4>
-              <p>4 min up to 1,350 ft. Panoramic view down onto the old town, small Homeland War museum, Panorama restaurant.</p>
-            </div>
-            <div class="option-card" style="border-top-color: var(--adriatic);">
-              <h4>🚤 Lokrum Island</h4>
-              <p>15 min ferry from the Old Port. Botanical garden, monastery ruins, rocky swimming, peacocks wandering the paths.</p>
-            </div>
-          </div>
-          <div class="tip">The walls take ~2 hours and there's no shade. Bring water.</div>
+          <p>City Walls, Mt. Srđ cable car, or Lokrum Island. <a href="#decisions">Cast your vote ↑</a></p>
+          <div class="tip">If the walls win — they take ~2 hours and there's no shade. Bring water.</div>
         </div>
       </div>
       <div class="event">
@@ -1560,7 +1545,7 @@
         <div class="event-title">Leave Dubrovnik for Montenegro</div>
         <div class="event-body">
           <p><span class="tag tag-activity">Border crossing</span></p>
-          <p><strong>~2 to 2.5 hours</strong> each way — by rental car or organized tour. See the <a href="#decisions" style="color: var(--adriatic);">Decisions</a> section to vote on the mode.</p>
+          <p><strong>~2 to 2.5 hours</strong> each way — by rental car or organized tour. <a href="#decisions">Vote on the mode ↑</a></p>
           <div class="tip"><strong>Passports.</strong> US citizens don't need a visa. Border wait can add 30–60 min each way — early June should be lighter than peak summer, but don't count on zero.</div>
         </div>
       </div>
@@ -1641,14 +1626,14 @@
   <section class="conf-section" id="packing">
     <h2><span class="num">06</span>Packing</h2>
     <div class="packing-grid">
-      <div class="pack-item"><span class="pack-icon">🥾</span><div><strong>Hiking shoes</strong><br>Up to 5 hrs walking per day. Ankle support for the Vidova Gora and Pupnat hikes.</div></div>
+      <div class="pack-item"><span class="pack-icon">🥾</span><div><strong>Hiking shoes</strong><br>Up to 5 hrs walking per day. Ankle support for <a href="#jun2">Vidova Gora (Tue)</a> and <a href="#jun3">Pupnat (Wed)</a>.</div></div>
       <div class="pack-item"><span class="pack-icon">🦯</span><div><strong>Walking poles</strong><br>Recommended by Gate 1. Limestone paths are slippery on the way down.</div></div>
       <div class="pack-item"><span class="pack-icon">☀️</span><div><strong>Sun protection</strong><br>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></div>
       <div class="pack-item"><span class="pack-icon">🧥</span><div><strong>Layers</strong><br>Warm days (70s °F), cooler mornings on the water. Light rain shell.</div></div>
-      <div class="pack-item"><span class="pack-icon">👙</span><div><strong>Swimsuit</strong><br>Zlatni Rat, Mljet lakes, maybe Lokrum or Bačvice.</div></div>
-      <div class="pack-item"><span class="pack-icon">🩴</span><div><strong>Water shoes</strong><br>Zlatni Rat is pebbles, not sand. Helpful on rocky swim entries elsewhere.</div></div>
+      <div class="pack-item"><span class="pack-icon">👙</span><div><strong>Swimsuit</strong><br><a href="#jun2">Zlatni Rat (Tue)</a>, <a href="#jun4">Mljet lakes (Thu)</a>, maybe Lokrum or Bačvice.</div></div>
+      <div class="pack-item"><span class="pack-icon">🩴</span><div><strong>Water shoes</strong><br><a href="#jun2">Zlatni Rat</a> is pebbles, not sand. Helpful on rocky swim entries elsewhere.</div></div>
       <div class="pack-item"><span class="pack-icon">💧</span><div><strong>Water bottle</strong><br>Refill at hotels. Croatian tap water is safe.</div></div>
-      <div class="pack-item"><span class="pack-icon">🛂</span><div><strong>Passport</strong><br>Required for the Kotor border crossing on Jun 6.</div></div>
+      <div class="pack-item"><span class="pack-icon">🛂</span><div><strong>Passport</strong><br>Required for the <a href="#jun6">Kotor border crossing (Sat)</a>.</div></div>
       <div class="pack-item"><span class="pack-icon">🔌</span><div><strong>EU plug adapter</strong><br>Type F (Schuko). Croatia runs 230V/50Hz.</div></div>
     </div>
   </section>
@@ -1658,16 +1643,16 @@
     <h2><span class="num">07</span>Confirmations</h2>
     <table class="conf-table">
       <thead>
-        <tr><th>What</th><th>Confirmation #</th></tr>
+        <tr><th>What</th><th>Booked via</th><th>Reference</th></tr>
       </thead>
       <tbody>
-        <tr><td>United flights — Ian, Owen, Kyle</td><td class="mono">MSSQC7</td></tr>
-        <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Booked by Gene</td></tr>
-        <tr><td>Hotel Cvita (Split)</td><td>Via Gate 1</td></tr>
-        <tr><td>Aminess Vival Velaris (Supetar)</td><td>Via Gate 1</td></tr>
-        <tr><td>Aminess Korčula Heritage Hotel</td><td>Via Gate 1</td></tr>
-        <tr><td>Dubrovnik hotel</td><td>Via Gate 1</td></tr>
-        <tr><td>Kotor day trip</td><td class="mono">TBD</td></tr>
+        <tr><td>United flights — Ian, Owen, Kyle</td><td>United (Ian)</td><td class="mono">MSSQC7</td></tr>
+        <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Gate 1 (Gene)</td><td>—</td></tr>
+        <tr><td>Hotel Cvita (Split)</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Aminess Vival Velaris (Supetar)</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Aminess Korčula Heritage Hotel</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Dubrovnik hotel</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Kotor day trip</td><td>Open question</td><td class="mono">TBD</td></tr>
       </tbody>
     </table>
   </section>
@@ -1726,10 +1711,22 @@
     document.querySelectorAll('.voter-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.voter === name);
     });
-    document.getElementById('noVoterMsg').style.display = 'none';
-    document.getElementById('pollBody').classList.add('visible');
+    document.getElementById('noVoterMsg').classList.add('hidden');
+    document.getElementById('pollBody').classList.remove('locked');
     loadVoterSelections();
     renderAllVotes();
+  }
+
+  function clearVote(question) {
+    if (!currentVoter) return;
+    const poll = loadPoll();
+    if (poll[currentVoter] && poll[currentVoter][question]) {
+      delete poll[currentVoter][question];
+      savePoll(poll);
+      const radios = document.querySelectorAll(`input[name="${question}"]`);
+      radios.forEach(r => { r.checked = false; r.closest('.decision-option').classList.remove('selected'); });
+      renderAllVotes();
+    }
   }
 
   function loadVoterSelections() {
@@ -1802,10 +1799,20 @@
   }
 
   function initPoll() {
+    document.getElementById('pollBody').classList.add('locked');
     if (currentVoter) setVoter(currentVoter);
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        if (!currentVoter) return;
+      radio.addEventListener('change', function(e) {
+        if (!currentVoter) {
+          e.preventDefault();
+          this.checked = false;
+          document.querySelector('.voter-picker').scrollIntoView({behavior: 'smooth', block: 'center'});
+          document.getElementById('noVoterMsg').animate(
+            [{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],
+            {duration: 300}
+          );
+          return;
+        }
         const poll = loadPoll();
         if (!poll[currentVoter]) poll[currentVoter] = {};
         poll[currentVoter][this.name] = this.value;
@@ -1813,6 +1820,12 @@
         this.closest('.decision-options').querySelectorAll('.decision-option').forEach(opt => opt.classList.remove('selected'));
         this.closest('.decision-option').classList.add('selected');
         renderAllVotes();
+      });
+    });
+    document.querySelectorAll('.clear-vote').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        clearVote(this.dataset.question);
       });
     });
     renderAllVotes();
@@ -1838,8 +1851,15 @@
     });
     lines.push('', 'Vote here 👉 https://getfatday.github.io/croatia-2026/');
     const text = lines.join('\n');
-    if (navigator.share) navigator.share({ text }).catch(() => copyFallback(text));
-    else copyFallback(text);
+    if (navigator.share) {
+      navigator.share({ text }).then(() => {
+        const t = document.getElementById('shareToast');
+        t.textContent = 'Shared!';
+        showToast();
+      }).catch(err => {
+        if (err.name !== 'AbortError') copyFallback(text);
+      });
+    } else copyFallback(text);
   }
 
   function copyFallback(text) {
