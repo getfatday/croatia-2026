@@ -2181,6 +2181,11 @@
   const QUESTIONS = ['split-afternoon', 'dubrovnik-afternoon', 'kotor-mode'];
   const TOTAL_VOTES = VOTERS.length * QUESTIONS.length;
 
+  // Votes shared in the group chat — seeded on first load so everyone sees them.
+  const SEEDED_VOTES = {
+    gene: { 'split-afternoon': 'market' }
+  };
+
   const avatarConfig = {
     ian:   { initial: 'I', cls: 'avatar-ian' },
     owen:  { initial: 'O', cls: 'avatar-owen' },
@@ -2192,7 +2197,17 @@
   let currentVoter = localStorage.getItem(VOTER_KEY) || null;
 
   function loadPoll() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch {}
+    let changed = false;
+    Object.entries(SEEDED_VOTES).forEach(([voter, votes]) => {
+      if (!stored[voter]) stored[voter] = {};
+      Object.entries(votes).forEach(([q, v]) => {
+        if (!stored[voter][q]) { stored[voter][q] = v; changed = true; }
+      });
+    });
+    if (changed) localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+    return stored;
   }
   function savePoll(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
