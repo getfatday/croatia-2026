@@ -746,6 +746,7 @@
     }
     .day-actions a:hover { color: var(--rouge); border-bottom-color: var(--rouge); }
     .day-actions a::after { content: ' ↗'; opacity: 0.6; margin-left: 0.05em; }
+    .day-actions a.got-jump::after { content: ' ↓'; }
 
     /* ===== TAGS ===== */
     .tag {
@@ -924,7 +925,9 @@
       border: 1px solid var(--rule);
       background: var(--paper-soft);
       padding: 1rem 1.1rem 1.2rem;
+      scroll-margin-top: 80px;
     }
+    .got-card:target { border-color: var(--rouge); }
     .got-card .got-kind {
       font-family: 'DM Mono', monospace;
       font-size: 0.6rem;
@@ -1742,6 +1745,7 @@
         <div class="day-subtitle">Walking tour · Free afternoon · Tour orientation</div>
         <div class="day-actions">
           <a href="https://www.google.com/maps/search/?api=1&query=Diocletian's+Palace+Split" target="_blank" rel="noopener">Map: Diocletian's Palace</a>
+          <a class="got-jump" href="#got-diocletians-palace">GoT: Diocletian's Palace</a>
         </div>
       </div>
     </div>
@@ -1958,6 +1962,7 @@
         <div class="day-subtitle">Walking tour + free afternoon</div>
         <div class="day-actions">
           <a href="https://www.google.com/maps/search/?api=1&query=Dubrovnik+Old+Town+Pile+Gate" target="_blank" rel="noopener">Map: Dubrovnik Old Town</a>
+          <a class="got-jump" href="#got-dubrovnik">GoT: Dubrovnik Old Town</a>
           <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Kompas+Dubrovnik" target="_blank" rel="noopener">Hotel</a>
         </div>
       </div>
@@ -2310,7 +2315,7 @@
   (function buildGotSection() {
     const grid = document.getElementById('got-grid');
     if (!grid) return;
-    Object.values(PLACES).forEach(p => {
+    Object.entries(PLACES).forEach(([key, p]) => {
       if (!p.got) return;
       const g = p.got;
       const video = g.video
@@ -2327,6 +2332,7 @@
         : '';
       const card = document.createElement('div');
       card.className = 'got-card';
+      card.id = 'got-' + key;
       card.innerHTML = `<div class="got-kind">${p.kind}</div><h3>${p.name}</h3><p class="got-fact">${g.fact}</p>${video}<div class="got-links">${day}<a href="${p.maps}" target="_blank" rel="noopener">Open in Maps ↗</a>${wiki}${watch}</div>`;
       grid.appendChild(card);
     });
