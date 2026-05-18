@@ -529,7 +529,7 @@
       background: var(--paper-soft);
       border-left: 3px solid var(--rouge);
       padding: 0.7rem 0.85rem;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
     .pp-got-tag {
       display: block;
@@ -905,6 +905,68 @@
 
     .rest-table { font-size: 0.9rem; }
     .rest-table strong { font-weight: 700; }
+
+    /* ===== GAME OF THRONES ===== */
+    .got-intro {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: 60ch;
+      margin-bottom: 1.6rem;
+    }
+    .got-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.4rem;
+    }
+    .got-card {
+      border: 1px solid var(--rule);
+      background: var(--paper-soft);
+      padding: 1rem 1.1rem 1.2rem;
+    }
+    .got-card .got-kind {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+    .got-card h3 {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.005em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin: 0.3rem 0 0;
+    }
+    .got-card .got-fact {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0.55rem 0 0;
+    }
+    .got-card .pp-got-video { margin-top: 0.85rem; }
+    .got-card .got-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.85rem;
+    }
+    .got-card .got-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rouge);
+      padding-bottom: 1px;
+    }
+    .got-card .got-links a:hover { color: var(--ink); border-color: var(--ink); }
 
     /* ===== PACKING ===== */
     .packing-grid {
@@ -1385,6 +1447,7 @@
     <a href="#hotels">Hotels</a>
     <a href="#packing">Pack</a>
     <a href="#confirmations">Conf #s</a>
+    <a href="#got">GoT</a>
   </nav>
 
   <!-- ===== DECISIONS ===== -->
@@ -2057,6 +2120,13 @@
     </table>
   </section>
 
+  <!-- ===== GAME OF THRONES ===== -->
+  <section class="conf-section" id="got">
+    <h2><span class="num">08</span>Game of Thrones</h2>
+    <p class="got-intro">Five stops on this trip doubled as Westeros and Essos. Tap a scene to watch it right here, or open the spot in Maps.</p>
+    <div class="got-grid" id="got-grid"></div>
+  </section>
+
 </div>
 
 <footer>
@@ -2155,12 +2225,12 @@
         <div class="pp-kind">${p.kind}</div>
         <div class="pp-name">${p.name}</div>
         <p class="pp-desc">${p.desc}</p>
-        ${p.got ? `<div class="pp-got"><span class="pp-got-tag">Filmed here · Game of Thrones</span><span class="pp-got-fact">${p.got.fact}</span>${p.got.video ? `<div class="pp-got-video" onclick="playGot(this,'${p.got.video}')"><img src="https://i.ytimg.com/vi/${p.got.video}/hqdefault.jpg" alt="" loading="lazy"><div class="pp-got-play"><span>▶ Play scene</span></div></div><a class="pp-got-link" href="https://www.youtube.com/watch?v=${p.got.video}" target="_blank" rel="noopener">Open on YouTube ↗</a>` : `<a class="pp-got-link" href="${p.got.clip}" target="_blank" rel="noopener">Watch the scene ↗</a>`}</div>` : ''}
         <div class="pp-actions">
           <a href="${p.maps}" target="_blank" rel="noopener">Open in Maps</a>
           ${p.wiki ? `<a class="alt" href="https://en.wikipedia.org/wiki/${encodeURIComponent(p.wiki)}" target="_blank" rel="noopener">Wikipedia ↗</a>` : ''}
           <a class="alt" href="#map" onclick="closePlace()">Trip map ↑</a>
         </div>
+        ${p.got ? `<div class="pp-got"><span class="pp-got-tag">Filmed here · Game of Thrones</span><span class="pp-got-fact">${p.got.fact}</span>${p.got.video ? `<div class="pp-got-video" onclick="playGot(this,'${p.got.video}')"><img src="https://i.ytimg.com/vi/${p.got.video}/hqdefault.jpg" alt="" loading="lazy"><div class="pp-got-play"><span>▶ Play scene</span></div></div><a class="pp-got-link" href="https://www.youtube.com/watch?v=${p.got.video}" target="_blank" rel="noopener">Open on YouTube ↗</a>` : `<a class="pp-got-link" href="${p.got.clip}" target="_blank" rel="noopener">Watch the scene ↗</a>`}</div>` : ''}
       </div>
     `;
     card.querySelector('.pp-close').onclick = closePlace;
@@ -2229,6 +2299,28 @@
     el.style.cursor = 'default';
     el.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Game of Thrones scene" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
   }
+
+  (function buildGotSection() {
+    const grid = document.getElementById('got-grid');
+    if (!grid) return;
+    Object.values(PLACES).forEach(p => {
+      if (!p.got) return;
+      const g = p.got;
+      const video = g.video
+        ? `<div class="pp-got-video" onclick="playGot(this,'${g.video}')"><img src="https://i.ytimg.com/vi/${g.video}/hqdefault.jpg" alt="" loading="lazy"><div class="pp-got-play"><span>▶ Play scene</span></div></div>`
+        : '';
+      const watch = g.video
+        ? `<a href="https://www.youtube.com/watch?v=${g.video}" target="_blank" rel="noopener">Open on YouTube ↗</a>`
+        : `<a href="${g.clip}" target="_blank" rel="noopener">Watch the scene ↗</a>`;
+      const wiki = p.wiki
+        ? `<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(p.wiki)}" target="_blank" rel="noopener">Wikipedia ↗</a>`
+        : '';
+      const card = document.createElement('div');
+      card.className = 'got-card';
+      card.innerHTML = `<div class="got-kind">${p.kind}</div><h3>${p.name}</h3><p class="got-fact">${g.fact}</p>${video}<div class="got-links"><a href="${p.maps}" target="_blank" rel="noopener">Open in Maps ↗</a>${wiki}${watch}</div>`;
+      grid.appendChild(card);
+    });
+  })();
 
   document.addEventListener('click', (e) => {
     const place = e.target.closest('a.place');
