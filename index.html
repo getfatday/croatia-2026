@@ -2681,7 +2681,7 @@
 
     <div class="pack-panel-storage" aria-hidden="true">
     <!-- FAMILY -->
-    <div class="pack-panel is-active" id="pack-panel-family" role="tabpanel" data-person="family" aria-labelledby="pack-tab-family">
+    <div class="pack-panel" id="pack-panel-family" role="tabpanel" data-person="family" aria-labelledby="pack-tab-family">
       <div class="pack-panel-head">
         <div>
           <h3>👨‍👦‍👦 Family list</h3>
@@ -2823,7 +2823,7 @@
     </div>
 
     <!-- IAN -->
-    <div class="pack-panel" id="pack-panel-ian" role="tabpanel" data-person="ian" aria-labelledby="pack-tab-ian" hidden>
+    <div class="pack-panel" id="pack-panel-ian" role="tabpanel" data-person="ian" aria-labelledby="pack-tab-ian">
       <div class="pack-panel-head">
         <div>
           <h3>👤 Ian — Croatia 2026</h3>
@@ -2954,7 +2954,7 @@
     </div>
 
     <!-- OWEN -->
-    <div class="pack-panel" id="pack-panel-owen" role="tabpanel" data-person="owen" aria-labelledby="pack-tab-owen" hidden>
+    <div class="pack-panel" id="pack-panel-owen" role="tabpanel" data-person="owen" aria-labelledby="pack-tab-owen">
       <div class="pack-panel-head">
         <div>
           <h3>👤 Owen — Croatia 2026</h3>
@@ -3088,7 +3088,7 @@
     </div>
 
     <!-- KYLE -->
-    <div class="pack-panel" id="pack-panel-kyle" role="tabpanel" data-person="kyle" aria-labelledby="pack-tab-kyle" hidden>
+    <div class="pack-panel" id="pack-panel-kyle" role="tabpanel" data-person="kyle" aria-labelledby="pack-tab-kyle">
       <div class="pack-panel-head">
         <div>
           <h3>👤 Kyle — Croatia 2026</h3>
@@ -3778,6 +3778,7 @@
       modalGlyph.textContent = meta.glyph;
       modalTitle.textContent = meta.name;
       modalBody.appendChild(panel);
+      panel.removeAttribute('hidden');
       modalBody.scrollTop = 0;
       updateCount(person);
       modal.removeAttribute('hidden');
