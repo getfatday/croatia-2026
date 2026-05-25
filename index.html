@@ -979,37 +979,320 @@
     .got-card .got-links a.got-day:hover { background: var(--ink); color: var(--bone); }
 
     /* ===== PACKING ===== */
-    .packing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.6rem 2rem;
-      margin-top: 0.5rem;
+    .pack-intro {
+      font-size: 0.95rem;
+      color: var(--ink-mute);
+      margin: 0 0 1.2rem;
+      max-width: 56ch;
     }
 
-    .pack-item {
-      font-size: 0.9rem;
+    .pack-tabs {
       display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      line-height: 1.55;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 0 0 1.6rem;
+      border-bottom: 1px solid var(--rule-strong);
     }
 
-    .pack-item .pack-icon {
-      font-size: 1.3rem;
+    .pack-tab {
+      flex: 1 1 auto;
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 0.7rem 0.8rem;
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .pack-tab:hover { color: var(--ink); }
+    .pack-tab:focus-visible { outline: 2px solid var(--rouge); outline-offset: -2px; }
+
+    .pack-tab .pack-tab-avatar {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--bone);
+      border-radius: 50%;
       flex-shrink: 0;
-      line-height: 1.4;
     }
 
-    .pack-item strong {
+    .pack-tab .pack-count {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.7rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.04em;
+    }
+
+    .pack-tab[aria-selected="true"] {
+      color: var(--ink);
+      border-bottom-color: var(--rouge);
+    }
+    .pack-tab[aria-selected="true"] .pack-count { color: var(--rouge); }
+
+    .pack-panel { display: none; }
+    .pack-panel.is-active { display: block; }
+
+    .pack-panel-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.8rem 1.2rem;
+      margin: 0 0 1.2rem;
+    }
+
+    .pack-panel-head h3 {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.005em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .pack-panel-head .pack-dates {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+    }
+
+    .pack-panel-head .pack-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pack-btn {
+      appearance: none;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.78rem;
+      padding: 0.55rem 0.95rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .pack-btn:hover { background: var(--rouge); }
+    .pack-btn.pack-btn-ghost {
+      background: transparent;
+      color: var(--ink-mute);
+      border: 1px solid var(--rule-strong);
+      padding: calc(0.55rem - 1px) calc(0.95rem - 1px);
+    }
+    .pack-btn.pack-btn-ghost:hover { color: var(--ink); border-color: var(--ink); background: transparent; }
+
+    .pack-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.35rem 1.6rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pack-row {
+      display: grid;
+      grid-template-columns: 18px auto 1fr;
+      align-items: start;
+      gap: 0.2rem 0.7rem;
+      padding: 0.45rem 0.4rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.12s;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pack-row:hover { background: var(--rouge-soft); }
+
+    .pack-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper);
+      border-radius: 2px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin: 0.15rem 0 0;
+      position: relative;
+      transition: background 0.12s, border-color 0.12s;
+    }
+
+    .pack-row input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--rouge);
+      outline-offset: 2px;
+    }
+
+    .pack-row input[type="checkbox"]:checked {
+      background: var(--rouge);
+      border-color: var(--rouge);
+    }
+
+    .pack-row input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      width: 5px;
+      height: 10px;
+      border: solid var(--paper);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .pack-row .pack-icon {
+      font-size: 1.15rem;
+      line-height: 1.25;
+      flex-shrink: 0;
+      grid-row: span 2;
+    }
+
+    .pack-row .pack-text strong {
+      font-family: 'Source Serif 4', Georgia, serif;
       font-weight: 700;
       display: block;
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1rem;
-      letter-spacing: -0.005em;
-      margin-bottom: 0.15rem;
+      font-size: 0.98rem;
+      margin-bottom: 0.1rem;
       color: var(--ink);
+      letter-spacing: -0.005em;
     }
-    .pack-item > div > :not(strong) { color: var(--ink); }
+
+    .pack-row.is-checked .pack-text strong { text-decoration: line-through; }
+    .pack-row.is-checked .pack-text strong,
+    .pack-row.is-checked .pack-text { color: var(--ink-mute); }
+
+    .pack-print-header { display: none; }
+
+    @media (max-width: 600px) {
+      .pack-tab { font-size: 0.85rem; padding: 0.6rem 0.4rem; letter-spacing: 0.04em; }
+      .pack-tab .pack-count { display: none; }
+      .pack-panel-head { gap: 0.5rem 1rem; }
+      .pack-panel-head .pack-actions { width: 100%; }
+      .pack-btn { flex: 1 1 auto; text-align: center; }
+    }
+
+    /* ===== PACKING — PRINT ===== */
+    @media print {
+      body.printing-pack {
+        background: white !important;
+        background-image: none !important;
+        color: black !important;
+      }
+      body.printing-pack > *:not(.container),
+      body.printing-pack .container > *:not(#packing),
+      body.printing-pack #packing > h2,
+      body.printing-pack #packing .pack-intro,
+      body.printing-pack #packing .pack-tabs,
+      body.printing-pack #packing .pack-actions {
+        display: none !important;
+      }
+      body.printing-pack .container { max-width: none; padding: 0; margin: 0; }
+      body.printing-pack #packing { margin: 0; padding: 0; }
+
+      body.printing-pack .pack-panel { display: none !important; }
+      body.printing-pack.printing-ian  .pack-panel[data-person="ian"],
+      body.printing-pack.printing-owen .pack-panel[data-person="owen"],
+      body.printing-pack.printing-kyle .pack-panel[data-person="kyle"] {
+        display: block !important;
+      }
+
+      body.printing-pack .pack-print-header {
+        display: block;
+        border-bottom: 2px solid black;
+        padding-bottom: 0.4rem;
+        margin: 0 0 0.7rem;
+      }
+      body.printing-pack .pack-print-header h1 {
+        font-family: 'Big Shoulders Display', 'Impact', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        line-height: 1;
+        color: black;
+      }
+      body.printing-pack .pack-print-header .pack-print-meta {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 0.3rem;
+        color: #222;
+      }
+
+      body.printing-pack .pack-panel-head { display: none !important; }
+
+      body.printing-pack .pack-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.15rem 1.5rem;
+      }
+      body.printing-pack .pack-row {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        padding: 0.2rem 0;
+        background: none !important;
+        cursor: default;
+        gap: 0.15rem 0.55rem;
+        grid-template-columns: 14px auto 1fr;
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+      body.printing-pack .pack-row .pack-icon { font-size: 1rem; }
+      body.printing-pack .pack-row .pack-text strong { color: black !important; font-size: 0.9rem; }
+      body.printing-pack .pack-row .pack-text { color: #222 !important; }
+      body.printing-pack .pack-row.is-checked .pack-text strong { text-decoration: none; color: black !important; }
+      body.printing-pack .pack-row.is-checked .pack-text { color: #222 !important; }
+      body.printing-pack .pack-row a { color: black !important; text-decoration: none !important; }
+
+      body.printing-pack .pack-row input[type="checkbox"] {
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid black !important;
+        background: white !important;
+        margin: 0.2rem 0 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body.printing-pack .pack-row input[type="checkbox"]:checked { background: white !important; }
+      body.printing-pack .pack-row input[type="checkbox"]:checked::after {
+        border-color: black !important;
+        left: 3px;
+        top: -1px;
+        width: 4px;
+        height: 8px;
+      }
+
+      @page { margin: 0.5in; }
+    }
 
     /* ===== DECISIONS / POLL ===== */
     .decisions-section {
@@ -2100,16 +2383,116 @@
   <!-- ===== PACKING ===== -->
   <section class="conf-section" id="packing">
     <h2><span class="num">06</span>Packing</h2>
-    <div class="packing-grid">
-      <div class="pack-item"><span class="pack-icon">🥾</span><div><strong>Hiking shoes</strong><br>Up to 5 hrs walking per day. Ankle support for <a href="#jun2">Vidova Gora (Tue)</a> and <a href="#jun3">Pupnat (Wed)</a>.</div></div>
-      <div class="pack-item"><span class="pack-icon">🦯</span><div><strong>Walking poles</strong><br>Recommended by Gate 1. Limestone paths are slippery on the way down.</div></div>
-      <div class="pack-item"><span class="pack-icon">☀️</span><div><strong>Sun protection</strong><br>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></div>
-      <div class="pack-item"><span class="pack-icon">🧥</span><div><strong>Layers</strong><br>Warm days (70s °F), cooler mornings on the water. Light rain shell.</div></div>
-      <div class="pack-item"><span class="pack-icon">👙</span><div><strong>Swimsuit</strong><br><a href="#jun2">Zlatni Rat (Tue)</a>, <a href="#jun4">Mljet lakes (Thu)</a>, maybe Lokrum or Bačvice.</div></div>
-      <div class="pack-item"><span class="pack-icon">🩴</span><div><strong>Water shoes</strong><br><a href="#jun2">Zlatni Rat</a> is pebbles, not sand. Helpful on rocky swim entries elsewhere.</div></div>
-      <div class="pack-item"><span class="pack-icon">💧</span><div><strong>Water bottle</strong><br>Refill at hotels. Croatian tap water is safe.</div></div>
-      <div class="pack-item"><span class="pack-icon">🛂</span><div><strong>Passport</strong><br>Required for the <a href="#jun6">Kotor border crossing (Sat)</a>.</div></div>
-      <div class="pack-item"><span class="pack-icon">🔌</span><div><strong>EU plug adapter</strong><br>Type F (Schuko). Croatia runs 230V/50Hz.</div></div>
+    <p class="pack-intro">Three lists — one per traveler. Tick as you pack; check state saves to this browser. Use <em>Print my list</em> for a clean one-page checklist with squares to mark in pen.</p>
+
+    <div class="pack-print-header" aria-hidden="true">
+      <h1><span class="pack-print-name">Packing list</span></h1>
+      <div class="pack-print-meta">Croatia · May 29 — June 7, 2026</div>
+    </div>
+
+    <div class="pack-tabs" role="tablist" aria-label="Choose traveler">
+      <button class="pack-tab" role="tab" aria-selected="true" aria-controls="pack-panel-ian" data-person="ian">
+        <span class="pack-tab-avatar avatar-ian">I</span>Ian<span class="pack-count" data-count="ian"></span>
+      </button>
+      <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-panel-owen" data-person="owen">
+        <span class="pack-tab-avatar avatar-owen">O</span>Owen<span class="pack-count" data-count="owen"></span>
+      </button>
+      <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-panel-kyle" data-person="kyle">
+        <span class="pack-tab-avatar avatar-kyle">K</span>Kyle<span class="pack-count" data-count="kyle"></span>
+      </button>
+    </div>
+
+    <!-- IAN -->
+    <div class="pack-panel is-active" id="pack-panel-ian" role="tabpanel" data-person="ian" aria-labelledby="pack-tab-ian">
+      <div class="pack-panel-head">
+        <div>
+          <h3>Ian's list</h3>
+          <div class="pack-dates">May 29 — June 7, 2026</div>
+        </div>
+        <div class="pack-actions">
+          <button class="pack-btn" type="button" data-print="ian">Print Ian's list</button>
+          <button class="pack-btn pack-btn-ghost" type="button" data-reset="ian">Reset ticks</button>
+        </div>
+      </div>
+      <ul class="pack-list">
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Up to 5 hrs walking per day. Ankle support for <a href="#jun2">Vidova Gora (Tue)</a> and <a href="#jun3">Pupnat (Wed)</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Recommended by Gate 1. Limestone paths get slippery on the way down.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days (70s °F), cooler mornings on the water.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong><a href="#jun2">Zlatni Rat (Tue)</a>, <a href="#jun4">Mljet lakes (Thu)</a>, maybe Lokrum or Bačvice.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong><a href="#jun2">Zlatni Rat</a> is pebbles, not sand. Helpful on rocky swim entries.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing (Sat)</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Offline maps, eSIM/roaming sorted before departure.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:wallet"><span class="pack-icon">💳</span><div class="pack-text"><strong>Wallet, cards, euros</strong>Tell card issuers about travel. Small euro cash for cafés and tips.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:docs"><span class="pack-icon">📄</span><div class="pack-text"><strong>Travel docs printout</strong>Hotel confirmations, ferry tickets, Gate 1 voucher. See <a href="#confirmations">Conf #s</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:meds"><span class="pack-icon">💊</span><div class="pack-text"><strong>Prescription meds</strong>Full trip supply + a few days extra. Keep in carry-on.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:readers"><span class="pack-icon">👓</span><div class="pack-text"><strong>Reading glasses</strong>Plus a backup pair. Sunglasses live with sun protection above.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes, ferry days, and the Kotor border crossing.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:firstaid"><span class="pack-icon">🩹</span><div class="pack-text"><strong>First-aid kit</strong>Blister pads (Vidova Gora and Pupnat), ibuprofen, anti-chafe.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="ian:camera"><span class="pack-icon">📷</span><div class="pack-text"><strong>Camera / GoPro</strong>Spare batteries, charger, memory cards. Wrist strap for boat days.</div></label></li>
+      </ul>
+    </div>
+
+    <!-- OWEN -->
+    <div class="pack-panel" id="pack-panel-owen" role="tabpanel" data-person="owen" aria-labelledby="pack-tab-owen" hidden>
+      <div class="pack-panel-head">
+        <div>
+          <h3>Owen's list</h3>
+          <div class="pack-dates">May 29 — June 7, 2026</div>
+        </div>
+        <div class="pack-actions">
+          <button class="pack-btn" type="button" data-print="owen">Print Owen's list</button>
+          <button class="pack-btn pack-btn-ghost" type="button" data-reset="owen">Reset ticks</button>
+        </div>
+      </div>
+      <ul class="pack-list">
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Your own pair — broken in. Ankle support for <a href="#jun2">Vidova Gora</a> and <a href="#jun3">Pupnat</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Limestone paths are slippery on the descents.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days, cooler mornings on the boats.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong>You'll want it most days — <a href="#jun2">Zlatni Rat</a>, <a href="#jun4">Mljet</a>, Lokrum.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong>Pebble beaches and rocky swim entries.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Download offline maps and Google Translate (Croatian) before you leave.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:earbuds"><span class="pack-icon">🎧</span><div class="pack-text"><strong>Earbuds</strong>For the flights, ferries, and the long Brač and Mljet boat days.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes and town days — leaves your hands free.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:book"><span class="pack-icon">📚</span><div class="pack-text"><strong>Book or downloads</strong>The Split → Brač and Korčula → Dubrovnik ferries take a while.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="owen:cup"><span class="pack-icon">🥤</span><div class="pack-text"><strong>Reusable cup</strong>Coffee on the go without the disposables.</div></label></li>
+      </ul>
+    </div>
+
+    <!-- KYLE -->
+    <div class="pack-panel" id="pack-panel-kyle" role="tabpanel" data-person="kyle" aria-labelledby="pack-tab-kyle" hidden>
+      <div class="pack-panel-head">
+        <div>
+          <h3>Kyle's list</h3>
+          <div class="pack-dates">May 29 — June 7, 2026</div>
+        </div>
+        <div class="pack-actions">
+          <button class="pack-btn" type="button" data-print="kyle">Print Kyle's list</button>
+          <button class="pack-btn pack-btn-ghost" type="button" data-reset="kyle">Reset ticks</button>
+        </div>
+      </div>
+      <ul class="pack-list">
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Your own pair — broken in. Ankle support for <a href="#jun2">Vidova Gora</a> and <a href="#jun3">Pupnat</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Limestone paths are slippery on the descents.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days, cooler mornings on the boats.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong>You'll want it most days — <a href="#jun2">Zlatni Rat</a>, <a href="#jun4">Mljet</a>, Lokrum.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong>Pebble beaches and rocky swim entries.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing</a>.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Download offline maps and Google Translate (Croatian) before you leave.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:earbuds"><span class="pack-icon">🎧</span><div class="pack-text"><strong>Earbuds</strong>For the flights, ferries, and the long Brač and Mljet boat days.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes and town days — leaves your hands free.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:book"><span class="pack-icon">📚</span><div class="pack-text"><strong>Book or downloads</strong>The Split → Brač and Korčula → Dubrovnik ferries take a while.</div></label></li>
+        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cup"><span class="pack-icon">🥤</span><div class="pack-text"><strong>Reusable cup</strong>Coffee on the go without the disposables.</div></label></li>
+      </ul>
     </div>
   </section>
 
@@ -2573,6 +2956,113 @@
     toast.classList.add('visible');
     setTimeout(() => toast.classList.remove('visible'), 3000);
   }
+
+  // ===== PACKING — per-person checklists =====
+  (function () {
+    const PEOPLE = {
+      ian:  { name: 'Ian',  key: 'croatia-pack-ian'  },
+      owen: { name: 'Owen', key: 'croatia-pack-owen' },
+      kyle: { name: 'Kyle', key: 'croatia-pack-kyle' }
+    };
+    const section = document.getElementById('packing');
+    if (!section) return;
+
+    function load(person) {
+      try {
+        const raw = localStorage.getItem(PEOPLE[person].key);
+        return raw ? JSON.parse(raw) : {};
+      } catch (_) { return {}; }
+    }
+
+    function save(person, state) {
+      try { localStorage.setItem(PEOPLE[person].key, JSON.stringify(state)); } catch (_) {}
+    }
+
+    function updateCount(person) {
+      const panel = section.querySelector('.pack-panel[data-person="' + person + '"]');
+      const boxes = panel.querySelectorAll('input[type="checkbox"]');
+      let done = 0;
+      boxes.forEach(b => { if (b.checked) done++; });
+      const counter = section.querySelector('.pack-count[data-count="' + person + '"]');
+      if (counter) counter.textContent = done + ' / ' + boxes.length;
+    }
+
+    function applyState(person) {
+      const state = load(person);
+      const panel = section.querySelector('.pack-panel[data-person="' + person + '"]');
+      panel.querySelectorAll('input[type="checkbox"][data-pack]').forEach(box => {
+        const id = box.dataset.pack;
+        box.checked = !!state[id];
+        box.closest('.pack-row').classList.toggle('is-checked', box.checked);
+      });
+      updateCount(person);
+    }
+
+    function showPerson(person) {
+      section.querySelectorAll('.pack-tab').forEach(tab => {
+        const active = tab.dataset.person === person;
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      section.querySelectorAll('.pack-panel').forEach(panel => {
+        const active = panel.dataset.person === person;
+        panel.classList.toggle('is-active', active);
+        if (active) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+      });
+    }
+
+    section.addEventListener('change', function (e) {
+      const box = e.target.closest('input[type="checkbox"][data-pack]');
+      if (!box) return;
+      const [person, id] = box.dataset.pack.split(':');
+      if (!PEOPLE[person]) return;
+      const state = load(person);
+      if (box.checked) state[id] = true; else delete state[id];
+      save(person, state);
+      box.closest('.pack-row').classList.toggle('is-checked', box.checked);
+      updateCount(person);
+    });
+
+    section.addEventListener('click', function (e) {
+      const tab = e.target.closest('.pack-tab');
+      if (tab) { showPerson(tab.dataset.person); return; }
+
+      const printBtn = e.target.closest('[data-print]');
+      if (printBtn) { printList(printBtn.dataset.print); return; }
+
+      const resetBtn = e.target.closest('[data-reset]');
+      if (resetBtn) {
+        const person = resetBtn.dataset.reset;
+        if (confirm('Reset all ticks on ' + PEOPLE[person].name + "'s list?")) {
+          save(person, {});
+          applyState(person);
+        }
+      }
+    });
+
+    function printList(person) {
+      const meta = PEOPLE[person];
+      if (!meta) return;
+      const nameEl = section.querySelector('.pack-print-name');
+      if (nameEl) nameEl.textContent = meta.name + "'s packing list";
+      showPerson(person);
+      document.body.classList.add('printing-pack', 'printing-' + person);
+      window.print();
+    }
+
+    function clearPrintState() {
+      document.body.classList.remove('printing-pack', 'printing-ian', 'printing-owen', 'printing-kyle');
+    }
+    window.addEventListener('afterprint', clearPrintState);
+    // Safari fallback: clear when print media query exits
+    if (window.matchMedia) {
+      const mql = window.matchMedia('print');
+      const onChange = e => { if (!e.matches) clearPrintState(); };
+      if (mql.addEventListener) mql.addEventListener('change', onChange);
+      else if (mql.addListener) mql.addListener(onChange);
+    }
+
+    Object.keys(PEOPLE).forEach(applyState);
+  })();
 </script>
 
 </body>
