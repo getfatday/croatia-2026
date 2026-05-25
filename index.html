@@ -1019,17 +1019,9 @@
     .pack-tab:hover { color: var(--ink); }
     .pack-tab:focus-visible { outline: 2px solid var(--rouge); outline-offset: -2px; }
 
-    .pack-tab .pack-tab-avatar {
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--bone);
-      border-radius: 50%;
+    .pack-tab .pack-tab-glyph {
+      font-size: 1.05rem;
+      line-height: 1;
       flex-shrink: 0;
     }
 
@@ -1108,10 +1100,69 @@
     }
     .pack-btn.pack-btn-ghost:hover { color: var(--ink); border-color: var(--ink); background: transparent; }
 
+    .pack-section {
+      margin: 0 0 1.4rem;
+    }
+
+    .pack-section-head {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pack-intro-block {
+      font-size: 0.92rem;
+      color: var(--ink-mute);
+      margin: 0 0 1rem;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+
+    .pack-callout {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-mute);
+      margin: 0 0 1rem;
+      padding: 0.55rem 0.9rem;
+      border-left: 3px solid var(--rouge);
+      background: var(--rouge-soft);
+      max-width: 62ch;
+    }
+
+    .pack-notes,
+    .pack-prefs,
+    .pack-legend {
+      list-style: none;
+      margin: 0 0 0.6rem;
+      padding: 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .pack-notes li,
+    .pack-prefs li,
+    .pack-legend li {
+      padding: 0.15rem 0;
+    }
+
+    .pack-notes strong,
+    .pack-prefs strong,
+    .pack-legend strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     .pack-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 0.35rem 1.6rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.15rem 1.6rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -1119,10 +1170,10 @@
 
     .pack-row {
       display: grid;
-      grid-template-columns: 18px auto 1fr;
+      grid-template-columns: 18px 1fr;
       align-items: start;
-      gap: 0.2rem 0.7rem;
-      padding: 0.45rem 0.4rem;
+      gap: 0.15rem 0.7rem;
+      padding: 0.32rem 0.4rem;
       cursor: pointer;
       border-radius: 3px;
       transition: background 0.12s;
@@ -1169,26 +1220,77 @@
       transform: rotate(45deg);
     }
 
-    .pack-row .pack-icon {
-      font-size: 1.15rem;
-      line-height: 1.25;
-      flex-shrink: 0;
-      grid-row: span 2;
+    .pack-row .pack-text {
+      color: var(--ink);
     }
 
     .pack-row .pack-text strong {
-      font-family: 'Source Serif 4', Georgia, serif;
       font-weight: 700;
-      display: block;
-      font-size: 0.98rem;
-      margin-bottom: 0.1rem;
       color: var(--ink);
-      letter-spacing: -0.005em;
     }
 
-    .pack-row.is-checked .pack-text strong { text-decoration: line-through; }
-    .pack-row.is-checked .pack-text strong,
-    .pack-row.is-checked .pack-text { color: var(--ink-mute); }
+    .pack-row .pack-text ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.86rem;
+      color: var(--ink-mute);
+    }
+
+    .pack-row.is-checked .pack-text,
+    .pack-row.is-checked .pack-text strong { color: var(--ink-mute); }
+    .pack-row.is-checked .pack-text { text-decoration: line-through; }
+
+    .pack-row-skipped {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 0.15rem 0.7rem;
+      padding: 0.32rem 0.4rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink-mute);
+    }
+    .pack-row-skipped .pack-skipped-box {
+      width: 18px;
+      height: 18px;
+      border: 1.5px dashed var(--rule-strong);
+      background: var(--paper);
+      border-radius: 2px;
+      margin-top: 0.15rem;
+    }
+    .pack-row-skipped .pack-text {
+      text-decoration: line-through;
+      color: var(--ink-mute);
+    }
+
+    .pack-decisions {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5rem 0 0;
+      font-size: 0.85rem;
+    }
+    .pack-decisions th,
+    .pack-decisions td {
+      text-align: left;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .pack-decisions th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+      background: var(--rouge-soft);
+    }
+
+    .pack-meta {
+      font-size: 0.85rem;
+      color: var(--ink-mute);
+      line-height: 1.55;
+    }
+    .pack-meta strong { color: var(--ink); }
+    .pack-meta ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
 
     .pack-print-header { display: none; }
 
@@ -1219,9 +1321,10 @@
       body.printing-pack #packing { margin: 0; padding: 0; }
 
       body.printing-pack .pack-panel { display: none !important; }
-      body.printing-pack.printing-ian  .pack-panel[data-person="ian"],
-      body.printing-pack.printing-owen .pack-panel[data-person="owen"],
-      body.printing-pack.printing-kyle .pack-panel[data-person="kyle"] {
+      body.printing-pack.printing-family .pack-panel[data-person="family"],
+      body.printing-pack.printing-ian    .pack-panel[data-person="ian"],
+      body.printing-pack.printing-owen   .pack-panel[data-person="owen"],
+      body.printing-pack.printing-kyle   .pack-panel[data-person="kyle"] {
         display: block !important;
       }
 
@@ -1255,23 +1358,57 @@
         grid-template-columns: 1fr 1fr;
         gap: 0.15rem 1.5rem;
       }
-      body.printing-pack .pack-row {
+      body.printing-pack .pack-row,
+      body.printing-pack .pack-row-skipped {
         page-break-inside: avoid;
         break-inside: avoid;
-        padding: 0.2rem 0;
+        padding: 0.15rem 0;
         background: none !important;
         cursor: default;
         gap: 0.15rem 0.55rem;
-        grid-template-columns: 14px auto 1fr;
-        font-size: 0.82rem;
+        grid-template-columns: 14px 1fr;
+        font-size: 0.78rem;
+        line-height: 1.3;
+      }
+      body.printing-pack .pack-row .pack-text strong { color: black !important; }
+      body.printing-pack .pack-row .pack-text { color: #222 !important; }
+      body.printing-pack .pack-row.is-checked .pack-text strong,
+      body.printing-pack .pack-row.is-checked .pack-text { color: #222 !important; text-decoration: none; }
+      body.printing-pack .pack-row a { color: black !important; text-decoration: none !important; }
+
+      body.printing-pack .pack-section-head {
+        font-size: 0.95rem;
+        margin: 0.6rem 0 0.3rem;
+        page-break-after: avoid;
+        break-after: avoid-page;
+        color: black !important;
+      }
+      body.printing-pack .pack-notes,
+      body.printing-pack .pack-prefs,
+      body.printing-pack .pack-legend,
+      body.printing-pack .pack-callout,
+      body.printing-pack .pack-intro-block,
+      body.printing-pack .pack-meta {
+        font-size: 0.75rem;
+        color: #222 !important;
         line-height: 1.35;
       }
-      body.printing-pack .pack-row .pack-icon { font-size: 1rem; }
-      body.printing-pack .pack-row .pack-text strong { color: black !important; font-size: 0.9rem; }
-      body.printing-pack .pack-row .pack-text { color: #222 !important; }
-      body.printing-pack .pack-row.is-checked .pack-text strong { text-decoration: none; color: black !important; }
-      body.printing-pack .pack-row.is-checked .pack-text { color: #222 !important; }
-      body.printing-pack .pack-row a { color: black !important; text-decoration: none !important; }
+      body.printing-pack .pack-callout {
+        background: none !important;
+        border-left: 2px solid #888;
+        padding: 0.2rem 0.5rem;
+        margin: 0.3rem 0;
+      }
+      body.printing-pack .pack-decisions {
+        font-size: 0.72rem;
+      }
+      body.printing-pack .pack-decisions th {
+        background: none !important;
+        color: black !important;
+      }
+      body.printing-pack .pack-row-skipped .pack-skipped-box {
+        border-color: #888 !important;
+      }
 
       body.printing-pack .pack-row input[type="checkbox"] {
         width: 13px;
@@ -2383,30 +2520,175 @@
   <!-- ===== PACKING ===== -->
   <section class="conf-section" id="packing">
     <h2><span class="num">06</span>Packing</h2>
-    <p class="pack-intro">Three lists — one per traveler. Tick as you pack; check state saves to this browser. Use <em>Print my list</em> for a clean one-page checklist with squares to mark in pen.</p>
+    <p class="pack-intro">Four lists — Family first (the shared kit Ian packs for everyone), then per-traveler lists for Ian, Owen, and Kyle. Tick as you pack; check state saves to this browser. Use <em>Print …'s list</em> for a clean printable view with squares to mark in pen.</p>
 
     <div class="pack-print-header" aria-hidden="true">
       <h1><span class="pack-print-name">Packing list</span></h1>
       <div class="pack-print-meta">Croatia · May 29 — June 7, 2026</div>
     </div>
 
-    <div class="pack-tabs" role="tablist" aria-label="Choose traveler">
-      <button class="pack-tab" role="tab" aria-selected="true" aria-controls="pack-panel-ian" data-person="ian">
-        <span class="pack-tab-avatar avatar-ian">I</span>Ian<span class="pack-count" data-count="ian"></span>
+    <div class="pack-tabs" role="tablist" aria-label="Choose list">
+      <button class="pack-tab" role="tab" aria-selected="true" aria-controls="pack-panel-family" data-person="family">
+        <span class="pack-tab-glyph" aria-hidden="true">👨‍👦‍👦</span>Family<span class="pack-count" data-count="family"></span>
+      </button>
+      <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-panel-ian" data-person="ian">
+        <span class="pack-tab-glyph" aria-hidden="true">👤</span>Ian<span class="pack-count" data-count="ian"></span>
       </button>
       <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-panel-owen" data-person="owen">
-        <span class="pack-tab-avatar avatar-owen">O</span>Owen<span class="pack-count" data-count="owen"></span>
+        <span class="pack-tab-glyph" aria-hidden="true">👤</span>Owen<span class="pack-count" data-count="owen"></span>
       </button>
       <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-panel-kyle" data-person="kyle">
-        <span class="pack-tab-avatar avatar-kyle">K</span>Kyle<span class="pack-count" data-count="kyle"></span>
+        <span class="pack-tab-glyph" aria-hidden="true">👤</span>Kyle<span class="pack-count" data-count="kyle"></span>
       </button>
     </div>
 
-    <!-- IAN -->
-    <div class="pack-panel is-active" id="pack-panel-ian" role="tabpanel" data-person="ian" aria-labelledby="pack-tab-ian">
+    <!-- FAMILY -->
+    <div class="pack-panel is-active" id="pack-panel-family" role="tabpanel" data-person="family" aria-labelledby="pack-tab-family">
       <div class="pack-panel-head">
         <div>
-          <h3>Ian's list</h3>
+          <h3>👨‍👦‍👦 Family list</h3>
+          <div class="pack-dates">May 29 — June 7, 2026</div>
+        </div>
+        <div class="pack-actions">
+          <button class="pack-btn" type="button" data-print="family">Print Family's list</button>
+          <button class="pack-btn pack-btn-ghost" type="button" data-reset="family">Reset ticks</button>
+        </div>
+      </div>
+
+      <p class="pack-intro-block">Ian packs this for himself + Owen + Kyle (3 travelers, 10 days). Gene and Jenny pack their own meds, adapters, and toiletries.</p>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">Carrier legend</h4>
+        <ul class="pack-legend">
+          <li><strong>🎒</strong> = Ian's day pack (with him every day)</li>
+          <li><strong>🧳</strong> = Ian's checked bag</li>
+          <li><strong>🏨</strong> = Hotel safe / room</li>
+          <li><strong>👤</strong> = Individual carries their own share</li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📋 Pre-Trip Tasks</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:pretrip-1"><div class="pack-text">Hold the mail</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:pretrip-2"><div class="pack-text">Water plants</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:pretrip-3"><div class="pack-text">Pack dog food / arrange dog care</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:pretrip-4"><div class="pack-text">Pull weather forecast 3 days before departure</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:pretrip-5"><div class="pack-text">Run peer-review on per-person lists before printing</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🆔 Identification</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:id-1"><div class="pack-text">🎒 3× Passports (Ian, Owen, Kyle) — Ian carries during transit; goes in hotel safe on arrival</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:id-2"><div class="pack-text">🎒 3× Global Entry Cards</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:id-3"><div class="pack-text">🎒 3× Health Insurance Cards (physical + photo on Ian's phone)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:id-4"><div class="pack-text">🎒 2× Credit Cards: 1 Visa + 1 Amex (no foreign transaction fees) — Ian carries primary, backup card in checked bag</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">💶 Cash</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:cash-1"><div class="pack-text">🎒 €200 cash split across travelers:<ul><li>€120 in Ian's wallet (primary)</li><li>€40 in Owen's wallet (snacks, small tips)</li><li>€40 in Kyle's wallet (snacks, small tips)</li></ul></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:cash-2"><div class="pack-text">Plan to hit an ATM at Split airport for any top-up after day 3</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:cash-3"><div class="pack-text"><strong>Contingency:</strong> if Split ATM is empty or card declines, both Visa AND Amex work at most Croatian merchants; Hotel Cvita front desk can also exchange USD at a fair rate</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🪥 Group Meds &amp; First Aid</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-1"><div class="pack-text">🧳 Zyrtec — 20 doses (Owen + Kyle only, 2 × 10 days). Ian doesn't take daily.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-2"><div class="pack-text">🧳 Benadryl — 20 doses (Owen + Kyle, same math)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-3"><div class="pack-text">🧳 Advil — 20 tablets</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-4"><div class="pack-text">🧳 Sudafed — 1 pack</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-5"><div class="pack-text">🧳 Imodium — 1 4-pack minimum</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-6"><div class="pack-text">🎒 Hand sanitizer (2oz TSA-friendly)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:meds-7"><div class="pack-text">🎒 Band-aids (1 ziplock, mixed sizes, waterproof)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🥾 Hiking Kit (group)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-1"><div class="pack-text">👤 Electrolyte tablets — <strong>Nuun (any flavor)</strong> — 6 tubes per traveler in their own day pack (decided: Nuun over LMNT for consistency)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-2"><div class="pack-text">🎒 Blister care kit: <strong>Compeed blister patches (1 box of 10) + Moleskin sheets (1 pack)</strong> — Ian carries primary; transfer ~3 patches to each kid's day pack on Day 1</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-3"><div class="pack-text">👤 TP/wipes — 1 small travel roll + 1 sealed wipe pack per traveler in their day pack EVERY DAY</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-4"><div class="pack-text">👤 <strong>Sunscreen — 1 × 3oz tube SPF 50+ mineral per traveler, carried in their own day pack</strong> (3 tubes total, NOT a shared single tube — each person reapplies their own midday)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-5"><div class="pack-text">👤 SPF Lip Balm — 1 per traveler in their day pack (3 total)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-6"><div class="pack-text">🏨 Aloe / aftersun gel — 1 small bottle in hotel room for nightly cool-down</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-7"><div class="pack-text">🎒 Bug spray — <strong>PACK regardless of verification.</strong> 1 small bottle 25%+ DEET or picaridin. Drop at first hotel if locals confirm no tick risk; until then, it goes.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:hike-8"><div class="pack-text">🎒 Sewing kit / clothing repair tape (1 small kit)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">✈️ Flying</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:fly-1"><div class="pack-text">🎒 Phone battery — 1 × 10,000mAh with 2 USB-A ports (Ian carries; both kids can charge simultaneously)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:fly-2"><div class="pack-text"><strong>Charge the power bank to 100% the night before departure (May 28)</strong></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:fly-3"><div class="pack-text">KN95 masks — DROPPED for this trip per stale triage (re-add if anyone is sick before departure)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🚗 Driving (Kotor day)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:drive-1"><div class="pack-text">🧳 Headlamp (Petzl-class, fresh batteries) — <strong>PACK regardless.</strong> Ian carries. Drop at the hotel if Kotor day is confirmed organized-tour (no driving).</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🛏️ Lodging</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:lodge-1"><div class="pack-text">🧳 Earplugs — <strong>PACK regardless.</strong> 1 set per traveler (foam, 4-6 pairs). Negligible weight, drops in if Hotel Lapad area is quiet.</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🔌 Electronics (international)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:elec-1"><div class="pack-text">🧳 EU power adapter (Type C/F) — 2 of them, for 3 travelers (one in main room, one with whoever needs to charge in a different outlet)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="family:elec-2"><div class="pack-text">🧳 1 spare backup charging cable (in case someone's primary breaks)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">Items deliberately dropped from this list</h4>
+        <div class="pack-meta">
+          <ul>
+            <li><strong>KN95 Masks</strong> — 2026 travel; tour is open-air walking. Re-add if anyone is symptomatic before departure.</li>
+            <li><strong>Caffeinated mints</strong> — not needed; flights are evening departures + ferry rides have plenty of caffeine available.</li>
+          </ul>
+          <p style="margin: 0.5rem 0 0;">These decisions come from the Trip Spec <code>stale-items-decided</code> block.</p>
+        </div>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">Decisions made (no longer "TBD")</h4>
+        <table class="pack-decisions">
+          <thead>
+            <tr><th>Item / question</th><th>Decision</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sunscreen ownership</td><td>Each traveler carries their own 3oz tube. Eliminates the "Ian's tube ran out by Day 3" failure.</td></tr>
+            <tr><td>Bug spray</td><td>Pack regardless. Drop later if confirmed unneeded.</td></tr>
+            <tr><td>Earplugs</td><td>Pack regardless. Negligible weight.</td></tr>
+            <tr><td>Headlamp</td><td>Pack regardless. Drop later if Kotor confirmed as organized tour.</td></tr>
+            <tr><td>Electrolyte brand</td><td>Nuun. Buy 3 tubes (one per traveler), any flavor each prefers.</td></tr>
+            <tr><td>Sea-sickness gum ownership</td><td>Ian + Kyle each carry their own. NOT shared, NOT redundant — each Motion-Sickness traveler has their own personal stash.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IAN -->
+    <div class="pack-panel" id="pack-panel-ian" role="tabpanel" data-person="ian" aria-labelledby="pack-tab-ian" hidden>
+      <div class="pack-panel-head">
+        <div>
+          <h3>👤 Ian — Croatia 2026</h3>
           <div class="pack-dates">May 29 — June 7, 2026</div>
         </div>
         <div class="pack-actions">
@@ -2414,32 +2696,130 @@
           <button class="pack-btn pack-btn-ghost" type="button" data-reset="ian">Reset ticks</button>
         </div>
       </div>
-      <ul class="pack-list">
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Up to 5 hrs walking per day. Ankle support for <a href="#jun2">Vidova Gora (Tue)</a> and <a href="#jun3">Pupnat (Wed)</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Recommended by Gate 1. Limestone paths get slippery on the way down.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days (70s °F), cooler mornings on the water.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong><a href="#jun2">Zlatni Rat (Tue)</a>, <a href="#jun4">Mljet lakes (Thu)</a>, maybe Lokrum or Bačvice.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong><a href="#jun2">Zlatni Rat</a> is pebbles, not sand. Helpful on rocky swim entries.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing (Sat)</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Offline maps, eSIM/roaming sorted before departure.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:wallet"><span class="pack-icon">💳</span><div class="pack-text"><strong>Wallet, cards, euros</strong>Tell card issuers about travel. Small euro cash for cafés and tips.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:docs"><span class="pack-icon">📄</span><div class="pack-text"><strong>Travel docs printout</strong>Hotel confirmations, ferry tickets, Gate 1 voucher. See <a href="#confirmations">Conf #s</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:meds"><span class="pack-icon">💊</span><div class="pack-text"><strong>Prescription meds</strong>Full trip supply + a few days extra. Keep in carry-on.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:readers"><span class="pack-icon">👓</span><div class="pack-text"><strong>Reading glasses</strong>Plus a backup pair. Sunglasses live with sun protection above.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes, ferry days, and the Kotor border crossing.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:firstaid"><span class="pack-icon">🩹</span><div class="pack-text"><strong>First-aid kit</strong>Blister pads (Vidova Gora and Pupnat), ibuprofen, anti-chafe.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="ian:camera"><span class="pack-icon">📷</span><div class="pack-text"><strong>Camera / GoPro</strong>Spare batteries, charger, memory cards. Wrist strap for boat days.</div></label></li>
-      </ul>
+
+      <p class="pack-intro-block">Planner + Individual. Motion Sickness, Driver, wears-hat, wears-pajamas, uses-contacts, uses-trekking-poles. 10 days.</p>
+      <div class="pack-callout">Family-audience items live in the Family tab — Ian carries the planner kit too.</div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📌 Trip notes — read before packing</h4>
+        <ul class="pack-notes">
+          <li>🥾 TP and wet wipes go in your day pack every single day. Croatian trails have nature toilets only.</li>
+          <li>👢 Boots must be broken in. Test on a 5-mile hike this week or wear walking shoes for the soft days.</li>
+          <li>🔌 Outlets are 220V Type C/F. Test your charger fits before leaving.</li>
+          <li>☀️ Late-May Adriatic sun is intense. Reapply sunscreen and lip balm midday.</li>
+          <li>💶 Currency is Euro. Carry small bills for tips and trail snacks.</li>
+          <li>🪨 Brač Day 2 (Vidova Gora ~1,650 ft gain) and Korčula Day 4 (6.9mi / 1,260 ft gain) are the hard days.</li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎯 Your packing preferences (from your profile)</h4>
+        <ul class="pack-prefs">
+          <li>Sleep clothing: <strong>Pajamas</strong></li>
+          <li>Flight outfit: <strong>Comfy pants + comfy sweater</strong> (both, for long-haul)</li>
+          <li>Hat: <strong>Yes</strong> — wears one in strong sun</li>
+          <li>Trekking poles: <strong>Yes</strong> — own Black Diamond Pursuit</li>
+          <li>Contacts: <strong>Yes</strong> — pack glasses backup</li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">✅ Pre-packing checklist (do BEFORE you start packing)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:prepack-1"><div class="pack-text"><strong>May 26:</strong> Locate Black Diamond Pursuit trekking poles. Verify they're in the garage, not at the office.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:prepack-2"><div class="pack-text"><strong>May 26:</strong> Decide Kotor day — rental car or organized tour. Note decision here.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:prepack-3"><div class="pack-text"><strong>May 28:</strong> Charge the family power bank to 100%.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:prepack-4"><div class="pack-text"><strong>May 27:</strong> Make sure Owen and Kyle have completed their pre-packing checklists.</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🪥 Toiletries</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-1"><div class="pack-text">Toothbrush</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-2"><div class="pack-text">Toothpaste (travel-size for carry-on)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-3"><div class="pack-text">Floss</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-4"><div class="pack-text">Deodorant (solid stick, TSA-friendly)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-5"><div class="pack-text">Contacts — 12 pairs (10 days + 2 spares for tears/loss)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-6"><div class="pack-text">Glasses backup (current prescription)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-7"><div class="pack-text">Anti-chafe stick (BodyGlide)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-8"><div class="pack-text"><strong>Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own — kids each carry their own)</strong></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-9"><div class="pack-text"><strong>SPF Lip balm (in your day pack)</strong></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-10"><div class="pack-text">Sea sickness gum — 12 doses (your personal stash for catamaran days; Kyle has his own)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:toil-11"><div class="pack-text">Ginger candies (Gin-Gins) — backup if gum runs short</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">👕 Clothing</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-1"><div class="pack-text">Socks — 5 pairs (no laundry; this is the full count)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-2"><div class="pack-text">Extra hiking socks — 2 spare merino pairs (mid-calf)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-3"><div class="pack-text">Shirts — 4 quick-dry breathable (for hike days)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-4"><div class="pack-text">Shorts — 4 (quick-dry hiking shorts)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-5"><div class="pack-text">Underwear — 5</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-6"><div class="pack-text">Pajamas</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-7"><div class="pack-text">Sweater (light, for cool evenings)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-8"><div class="pack-text">Hat (sun) — wide-brim or cap</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-9"><div class="pack-text">Sunglasses — polarized</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-10"><div class="pack-text">Comfy pants (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-11"><div class="pack-text">Comfy sweater (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-12"><div class="pack-text">Swimsuit</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-13"><div class="pack-text">Sandals (Tevas for trip; flip-flops for hotel shower)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-14"><div class="pack-text">Water shoes — for Zlatni Rat Beach (rocky)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:cloth-15"><div class="pack-text"><strong>Nicer-casual outfit (1) → LINEN PANTS + BUTTON-UP (you, specifically). Owen and Kyle wear chinos + polo. NOT shorts and t-shirt.</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🥾 Hiking</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-1"><div class="pack-text">Waterproof hiking boots — broken in (Gore-Tex)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-2"><div class="pack-text">Walking shoes — 1 pair for mixed-surface days</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-3"><div class="pack-text">Packable rain shell — packs to fist size, taped seams</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-4"><div class="pack-text">Trekking poles — Black Diamond Pursuit (test with loaded pack by May 27)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-5"><div class="pack-text">Day pack — 20-30L with hip belt, water-resistant</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:hike-6"><div class="pack-text">Reusable water bottle — 1L minimum, leak-proof</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎒 Day-pack contents (you carry these EVERY hiking day)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-1"><div class="pack-text">Nuun electrolyte tablets — 1 tube (your own; buy 3 total before trip)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-2"><div class="pack-text">TP — 1 small travel roll</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-3"><div class="pack-text">Wet wipes — 1 sealed pack</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-4"><div class="pack-text">Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-5"><div class="pack-text">SPF lip balm</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-6"><div class="pack-text">Blister care kit (primary — transfer 3 patches to each kid on Day 1)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:dp-7"><div class="pack-text">Reusable water bottle (refill in morning)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📱 Electronics</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:elec-1"><div class="pack-text">Phone</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:elec-2"><div class="pack-text">Phone charger (USB-C wall cube)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:elec-3"><div class="pack-text">iPhone cord (6ft)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:elec-4"><div class="pack-text">Backup charging cable</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:elec-5"><div class="pack-text">Headphones — for flights only</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🆔 Identification (personal)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="ian:idp-1"><div class="pack-text">Driver's license — for Kotor day if renting (decision pending)</div></label></li>
+        </ul>
+      </div>
     </div>
 
     <!-- OWEN -->
     <div class="pack-panel" id="pack-panel-owen" role="tabpanel" data-person="owen" aria-labelledby="pack-tab-owen" hidden>
       <div class="pack-panel-head">
         <div>
-          <h3>Owen's list</h3>
+          <h3>👤 Owen — Croatia 2026</h3>
           <div class="pack-dates">May 29 — June 7, 2026</div>
         </div>
         <div class="pack-actions">
@@ -2447,29 +2827,133 @@
           <button class="pack-btn pack-btn-ghost" type="button" data-reset="owen">Reset ticks</button>
         </div>
       </div>
-      <ul class="pack-list">
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Your own pair — broken in. Ankle support for <a href="#jun2">Vidova Gora</a> and <a href="#jun3">Pupnat</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Limestone paths are slippery on the descents.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days, cooler mornings on the boats.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong>You'll want it most days — <a href="#jun2">Zlatni Rat</a>, <a href="#jun4">Mljet</a>, Lokrum.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong>Pebble beaches and rocky swim entries.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Download offline maps and Google Translate (Croatian) before you leave.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:earbuds"><span class="pack-icon">🎧</span><div class="pack-text"><strong>Earbuds</strong>For the flights, ferries, and the long Brač and Mljet boat days.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes and town days — leaves your hands free.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:book"><span class="pack-icon">📚</span><div class="pack-text"><strong>Book or downloads</strong>The Split → Brač and Korčula → Dubrovnik ferries take a while.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="owen:cup"><span class="pack-icon">🥤</span><div class="pack-text"><strong>Reusable cup</strong>Coffee on the go without the disposables.</div></label></li>
-      </ul>
+
+      <p class="pack-intro-block">Individual. Allergy, Retainer, wears-hat, wears-pajamas. 10 days.</p>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📌 Trip notes — read before packing</h4>
+        <ul class="pack-notes">
+          <li>🥾 TP and wet wipes go in your day pack every single day. Croatian trails have nature toilets only.</li>
+          <li>👢 Boots must be broken in. Test on a 5-mile hike this week or wear walking shoes for the soft days.</li>
+          <li>🔌 Outlets are 220V Type C/F. Test your charger fits before leaving.</li>
+          <li>☀️ Late-May Adriatic sun is intense. Reapply sunscreen and lip balm midday.</li>
+          <li>💶 You have €40 in your wallet for snacks/small tips. Ian has the big share.</li>
+          <li>🪨 Brač Day 2 (Vidova Gora ~1,650 ft gain) and Korčula Day 4 (6.9mi / 1,260 ft gain) are the hard days.</li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎯 Your packing preferences (from your profile)</h4>
+        <ul class="pack-prefs">
+          <li>Sleep clothing: <strong>Pajamas</strong></li>
+          <li>Flight outfit: <strong>Comfy pants + comfy sweater</strong></li>
+          <li>Hat: <strong>Yes</strong> — sun hat</li>
+          <li>Trekking poles: <strong>No</strong> — you hike without poles (Dad brings his own)</li>
+          <li>Contacts: confirm with Dad</li>
+        </ul>
+        <div class="pack-callout">If anything below is unclear, text Dad before you pack — not at 6am on May 29.</div>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">✅ Pre-packing checklist (DO BY MAY 27)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:prepack-1"><div class="pack-text"><strong>Confirm: do you wear contacts daily?</strong> If yes, you need 12 pairs + a glasses backup. If no, scratch contacts from the list.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:prepack-2"><div class="pack-text"><strong>Confirm: do you own a pair of sunglasses?</strong> If no, buy a polarized pair by May 28. Hard requirement.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:prepack-3"><div class="pack-text"><strong>Confirm: do you own a 20-30L day pack?</strong> If no, borrow Dad's or buy by May 28.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:prepack-4"><div class="pack-text"><strong>Test your phone charger fits the EU Type C/F adapter.</strong> Dad has 2 adapters; try one.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:prepack-5"><div class="pack-text"><strong>Charge any battery packs you're bringing the night before departure.</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🪥 Toiletries</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-1"><div class="pack-text">Toothbrush</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-2"><div class="pack-text">Toothpaste (travel-size for carry-on)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-3"><div class="pack-text">Floss</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-4"><div class="pack-text">Deodorant (solid stick)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-5"><div class="pack-text">Contacts — 12 pairs IF you wear contacts daily (see pre-packing checklist above)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-6"><div class="pack-text">Glasses backup (current prescription) — if you wear contacts</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-7"><div class="pack-text">Inhaler — 1 carried + 1 backup in checked bag</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-8"><div class="pack-text">Retainer with case</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-9"><div class="pack-text">Retainer cleaning tablets — 12 (10 days + 2 spares)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-10"><div class="pack-text">Anti-chafe stick (BodyGlide)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-11"><div class="pack-text"><strong>Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own — carry in your day pack, reapply midday)</strong></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:toil-12"><div class="pack-text"><strong>SPF Lip balm (in your day pack)</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">👕 Clothing</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-1"><div class="pack-text">Socks — 5 pairs</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-2"><div class="pack-text">Extra hiking socks — 2 spare merino pairs</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-3"><div class="pack-text">Shirts — 4 quick-dry breathable</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-4"><div class="pack-text">Shorts — 4</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-5"><div class="pack-text">Underwear — 5</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-6"><div class="pack-text">Pajamas</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-7"><div class="pack-text">Sweater (light, evenings)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-8"><div class="pack-text">Hat (sun)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-9"><div class="pack-text">Sunglasses — polarized, own pair (confirm by May 27 per pre-packing checklist)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-10"><div class="pack-text">Comfy pants (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-11"><div class="pack-text">Comfy sweater (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-12"><div class="pack-text">Swimsuit</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-13"><div class="pack-text">Sandals (for trip + flip-flops for hotel shower)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-14"><div class="pack-text">Water shoes — for Zlatni Rat Beach (rocky)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:cloth-15"><div class="pack-text"><strong>Nicer-casual outfit (1) → CHINOS + POLO for home-hosted meals and wine tastings. Dad wears linen + button-up; you and Kyle wear chinos + polo.</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🥾 Hiking</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:hike-1"><div class="pack-text">Waterproof hiking boots — broken in (Gore-Tex)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:hike-2"><div class="pack-text">Walking shoes — 1 pair for mixed-surface days</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:hike-3"><div class="pack-text">Packable rain shell — packs to fist size</div></label></li>
+          <li><div class="pack-row-skipped"><span class="pack-skipped-box" aria-hidden="true"></span><div class="pack-text">Trekking poles — skipped (your preference)</div></div></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:hike-5"><div class="pack-text">Day pack — 20-30L with hip belt</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:hike-6"><div class="pack-text">Reusable water bottle — 1L</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎒 Day-pack contents (you carry these EVERY hiking day)</h4>
+        <p class="pack-intro-block">These are your own copies — Dad will hand them to you on Day 1 (he bought in bulk).</p>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-1"><div class="pack-text">Nuun electrolyte tablets — 1 tube (any flavor you like)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-2"><div class="pack-text">TP — 1 small travel roll</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-3"><div class="pack-text">Wet wipes — 1 sealed pack</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-4"><div class="pack-text">Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-5"><div class="pack-text">SPF lip balm</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-6"><div class="pack-text">3 Compeed blister patches (Dad transfers from kit on Day 1)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:dp-7"><div class="pack-text">Reusable water bottle (refill in morning)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📱 Electronics</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:elec-1"><div class="pack-text">Phone</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:elec-2"><div class="pack-text">Phone charger</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:elec-3"><div class="pack-text">iPhone cord</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:elec-4"><div class="pack-text">Backup charging cable</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:elec-5"><div class="pack-text">Headphones — for flights only</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">💶 Money</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="owen:money-1"><div class="pack-text">€40 cash (Dad will hand you this before departure)</div></label></li>
+        </ul>
+      </div>
     </div>
 
     <!-- KYLE -->
     <div class="pack-panel" id="pack-panel-kyle" role="tabpanel" data-person="kyle" aria-labelledby="pack-tab-kyle" hidden>
       <div class="pack-panel-head">
         <div>
-          <h3>Kyle's list</h3>
+          <h3>👤 Kyle — Croatia 2026</h3>
           <div class="pack-dates">May 29 — June 7, 2026</div>
         </div>
         <div class="pack-actions">
@@ -2477,22 +2961,129 @@
           <button class="pack-btn pack-btn-ghost" type="button" data-reset="kyle">Reset ticks</button>
         </div>
       </div>
-      <ul class="pack-list">
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hiking-shoes"><span class="pack-icon">🥾</span><div class="pack-text"><strong>Hiking shoes</strong>Your own pair — broken in. Ankle support for <a href="#jun2">Vidova Gora</a> and <a href="#jun3">Pupnat</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:walking-poles"><span class="pack-icon">🦯</span><div class="pack-text"><strong>Walking poles</strong>Limestone paths are slippery on the descents.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:sun"><span class="pack-icon">☀️</span><div class="pack-text"><strong>Sun protection</strong>Hat, sunglasses, high-SPF sunscreen. Little shade on the coastal hikes.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:layers"><span class="pack-icon">🧥</span><div class="pack-text"><strong>Layers + rain shell</strong>Warm days, cooler mornings on the boats.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:swimsuit"><span class="pack-icon">👙</span><div class="pack-text"><strong>Swimsuit</strong>You'll want it most days — <a href="#jun2">Zlatni Rat</a>, <a href="#jun4">Mljet</a>, Lokrum.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:water-shoes"><span class="pack-icon">🩴</span><div class="pack-text"><strong>Water shoes</strong>Pebble beaches and rocky swim entries.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:bottle"><span class="pack-icon">💧</span><div class="pack-text"><strong>Water bottle</strong>Refill at hotels. Croatian tap water is safe.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:passport"><span class="pack-icon">🛂</span><div class="pack-text"><strong>Passport</strong>Required for the <a href="#jun6">Kotor border crossing</a>.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:adapter"><span class="pack-icon">🔌</span><div class="pack-text"><strong>EU plug adapter</strong>Type F (Schuko). Croatia runs 230V / 50Hz.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:phone"><span class="pack-icon">📱</span><div class="pack-text"><strong>Phone + charger</strong>Download offline maps and Google Translate (Croatian) before you leave.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:earbuds"><span class="pack-icon">🎧</span><div class="pack-text"><strong>Earbuds</strong>For the flights, ferries, and the long Brač and Mljet boat days.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:daypack"><span class="pack-icon">🎒</span><div class="pack-text"><strong>Day pack</strong>For hikes and town days — leaves your hands free.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:book"><span class="pack-icon">📚</span><div class="pack-text"><strong>Book or downloads</strong>The Split → Brač and Korčula → Dubrovnik ferries take a while.</div></label></li>
-        <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cup"><span class="pack-icon">🥤</span><div class="pack-text"><strong>Reusable cup</strong>Coffee on the go without the disposables.</div></label></li>
-      </ul>
+
+      <p class="pack-intro-block">Individual. Allergy, Motion Sickness, Retainer, wears-hat, wears-pajamas. 10 days.</p>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📌 Trip notes — read before packing</h4>
+        <ul class="pack-notes">
+          <li>🥾 TP and wet wipes go in your day pack every single day. Croatian trails have nature toilets only.</li>
+          <li>👢 Boots must be broken in. Test on a 5-mile hike this week or wear walking shoes for the soft days.</li>
+          <li>🔌 Outlets are 220V Type C/F. Test your charger fits before leaving.</li>
+          <li>☀️ Late-May Adriatic sun is intense. Reapply sunscreen and lip balm midday.</li>
+          <li>💶 You have €40 in your wallet for snacks/small tips. Dad has the big share.</li>
+          <li>🪨 Brač Day 2 (Vidova Gora ~1,650 ft gain) and Korčula Day 4 (6.9mi / 1,260 ft gain) are the hard days.</li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎯 Your packing preferences (from your profile)</h4>
+        <ul class="pack-prefs">
+          <li>Sleep clothing: <strong>Pajamas</strong></li>
+          <li>Flight outfit: <strong>Comfy pants + comfy sweater</strong></li>
+          <li>Hat: <strong>Yes</strong> — sun hat</li>
+          <li>Trekking poles: <strong>No</strong> — you hike without poles</li>
+          <li>Shorts: <strong>2 only</strong> (your preference — fewer than the default of 4)</li>
+          <li>Contacts: confirm with Dad</li>
+        </ul>
+        <div class="pack-callout">If anything below is unclear, text Dad before you pack — not at 6am on May 29.</div>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">✅ Pre-packing checklist (DO BY MAY 27)</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:prepack-1"><div class="pack-text"><strong>Confirm: do you wear contacts daily?</strong> If yes, you need 12 pairs + a glasses backup. If no, scratch contacts from the list.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:prepack-2"><div class="pack-text"><strong>Confirm: do you own a pair of sunglasses?</strong> If no, buy a polarized pair by May 28. Hard requirement.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:prepack-3"><div class="pack-text"><strong>Confirm: do you own a 20-30L day pack?</strong> If no, borrow Dad's or buy by May 28.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:prepack-4"><div class="pack-text"><strong>Test your phone charger fits the EU Type C/F adapter.</strong> Dad has 2 adapters; try one.</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:prepack-5"><div class="pack-text"><strong>Charge any battery packs you're bringing the night before departure.</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🪥 Toiletries</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-1"><div class="pack-text">Toothbrush</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-2"><div class="pack-text">Toothpaste (travel-size for carry-on)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-3"><div class="pack-text">Floss</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-4"><div class="pack-text">Deodorant (solid stick)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-5"><div class="pack-text">Contacts — 12 pairs IF you wear contacts daily (see pre-packing checklist above)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-6"><div class="pack-text">Glasses backup (current prescription) — if you wear contacts</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-7"><div class="pack-text">Inhaler — 1 carried + 1 backup in checked bag</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-8"><div class="pack-text">Retainer with case</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-9"><div class="pack-text">Retainer cleaning tablets — 12 (10 days + 2 spares)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-10"><div class="pack-text">Anti-chafe stick (BodyGlide)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-11"><div class="pack-text">Sea sickness gum — 12 doses (your personal stash for catamaran days; Dad has his own)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-12"><div class="pack-text">Ginger candies (Gin-Gins) — backup if gum runs short</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-13"><div class="pack-text"><strong>Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own — carry in your day pack, reapply midday)</strong></div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:toil-14"><div class="pack-text"><strong>SPF Lip balm (in your day pack)</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">👕 Clothing</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-1"><div class="pack-text">Socks — 5 pairs</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-2"><div class="pack-text">Extra hiking socks — 2 spare merino pairs</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-3"><div class="pack-text">Shirts — 4 quick-dry breathable</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-4"><div class="pack-text">Shorts — <strong>2</strong> (your preference)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-5"><div class="pack-text">Underwear — 5</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-6"><div class="pack-text">Pajamas</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-7"><div class="pack-text">Sweater (light, evenings)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-8"><div class="pack-text">Hat (sun)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-9"><div class="pack-text">Sunglasses — polarized, own pair (confirm by May 27 per pre-packing checklist)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-10"><div class="pack-text">Comfy pants (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-11"><div class="pack-text">Comfy sweater (flight)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-12"><div class="pack-text">Swimsuit</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-13"><div class="pack-text">Sandals (for trip + flip-flops for hotel shower)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-14"><div class="pack-text">Water shoes — for Zlatni Rat Beach (rocky)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:cloth-15"><div class="pack-text"><strong>Nicer-casual outfit (1) → CHINOS + POLO for home-hosted meals and wine tastings. Dad wears linen + button-up; you and Owen wear chinos + polo.</strong></div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🥾 Hiking</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hike-1"><div class="pack-text">Waterproof hiking boots — broken in (Gore-Tex)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hike-2"><div class="pack-text">Walking shoes — 1 pair for mixed-surface days</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hike-3"><div class="pack-text">Packable rain shell — packs to fist size</div></label></li>
+          <li><div class="pack-row-skipped"><span class="pack-skipped-box" aria-hidden="true"></span><div class="pack-text">Trekking poles — skipped (your preference)</div></div></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hike-5"><div class="pack-text">Day pack — 20-30L with hip belt</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:hike-6"><div class="pack-text">Reusable water bottle — 1L</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">🎒 Day-pack contents (you carry these EVERY hiking day)</h4>
+        <p class="pack-intro-block">These are your own copies — Dad will hand them to you on Day 1 (he bought in bulk).</p>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-1"><div class="pack-text">Nuun electrolyte tablets — 1 tube (any flavor you like)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-2"><div class="pack-text">TP — 1 small travel roll</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-3"><div class="pack-text">Wet wipes — 1 sealed pack</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-4"><div class="pack-text">Sunscreen — 1 × 3oz tube SPF 50+ mineral (your own)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-5"><div class="pack-text">SPF lip balm</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-6"><div class="pack-text">3 Compeed blister patches (Dad transfers from kit on Day 1)</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:dp-7"><div class="pack-text">Reusable water bottle (refill in morning)</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">📱 Electronics</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:elec-1"><div class="pack-text">Phone</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:elec-2"><div class="pack-text">Phone charger</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:elec-3"><div class="pack-text">iPhone cord</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:elec-4"><div class="pack-text">Backup charging cable</div></label></li>
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:elec-5"><div class="pack-text">Headphones — for flights only</div></label></li>
+        </ul>
+      </div>
+
+      <div class="pack-section">
+        <h4 class="pack-section-head">💶 Money</h4>
+        <ul class="pack-list">
+          <li><label class="pack-row"><input type="checkbox" data-pack="kyle:money-1"><div class="pack-text">€40 cash (Dad will hand you this before departure)</div></label></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -2960,9 +3551,10 @@
   // ===== PACKING — per-person checklists =====
   (function () {
     const PEOPLE = {
-      ian:  { name: 'Ian',  key: 'croatia-pack-ian'  },
-      owen: { name: 'Owen', key: 'croatia-pack-owen' },
-      kyle: { name: 'Kyle', key: 'croatia-pack-kyle' }
+      family: { name: 'Family', key: 'croatia-pack-family' },
+      ian:    { name: 'Ian',    key: 'croatia-pack-ian'    },
+      owen:   { name: 'Owen',   key: 'croatia-pack-owen'   },
+      kyle:   { name: 'Kyle',   key: 'croatia-pack-kyle'   }
     };
     const section = document.getElementById('packing');
     if (!section) return;
@@ -3050,7 +3642,7 @@
     }
 
     function clearPrintState() {
-      document.body.classList.remove('printing-pack', 'printing-ian', 'printing-owen', 'printing-kyle');
+      document.body.classList.remove('printing-pack', 'printing-family', 'printing-ian', 'printing-owen', 'printing-kyle');
     }
     window.addEventListener('afterprint', clearPrintState);
     // Safari fallback: clear when print media query exits
