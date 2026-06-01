@@ -1926,6 +1926,147 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* ===== CURRENT DAY HIGHLIGHT ===== */
+    .day-section.is-today .day-header {
+      background: var(--rouge-soft);
+      border-left: 3px solid var(--rouge);
+      padding: 0.85rem 1rem;
+      margin-left: -1rem;
+      margin-right: -0.5rem;
+    }
+    .today-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.55rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--rouge);
+      color: var(--bone);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .day-strip a.is-today { background: var(--rouge); border-bottom-color: var(--rouge); }
+    .day-strip a.is-today,
+    .day-strip a.is-today .strip-num { color: var(--bone); }
+
+    .jump-today {
+      position: fixed;
+      right: 1rem;
+      bottom: 1.5rem;
+      z-index: 900;
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.05rem;
+      border: none;
+      background: var(--rouge);
+      color: var(--bone);
+      cursor: pointer;
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 16px rgba(20,20,26,0.28);
+    }
+    .jump-today.show { display: inline-flex; }
+    .jump-today:hover { background: var(--rouge-deep); }
+
+    /* ===== INLINE DAY VOTE ===== */
+    .day-vote {
+      margin-top: 1.75rem;
+      padding: 0.5rem 1.1rem 0.7rem;
+      background: var(--paper-soft);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--rouge);
+      scroll-margin-top: 80px;
+    }
+    .day-vote .decision-group { margin-bottom: 0; }
+    body.votes-locked .decision-option { cursor: default; opacity: 0.85; }
+    body.votes-locked .decision-option:hover { background: transparent; }
+    body.votes-locked .share-btn { opacity: 0.4; pointer-events: none; }
+
+    /* ===== DAY PHOTOS ===== */
+    .day-photos { margin-top: 1.75rem; }
+    .day-photos-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid var(--rule-strong);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .day-photos-head .day-photos-count { margin-left: auto; color: var(--steel); }
+    .day-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+      gap: 0.5rem;
+    }
+    .day-photo {
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--steel-pale);
+      border: 1px solid var(--rule);
+    }
+    .day-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .day-photo:hover img { transform: scale(1.05); }
+    .day-photos-empty {
+      padding: 0.2rem 0 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .photo-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(20,20,26,0.93);
+    }
+    .photo-lightbox.open { display: flex; }
+    .photo-lightbox img { max-width: 100%; max-height: 80vh; object-fit: contain; }
+    .photo-lightbox .pl-caption {
+      color: var(--bone);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+    .photo-lightbox .pl-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 1.1rem;
+      background: none;
+      border: none;
+      color: var(--bone);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
     /* ===== MAP IFRAME ===== */
     #map iframe {
       border: 1px solid var(--rule-strong);
@@ -1993,15 +2134,15 @@
     <a href="#map">Map</a>
     <a href="#itinerary">Days</a>
     <a href="#hotels">Hotels</a>
-    <a href="#packing">Pack</a>
     <a href="#confirmations">Conf #s</a>
     <a href="#got">GoT</a>
+    <a href="#packing">Pack</a>
   </nav>
 
   <!-- ===== DECISIONS ===== -->
   <section class="decisions-section" id="decisions">
-    <h2 class="section-heading"><span class="num">01</span>Open Votes</h2>
-    <p class="decisions-subtitle">My picks. This is a private ballot on this device — vote, then tap <strong>Share</strong> to drop your picks into the group chat.</p>
+    <h2 class="section-heading"><span class="num">01</span>Votes</h2>
+    <p class="decisions-subtitle">Pick your name, then cast each vote down on the day it belongs to. Private ballot on this device — tap <strong>Share</strong> when you're done to drop your picks into the group chat.</p>
 
     <div class="voter-picker">
       <span class="voter-picker-label">I'm:</span>
@@ -2141,6 +2282,14 @@
   </section>
 
   <div class="share-toast" id="shareToast">Copied to clipboard! Paste it in the group chat 💬</div>
+
+  <button class="jump-today" id="jumpToday" type="button">📍 Today</button>
+
+  <div class="photo-lightbox" id="photoLightbox" onclick="if (event.target === this) closeLightbox()">
+    <button class="pl-close" type="button" onclick="closeLightbox()" aria-label="Close">×</button>
+    <img src="" alt="">
+    <div class="pl-caption"></div>
+  </div>
 
   <!-- ===== TRAVEL & LODGING ===== -->
   <h2 id="travel" class="section-heading"><span class="num">02</span>Travel</h2>
@@ -2300,7 +2449,7 @@
         <div class="event-time">~1:00pm</div>
         <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p><a class="place" data-place="marjan-hill" href="#">Marjan Hill</a>, Green Market and Riva, or <a class="place" data-place="bacvice" href="#">Bačvice</a> Beach. <a href="#decisions">Cast your vote ↑</a></p>
+          <p><a class="place" data-place="marjan-hill" href="#">Marjan Hill</a>, Green Market and Riva, or <a class="place" data-place="bacvice" href="#">Bačvice</a> Beach. <a href="#vote-split-sun">Cast your vote ↓</a></p>
         </div>
       </div>
       <div class="event confirmed">
@@ -2523,7 +2672,7 @@
         <div class="event-time">Afternoon</div>
         <div class="event-title">Free afternoon — open question</div>
         <div class="event-body">
-          <p><a class="place" data-place="city-walls" href="#">City Walls</a>, <a class="place" data-place="mt-srd" href="#">Mt. Srđ</a> cable car, or <a class="place" data-place="lokrum" href="#">Lokrum Island</a>. <a href="#decisions">Cast your vote ↑</a></p>
+          <p><a class="place" data-place="city-walls" href="#">City Walls</a>, <a class="place" data-place="mt-srd" href="#">Mt. Srđ</a> cable car, or <a class="place" data-place="lokrum" href="#">Lokrum Island</a>. <a href="#vote-dubrovnik-fri">Cast your vote ↓</a></p>
           <div class="tip">If the walls win — they take ~2 hours and there's no shade. Bring water.</div>
         </div>
       </div>
@@ -2554,7 +2703,7 @@
         <div class="event-title">Leave Dubrovnik for Montenegro</div>
         <div class="event-body">
           <p><span class="tag tag-activity">Border crossing</span></p>
-          <p><strong>~2 to 2.5 hours</strong> each way — by rental car or organized tour. <a href="#decisions">Vote on the mode ↑</a></p>
+          <p><strong>~2 to 2.5 hours</strong> each way — by rental car or organized tour. <a href="#vote-kotor-sat">Vote on the mode ↓</a></p>
           <div class="tip"><strong>Passports.</strong> US citizens don't need a visa. Border wait can add 30–60 min each way — early June should be lighter than peak summer, but don't count on zero.</div>
         </div>
       </div>
@@ -2635,9 +2784,36 @@
     </div>
   </section>
 
+  <!-- ===== CONFIRMATIONS ===== -->
+  <section class="conf-section" id="confirmations">
+    <h2><span class="num">06</span>Confirmations</h2>
+    <table class="conf-table">
+      <thead>
+        <tr><th>What</th><th>Booked via</th><th>Reference</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>United flights — Ian, Owen, Kyle</td><td><a class="go" href="https://www.united.com/en/us/manageres/mytrips/details?confirmationNumber=MSSQC7" target="_blank" rel="noopener">United (Ian)</a></td><td class="mono">MSSQC7</td></tr>
+        <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Gate 1 (Gene)</td><td class="mono">3348658</td></tr>
+        <tr><td>Hotel Cvita (Split)</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Aminess Vival Velaris (Supetar)</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Aminess Korčula Heritage Hotel</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Valamar Lacroma Dubrovnik</td><td>Gate 1</td><td>—</td></tr>
+        <tr><td>Hotel Cvita (Sat May 30 extra night)</td><td><a class="go" href="https://www.expedia.com/trips" target="_blank" rel="noopener">Expedia (Gene)</a></td><td class="mono">73398561493684</td></tr>
+        <tr><td>Kotor day trip</td><td>Open question</td><td class="mono">TBD</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== GAME OF THRONES ===== -->
+  <section class="conf-section" id="got">
+    <h2><span class="num">07</span>Game of Thrones</h2>
+    <p class="got-intro">Five stops on this trip doubled as Westeros and Essos. Tap a scene to watch it right here, or open the spot in Maps.</p>
+    <div class="got-grid" id="got-grid"></div>
+  </section>
+
   <!-- ===== PACKING ===== -->
   <section class="conf-section" id="packing">
-    <h2><span class="num">06</span>Packing</h2>
+    <h2><span class="num">08</span>Packing</h2>
     <p class="pack-intro">Four lists — Family first (the shared kit Ian packs for everyone), then per-traveler lists for Ian, Owen, and Kyle. Pick a list to open it; tick as you pack and check state saves to this browser. Use <em>Print</em> inside the list for a clean printable view with squares to mark in pen.</p>
 
     <div class="pack-cards">
@@ -3224,33 +3400,6 @@
       </div>
     </div>
     </div>
-  </section>
-
-  <!-- ===== CONFIRMATIONS ===== -->
-  <section class="conf-section" id="confirmations">
-    <h2><span class="num">07</span>Confirmations</h2>
-    <table class="conf-table">
-      <thead>
-        <tr><th>What</th><th>Booked via</th><th>Reference</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>United flights — Ian, Owen, Kyle</td><td><a class="go" href="https://www.united.com/en/us/manageres/mytrips/details?confirmationNumber=MSSQC7" target="_blank" rel="noopener">United (Ian)</a></td><td class="mono">MSSQC7</td></tr>
-        <tr><td>Gate 1 — 10 Day Croatian Islands Walking Tour</td><td>Gate 1 (Gene)</td><td class="mono">3348658</td></tr>
-        <tr><td>Hotel Cvita (Split)</td><td>Gate 1</td><td>—</td></tr>
-        <tr><td>Aminess Vival Velaris (Supetar)</td><td>Gate 1</td><td>—</td></tr>
-        <tr><td>Aminess Korčula Heritage Hotel</td><td>Gate 1</td><td>—</td></tr>
-        <tr><td>Valamar Lacroma Dubrovnik</td><td>Gate 1</td><td>—</td></tr>
-        <tr><td>Hotel Cvita (Sat May 30 extra night)</td><td><a class="go" href="https://www.expedia.com/trips" target="_blank" rel="noopener">Expedia (Gene)</a></td><td class="mono">73398561493684</td></tr>
-        <tr><td>Kotor day trip</td><td>Open question</td><td class="mono">TBD</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- ===== GAME OF THRONES ===== -->
-  <section class="conf-section" id="got">
-    <h2><span class="num">08</span>Game of Thrones</h2>
-    <p class="got-intro">Five stops on this trip doubled as Westeros and Essos. Tap a scene to watch it right here, or open the spot in Maps.</p>
-    <div class="got-grid" id="got-grid"></div>
   </section>
 
 </div>
@@ -3875,6 +4024,131 @@
 
     Object.keys(PEOPLE).forEach(applyState);
   })();
+
+  // ===== Day dates → drives "today" highlighting and photo visibility =====
+  const DAY_DATES = {
+    may29: '2026-05-29', may30: '2026-05-30', may31: '2026-05-31',
+    jun1: '2026-06-01', jun2: '2026-06-02', jun3: '2026-06-03',
+    jun4: '2026-06-04', jun5: '2026-06-05', jun6: '2026-06-06', jun7: '2026-06-07'
+  };
+  function localDateStr(d) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+  const TODAY_STR = localDateStr(new Date());
+
+  // ===== Trip photos =====
+  // Photos are committed image files in the /photos folder. To add some:
+  //   1. Drop the image(s) into photos/  (e.g. photos/jun1-supetar.jpg)
+  //   2. Add an entry below under the right day:
+  //        jun1: [{ src: 'photos/jun1-supetar.jpg', caption: 'Sunset in Supetar' }]
+  // A gallery renders automatically on that day; empty days that have already
+  // happened show a gentle "coming soon" placeholder.
+  const TRIP_PHOTOS = {
+    may29: [], may30: [], may31: [],
+    jun1: [], jun2: [], jun3: [],
+    jun4: [], jun5: [], jun6: [], jun7: []
+  };
+
+  function openLightbox(src, caption) {
+    const lb = document.getElementById('photoLightbox');
+    lb.querySelector('img').src = src;
+    lb.querySelector('.pl-caption').textContent = caption || '';
+    lb.classList.add('open');
+  }
+  function closeLightbox() {
+    const lb = document.getElementById('photoLightbox');
+    lb.classList.remove('open');
+    lb.querySelector('img').src = '';
+  }
+
+  // ===== Inline each open vote into the day it belongs to (runs before photos) =====
+  (function inlineVotes() {
+    const map = { 'split-sun': 'may31', 'dubrovnik-fri': 'jun5', 'kotor-sat': 'jun6' };
+    Object.entries(map).forEach(([group, dayId]) => {
+      const groupEl = document.querySelector(`.decision-group[data-group="${group}"]`);
+      const day = document.getElementById(dayId);
+      if (!groupEl || !day) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'day-vote';
+      wrap.id = 'vote-' + group;
+      day.appendChild(wrap);
+      wrap.appendChild(groupEl); // moving the node keeps its vote listeners intact
+    });
+  })();
+
+  (function renderPhotos() {
+    Object.entries(TRIP_PHOTOS).forEach(([dayId, photos]) => {
+      const section = document.getElementById(dayId);
+      if (!section) return;
+      const date = DAY_DATES[dayId];
+      const happened = date && date <= TODAY_STR;
+      if ((!photos || !photos.length) && !happened) return; // skip empty future days
+      const block = document.createElement('div');
+      block.className = 'day-photos';
+      const count = photos && photos.length
+        ? `<span class="day-photos-count">${photos.length}</span>` : '';
+      let body;
+      if (photos && photos.length) {
+        body = '<div class="day-photos-grid">' + photos.map((p, i) =>
+          `<div class="day-photo" data-day="${dayId}" data-i="${i}"><img src="${p.src}" alt="${(p.caption || '').replace(/"/g, '&quot;')}" loading="lazy"></div>`
+        ).join('') + '</div>';
+      } else {
+        body = '<div class="day-photos-empty">📸 Photos coming soon</div>';
+      }
+      block.innerHTML = `<div class="day-photos-head"><span>📷</span> Photos${count}</div>${body}`;
+      section.appendChild(block);
+    });
+    document.querySelectorAll('.day-photo').forEach(el => {
+      el.addEventListener('click', () => {
+        const p = (TRIP_PHOTOS[el.dataset.day] || [])[+el.dataset.i];
+        if (p) openLightbox(p.src, p.caption);
+      });
+    });
+  })();
+
+  // ===== Highlight the current day (date-aware, updates as the trip goes) =====
+  (function markToday() {
+    const todayId = Object.keys(DAY_DATES).find(id => DAY_DATES[id] === TODAY_STR);
+    const jumpBtn = document.getElementById('jumpToday');
+    if (!todayId) return; // not during the trip — leave everything as-is
+    const section = document.getElementById(todayId);
+    if (section) {
+      section.classList.add('is-today');
+      const headText = section.querySelector('.day-header > div:not(.day-badge)');
+      if (headText) {
+        const badge = document.createElement('div');
+        badge.className = 'today-badge';
+        badge.textContent = '● Today';
+        headText.appendChild(badge);
+      }
+    }
+    const stripLink = document.querySelector(`.day-strip a[href="#${todayId}"]`);
+    if (stripLink) stripLink.classList.add('is-today');
+    if (jumpBtn && section) {
+      jumpBtn.addEventListener('click', () =>
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          entries.forEach(e => jumpBtn.classList.toggle('show', !e.isIntersecting));
+        }, { threshold: 0.12 }).observe(section);
+      } else {
+        jumpBtn.classList.add('show');
+      }
+    }
+  })();
+
+  // ===== Dim inline votes until a voter is picked (group cards now live in days) =====
+  (function voteLockSync() {
+    const sync = () => document.body.classList.toggle('votes-locked',
+      !localStorage.getItem('croatia-trip-voter'));
+    sync();
+    document.querySelectorAll('.voter-btn').forEach(b =>
+      b.addEventListener('click', () => requestAnimationFrame(sync)));
+  })();
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
