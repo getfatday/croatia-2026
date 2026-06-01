@@ -3,6 +3,16 @@
 Drop photos from the trip in this folder and they'll show up on the matching
 day in the itinerary.
 
+## Synced from Google Drive
+
+Photos are imported from the shared **Croatia** Google Drive folder. Each file
+keeps its original camera name (`IMG_####.jpg`), so the filename is the key we
+track by — when new photos are added to Drive, we only import the names that
+aren't already in this folder. Originals are HEIC; they're converted to JPG,
+auto-rotated, and resized to ~1600px on the long edge (quality ~82) for the web.
+
+Each photo is filed onto the trip day that matches its EXIF capture date.
+
 ## How to add a photo
 
 1. **Add the image file here**, in `photos/`. Use a name that says which day it
