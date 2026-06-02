@@ -2066,6 +2066,32 @@
       line-height: 1;
       cursor: pointer;
     }
+    .photo-lightbox .pl-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 4.2rem;
+      padding: 0 0 0.25rem;
+      background: rgba(0,0,0,0.32);
+      border: none;
+      border-radius: 4px;
+      color: var(--bone);
+      font-size: 2.6rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .photo-lightbox .pl-nav:hover { background: rgba(0,0,0,0.6); }
+    .photo-lightbox .pl-prev { left: 0.6rem; }
+    .photo-lightbox .pl-next { right: 0.6rem; }
+    @media (max-width: 520px) {
+      .photo-lightbox .pl-nav { width: 2.4rem; height: 3.6rem; font-size: 2.1rem; }
+    }
 
     /* ===== MAP IFRAME ===== */
     #map iframe {
@@ -2287,6 +2313,8 @@
 
   <div class="photo-lightbox" id="photoLightbox" onclick="if (event.target === this) closeLightbox()">
     <button class="pl-close" type="button" onclick="closeLightbox()" aria-label="Close">×</button>
+    <button class="pl-nav pl-prev" type="button" onclick="navLightbox(-1)" aria-label="Previous photo">‹</button>
+    <button class="pl-nav pl-next" type="button" onclick="navLightbox(1)" aria-label="Next photo">›</button>
     <img src="" alt="">
     <div class="pl-caption"></div>
   </div>
@@ -4114,16 +4142,33 @@
     jun4: [], jun5: [], jun6: [], jun7: []
   };
 
-  function openLightbox(src, caption) {
-    const lb = document.getElementById('photoLightbox');
-    lb.querySelector('img').src = src;
-    lb.querySelector('.pl-caption').textContent = caption || '';
-    lb.classList.add('open');
+  let lbPhotos = [], lbIndex = 0;
+  function openLightbox(photos, index) {
+    lbPhotos = photos || [];
+    lbIndex = index || 0;
+    showLightboxPhoto(lbIndex);
+    document.getElementById('photoLightbox').classList.add('open');
   }
+  function showLightboxPhoto(i) {
+    if (!lbPhotos.length) return;
+    lbIndex = (i + lbPhotos.length) % lbPhotos.length; // wrap around
+    const lb = document.getElementById('photoLightbox');
+    const p = lbPhotos[lbIndex];
+    const img = lb.querySelector('img');
+    img.src = p.src;
+    img.alt = p.caption || '';
+    const counter = lbPhotos.length > 1 ? `${lbIndex + 1} / ${lbPhotos.length}` : '';
+    lb.querySelector('.pl-caption').textContent =
+      [p.caption, counter].filter(Boolean).join(' · ');
+    const multi = lbPhotos.length > 1;
+    lb.querySelectorAll('.pl-nav').forEach(b => { b.style.display = multi ? '' : 'none'; });
+  }
+  function navLightbox(delta) { showLightboxPhoto(lbIndex + delta); }
   function closeLightbox() {
     const lb = document.getElementById('photoLightbox');
     lb.classList.remove('open');
     lb.querySelector('img').src = '';
+    lbPhotos = [];
   }
 
   // ===== Inline each open vote into the day it belongs to (runs before photos) =====
@@ -4165,8 +4210,8 @@
     });
     document.querySelectorAll('.day-photo').forEach(el => {
       el.addEventListener('click', () => {
-        const p = (TRIP_PHOTOS[el.dataset.day] || [])[+el.dataset.i];
-        if (p) openLightbox(p.src, p.caption);
+        const photos = TRIP_PHOTOS[el.dataset.day] || [];
+        if (photos.length) openLightbox(photos, +el.dataset.i);
       });
     });
   })();
@@ -4211,7 +4256,25 @@
       b.addEventListener('click', () => requestAnimationFrame(sync)));
   })();
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('photoLightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowRight') navLightbox(1);
+    else if (e.key === 'ArrowLeft') navLightbox(-1);
+  });
+
+  // Swipe left/right to navigate the lightbox on touch devices
+  (function lightboxSwipe() {
+    const lb = document.getElementById('photoLightbox');
+    let x0 = null;
+    lb.addEventListener('touchstart', e => { x0 = e.changedTouches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) navLightbox(dx < 0 ? 1 : -1);
+      x0 = null;
+    }, { passive: true });
+  })();
 </script>
 
 </body>
